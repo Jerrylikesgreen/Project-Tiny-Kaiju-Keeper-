@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bq6w6xf05r07s"
+path="res://.godot/imported/Juvenile (1).mp3-d15d967d6a58e7e9b2ba52a7322ddcb4.mp3str"
+
+[deps]
+
+source_file="res://Assets/mp3/Juvenile (1).mp3"
+dest_files=["res://.godot/imported/Juvenile (1).mp3-d15d967d6a58e7e9b2ba52a7322ddcb4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
