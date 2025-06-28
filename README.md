@@ -1,5 +1,6 @@
-# *Project-Tiny-Kaiju-Keeper*
-### Jam‑Scope GDD (v 1.1)
+# **Project:**
+
+# **Tiny Kaiju Keeper – Jam‑Scope GDD (v 1.1)**
 
 ---
 
@@ -189,9 +190,119 @@ Clean separation showcases future F2P injection without touching core loop.
 
 “Care for a cute pixel kaiju, keep it well‑fed and happy, and watch it grow into *Mothlyn* or *Gigazilla*—all crafted in ten jam‑packed days with a laser‑focused scope and professional, future‑ready code.”
 
-# Class:   WorldBackground
-## Inherits:   TextureRect <   Control <   CanvasItem <   Node <   Object
+## 
 
-### Node that holds a [texture]: PNG This is the background img used to display the envirorment the v-pet lives in. Currently set to stretch to screen size.
+## **Code Structure \[ Documentation \]:**
+
+# **Class:   WorldBackground**
+
+### **Inherits:   TextureRect \<   Control \<   CanvasItem \<   Node \<   Object**
+
+Node that holds a \[texture\]: PNG This is the background img used to display the envirorment the v-pet lives in. Currently set to stretch to screen size.
+
+# **Class:   SceneManager**
+
+### **Inherits:   Node \<   Object**
+
+Root node observer. Will handle all scene transitions.
+
+#### **Properties**
+
+1. WorldManagerworld\_manager\[default: \<unknown\>\]
+
+**Property Descriptions**
+
+1. WorldManagerworld\_manager \[default: \<unknown\>\]
+
+    World Observer \- Will receive all children signals. 
+
+# 
+
+# **Class:   PetResource**
+
+### **Inherits:   Resource \<   RefCounted \<   Object**
+
+  There is currently no description for this class.
+
+## Properties
+
+1. Float: happiness \[default: 1.0\]  
+2. Float: hunger \[default: 1.0\]  
+3. Float: hygiene \[default: 1.0\]  
+4. CompressedTexture2D \- sprite
+
+Property Descriptions
+
+##### **● float: happiness \[default: 1.0\]**
+
+##### 
+
+##### Variable holding happiness value,  0 \= empty, 1 \= full.
+
+##### 
+
+##### 
+
+##### **● float: hunger \[default: 1.0\]**
+
+##### 
+
+##### Variable holding hunger value, 0 \= empty, 1 \= full.
+
+##### 
+
+##### 
+
+##### **● float: hygiene \[default: 1.0\]**
+
+##### 
+
+##### Variable holding hygine value, 0 \= empty, 1 \= full.
+
+##### 
+
+##### **● CompressedTexture2Dsprite**
+
+##### 
+
+##### Variable holding sprite
+
+# **Class:   BaseBody**
+
+### **Inherits:   CharacterBody2D \<   PhysicsBody2D \<   CollisionObject2D \<   Node2D \<   CanvasItem \<   Node \<   Object**
+
+ Base body class that all Movable Enteties : Mobs inherit.
+
+## Properties
+
+Int: growth\_speed \[default: 1\]   
+
+PetResource: pet\_resource
+
+## Methods
+
+Void: \_push\_happiness()
+
+Void: update\_globals\_from\_pet(pet: PetResource)
+
+## Property Descriptions
+
+● int: growth\_speed \[default: 1\]
+
+Variable determining the rate in which pet grows.
+
+● PetResourcepet\_resource
+
+Custome resource holding: happiness, hunger, hygiene, sprite
+
+## Method Descriptions
+
+● void \_push\_happiness()
+
+private function that sends happiness to Globals.
+
+● void update\_globals\_from\_pet(pet: PetResource)
+
+Sets up fucntions and variabnles to distribute resource across
 
 
