@@ -188,3 +188,10 @@ Clean separation showcases future F2P injection without touching core loop.
 ### **Elevator Tagline**
 
 “Care for a cute pixel kaiju, keep it well‑fed and happy, and watch it grow into *Mothlyn* or *Gigazilla*—all crafted in ten jam‑packed days with a laser‑focused scope and professional, future‑ready code.”
+
+#Class:   WorldBackground
+##Inherits:   TextureRect <   Control <   CanvasItem <   Node <   Object
+
+###Node that holds a [texture]: PNG This is the background img used to display the envirorment the v-pet lives in. Currently set to stretch to screen size.
+
+
