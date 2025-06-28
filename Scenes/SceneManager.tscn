@@ -1,0 +1,253 @@
+[gd_scene load_steps=18 format=3 uid="uid://cn5lx5caavnr7"]
+
+[ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Assets/Pixelbasel.ttf" id="1_yueht"]
+[ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Scripts/base_body.gd" id="2_7xrkh"]
+[ext_resource type="Texture2D" uid="uid://5qhua8yf7gso" path="res://Assets/image.png" id="2_8ysa5"]
+[ext_resource type="Texture2D" uid="uid://qnjys0ewv8l7" path="res://Assets/BaseBody-Sheet-Sheet.png" id="2_ebsso"]
+[ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resources/pet_resource.tres" id="3_83gc0"]
+[ext_resource type="Script" uid="uid://wtflmtow768h" path="res://Scripts/title_screen.gd" id="3_hjya1"]
+[ext_resource type="Texture2D" uid="uid://cv0068teefpg1" path="res://Assets/sada.png" id="6_q4unc"]
+[ext_resource type="AudioStream" uid="uid://biwn3xpf051yk" path="res://Assets/mp3/Egg.mp3" id="7_2cmid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjya1"]
+atlas = ExtResource("2_ebsso")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xrkh"]
+atlas = ExtResource("2_ebsso")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83gc0"]
+atlas = ExtResource("2_ebsso")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ysa5"]
+atlas = ExtResource("2_ebsso")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cmid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjya1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xrkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83gc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ysa5")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]
+radius = 4.0
+height = 17.3333
+
+[sub_resource type="Theme" id="Theme_j62oj"]
+default_font = ExtResource("1_yueht")
+Label/colors/font_color = Color(0, 0.234705, 5.88158e-05, 1)
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("1_yueht")
+
+[sub_resource type="Theme" id="Theme_q4unc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ebsso"]
+font_size = 31
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.639216)
+
+[node name="SceneManager" type="Node"]
+
+[node name="MainDisplayLayer" type="CanvasLayer" parent="."]
+
+[node name="MainDisplayContainer" type="Control" parent="MainDisplayLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="World" type="Panel" parent="MainDisplayLayer/MainDisplayContainer"]
+layout_mode = 2
+offset_right = 512.0
+offset_bottom = 448.0
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainDisplayLayer/MainDisplayContainer/World"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8ysa5")
+expand_mode = 1
+
+[node name="BaseBody" type="CharacterBody2D" parent="MainDisplayLayer/MainDisplayContainer/World"]
+position = Vector2(252, 295)
+scale = Vector2(3, 3)
+script = ExtResource("2_7xrkh")
+pet_resource = ExtResource("3_83gc0")
+
+[node name="BaseBodySprite" type="AnimatedSprite2D" parent="MainDisplayLayer/MainDisplayContainer/World/BaseBody"]
+sprite_frames = SubResource("SpriteFrames_2cmid")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainDisplayLayer/MainDisplayContainer/World/BaseBody"]
+position = Vector2(-0.333333, 0.333333)
+shape = SubResource("CapsuleShape2D_hjya1")
+
+[node name="InfoDisplay" type="HBoxContainer" parent="MainDisplayLayer/MainDisplayContainer/World"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -1.0
+offset_top = 39.0
+offset_right = -1.0
+offset_bottom = 57.0
+grow_horizontal = 2
+
+[node name="InfoDisplay" type="Label" parent="MainDisplayLayer/MainDisplayContainer/World/InfoDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = SubResource("Theme_j62oj")
+text = "Info Display"
+horizontal_alignment = 1
+
+[node name="InfoDisplay2" type="Label" parent="MainDisplayLayer/MainDisplayContainer/World/InfoDisplay"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = SubResource("Theme_j62oj")
+text = "Info Display"
+horizontal_alignment = 1
+
+[node name="InfoDisplay3" type="Label" parent="MainDisplayLayer/MainDisplayContainer/World/InfoDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_j62oj")
+text = "Info Display"
+horizontal_alignment = 1
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="PlayerButtons" type="Control" parent="GUI"]
+layout_mode = 3
+anchor_left = 0.029
+anchor_top = 1.0
+anchor_right = 0.959
+anchor_bottom = 1.0
+offset_left = -3.848
+offset_top = -55.0
+offset_right = -0.00802612
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+
+[node name="PlayerButtons2" type="HBoxContainer" parent="GUI"]
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 1.0
+anchor_right = 0.959
+anchor_bottom = 1.0
+offset_left = -0.848
+offset_top = -74.0
+offset_right = 0.992004
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+
+[node name="Button3" type="Button" parent="GUI/PlayerButtons2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme = SubResource("Theme_q4unc")
+text = "Buttion"
+icon = ExtResource("6_q4unc")
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button4" type="Button" parent="GUI/PlayerButtons2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme = SubResource("Theme_q4unc")
+text = "Buttion"
+icon = ExtResource("6_q4unc")
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button5" type="Button" parent="GUI/PlayerButtons2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme = SubResource("Theme_q4unc")
+text = "Buttion"
+icon = ExtResource("6_q4unc")
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button6" type="Button" parent="GUI/PlayerButtons2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme = SubResource("Theme_q4unc")
+text = "Buttion"
+icon = ExtResource("6_q4unc")
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TitleScreen" type="PanelContainer" parent="GUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_hjya1")
+
+[node name="TitleScreenBackground" type="ColorRect" parent="GUI/TitleScreen"]
+layout_mode = 2
+color = Color(0.177806, 0.355417, 0.364607, 1)
+
+[node name="Title" type="Label" parent="GUI/TitleScreen"]
+layout_mode = 2
+text = "Project Tiny Kaiju Keeper"
+label_settings = SubResource("LabelSettings_ebsso")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="GUI/TitleScreen/Title"]
+layout_mode = 2
+offset_left = 235.0
+offset_top = 33.0
+offset_right = 273.0
+offset_bottom = 56.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2cmid")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="GUI/TitleScreen/Title/Button" to="GUI/TitleScreen" method="_on_button_pressed"]
