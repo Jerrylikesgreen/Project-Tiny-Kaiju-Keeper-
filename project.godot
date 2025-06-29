@@ -14,6 +14,7 @@ config/name="Project Tiny Kaiju Keeper"
 run/main_scene="uid://cn5lx5caavnr7"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0.0615095, 0.171558, 0.0872641, 1)
+boot_splash/fullsize=false
 boot_splash/image="uid://cv3i2vcx1bg45"
 config/icon="uid://cv3i2vcx1bg45"
 
@@ -42,3 +43,4 @@ pointing/android/enable_pan_and_scale_gestures=true
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
