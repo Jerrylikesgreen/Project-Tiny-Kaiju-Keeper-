@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://befl1oxcgetrb" path="res://Scripts/GUI/hygiene_label.gd" id="11_2qisj"]
 [ext_resource type="Script" uid="uid://dlxtf13dpvw5m" path="res://Scripts/World/player_camera.gd" id="11_wi563"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scenes/bgm.tscn" id="16_8kvsk"]
-[ext_resource type="Script" uid="uid://sdddadi2274o" path="res://Scenes/bgm.gd" id="17_2qisj"]
+[ext_resource type="Script" uid="uid://sdddadi2274o" path="res://Scripts/World/bgm.gd" id="17_2qisj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hjya1"]
 atlas = ExtResource("2_ebsso")
@@ -82,10 +82,25 @@ shadow_color = Color(0, 0, 0, 0.639216)
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_wi563")
 
-[node name="MainDisplayLayer" type="CanvasLayer" parent="."]
+[node name="PlayerCamera" parent="." instance=ExtResource("10_b0fb2")]
+script = ExtResource("11_wi563")
+
+[node name="BGM" parent="." instance=ExtResource("16_8kvsk")]
+script = ExtResource("17_2qisj")
+
+[node name="AspectRatioContainer" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainDisplayLayer" type="CanvasLayer" parent="AspectRatioContainer"]
 unique_name_in_owner = true
 
-[node name="MainDisplayContainer" type="Control" parent="MainDisplayLayer"]
+[node name="MainDisplayContainer" type="Control" parent="AspectRatioContainer/MainDisplayLayer"]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -96,14 +111,15 @@ grow_vertical = 2
 size_flags_horizontal = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="WorldManager" type="Panel" parent="MainDisplayLayer/MainDisplayContainer"]
+[node name="WorldManager" type="Panel" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 offset_right = 512.0
 offset_bottom = 448.0
 size_flags_vertical = 3
 script = ExtResource("1_75dai")
 
-[node name="WorldBackground" type="TextureRect" parent="MainDisplayLayer/MainDisplayContainer/WorldManager"]
+[node name="WorldBackground" type="TextureRect" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,22 +130,25 @@ texture = ExtResource("2_8ysa5")
 expand_mode = 1
 script = ExtResource("2_gbsx4")
 
-[node name="BaseBody" type="CharacterBody2D" parent="MainDisplayLayer/MainDisplayContainer/WorldManager"]
+[node name="BaseBody" type="CharacterBody2D" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 position = Vector2(252, 295)
 scale = Vector2(3, 3)
 script = ExtResource("2_7xrkh")
 pet_resource = ExtResource("3_83gc0")
 
-[node name="BaseBodySprite" type="AnimatedSprite2D" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
+[node name="BaseBodySprite" type="AnimatedSprite2D" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
 sprite_frames = SubResource("SpriteFrames_2cmid")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
 position = Vector2(-0.333333, 0.333333)
 shape = SubResource("CapsuleShape2D_hjya1")
 
-[node name="InfoDisplay" type="HBoxContainer" parent="MainDisplayLayer/MainDisplayContainer/WorldManager"]
+[node name="HungerTick" type="Timer" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
+unique_name_in_owner = true
+
+[node name="InfoDisplay" type="HBoxContainer" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.039
@@ -141,7 +160,7 @@ offset_right = 0.111969
 offset_bottom = 38.152
 grow_horizontal = 2
 
-[node name="HappyLabel" type="Label" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
+[node name="HappyLabel" type="Label" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -150,7 +169,7 @@ text = "Info Display"
 horizontal_alignment = 1
 script = ExtResource("9_8kvsk")
 
-[node name="HungerLabel" type="Label" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
+[node name="HungerLabel" type="Label" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -159,7 +178,7 @@ text = "Info Display"
 horizontal_alignment = 1
 script = ExtResource("10_8kvsk")
 
-[node name="HygieneLabel" type="Label" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
+[node name="HygieneLabel" type="Label" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -168,9 +187,9 @@ text = "Info Display"
 horizontal_alignment = 1
 script = ExtResource("11_2qisj")
 
-[node name="GUI" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="AspectRatioContainer"]
 
-[node name="PlayerButtons" type="Control" parent="GUI"]
+[node name="PlayerButtons" type="Control" parent="AspectRatioContainer/GUI"]
 layout_mode = 3
 anchor_left = 0.029
 anchor_top = 1.0
@@ -184,7 +203,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
 
-[node name="PlayerButtons2" type="HBoxContainer" parent="GUI"]
+[node name="PlayerButtons2" type="HBoxContainer" parent="AspectRatioContainer/GUI"]
 anchors_preset = -1
 anchor_left = 0.029
 anchor_top = 1.0
@@ -198,7 +217,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
 
-[node name="Button3" type="Button" parent="GUI/PlayerButtons2"]
+[node name="Button3" type="Button" parent="AspectRatioContainer/GUI/PlayerButtons2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -209,7 +228,7 @@ clip_text = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Button4" type="Button" parent="GUI/PlayerButtons2"]
+[node name="Button4" type="Button" parent="AspectRatioContainer/GUI/PlayerButtons2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -220,7 +239,7 @@ clip_text = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Button5" type="Button" parent="GUI/PlayerButtons2"]
+[node name="Button5" type="Button" parent="AspectRatioContainer/GUI/PlayerButtons2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -231,7 +250,7 @@ clip_text = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Button6" type="Button" parent="GUI/PlayerButtons2"]
+[node name="Button6" type="Button" parent="AspectRatioContainer/GUI/PlayerButtons2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -242,7 +261,7 @@ clip_text = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="TitleScreen" type="PanelContainer" parent="GUI"]
+[node name="TitleScreen" type="PanelContainer" parent="AspectRatioContainer/GUI"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -251,17 +270,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_hjya1")
 
-[node name="TitleScreenBackground" type="ColorRect" parent="GUI/TitleScreen"]
+[node name="TitleScreenBackground" type="ColorRect" parent="AspectRatioContainer/GUI/TitleScreen"]
 layout_mode = 2
 color = Color(0.177806, 0.355417, 0.364607, 1)
 
-[node name="Title" type="Label" parent="GUI/TitleScreen"]
+[node name="Title" type="Label" parent="AspectRatioContainer/GUI/TitleScreen"]
 layout_mode = 2
 text = "Project Tiny Kaiju Keeper"
 label_settings = SubResource("LabelSettings_ebsso")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="GUI/TitleScreen/Title"]
+[node name="Button" type="Button" parent="AspectRatioContainer/GUI/TitleScreen/Title"]
 layout_mode = 2
 offset_left = 235.0
 offset_top = 33.0
@@ -271,10 +290,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Start"
 
-[node name="PlayerCamera" parent="." instance=ExtResource("10_b0fb2")]
-script = ExtResource("11_wi563")
-
-[node name="BGM" parent="." instance=ExtResource("16_8kvsk")]
-script = ExtResource("17_2qisj")
-
-[connection signal="pressed" from="GUI/TitleScreen/Title/Button" to="GUI/TitleScreen" method="_on_button_pressed"]
+[connection signal="timeout" from="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody/HungerTick" to="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody" method="_on_hunger_tick_timeout"]
+[connection signal="pressed" from="AspectRatioContainer/GUI/TitleScreen/Title/Button" to="AspectRatioContainer/GUI/TitleScreen" method="_on_button_pressed"]

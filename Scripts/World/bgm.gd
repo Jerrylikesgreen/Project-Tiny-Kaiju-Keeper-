@@ -1,7 +1,9 @@
 class_name BGM extends AudioStreamPlayer
+## Node that controls Background music for thhe game, depending on Game State and other variables. 
 
-## ---[ 1. Enum: LOGICAL_NAME → int ]---
-enum Track {
+
+
+enum Track { ## [ Enum: LOGICAL_NAME → int ]  Refrences the differant tracks Player can play. 
 	EGG_1,                   ## 0
 	BABY_1,                  ## 1
 	TODDLER_1,               ## 2
@@ -11,7 +13,7 @@ enum Track {
 	THEY_GROW_UP_SO_FAST_1   ## 6
 }
 
-## ---[ 2. Lookup table: enum value → AudioStream ]---
+## [ Lookup table: enum value → AudioStream ] Refrence to each Path for each Track. 
 const TRACK_STREAMS := {
 	Track.ADULT_1:                 preload("res://Assets/mp3/Adult (1).mp3"),
 	Track.BABY_1:                  preload("res://Assets/mp3/Baby (1).mp3"),
@@ -23,15 +25,15 @@ const TRACK_STREAMS := {
 }
 
 func _ready() -> void:
-	play_track(Track.NAPTIME_SWEET_KAIJU)
+	play_track(Track.NAPTIME_SWEET_KAIJU) ## Ensures audio gets played at start. 
 	Events.game_state.connect(_update_track)
 
 
-func play_track(track: Track) -> void:
-	$AudioStreamPlayer.stream = TRACK_STREAMS[track]
-	$AudioStreamPlayer.play()
+func play_track(track: Track) -> void: ## Function that plays the track that was passed through. 
+	stream = TRACK_STREAMS[track]
+	play()
 
-func _update_track()->void:
+func _update_track()->void: ## Function that calls pl_track and assigns Track based on current_game_state
 	if Globals.current_game_state == 0: ## GUI 
 		play_track(Track.NAPTIME_SWEET_KAIJU)
 	if Globals.current_game_state == 1: ## MAIN

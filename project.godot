@@ -13,7 +13,9 @@ config_version=5
 config/name="Project Tiny Kaiju Keeper"
 run/main_scene="uid://cn5lx5caavnr7"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.0615095, 0.171558, 0.0872641, 1)
+boot_splash/image="uid://cv3i2vcx1bg45"
+config/icon="uid://cv3i2vcx1bg45"
 
 [autoload]
 
@@ -24,10 +26,17 @@ Events="*res://Scripts/events.gd"
 
 window/size/viewport_width=512
 window/size/viewport_height=448
+window/stretch/mode="viewport"
+window/handheld/orientation=1
 
 [gui]
 
 theme/custom_font="uid://dy00p4wwvsw10"
+
+[input_devices]
+
+pointing/android/enable_long_press_as_right_click=true
+pointing/android/enable_pan_and_scale_gestures=true
 
 [rendering]
 
