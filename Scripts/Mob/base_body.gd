@@ -4,8 +4,14 @@ class_name BaseBody extends CharacterBody2D
 @export var growth_speed: int = 1 ## Variable determining the rate in which pet grows. 
 @export var pet_resource: PetResource      ## happiness[1.0]:float, hunger[1.0]:float, hygiene[1.0]:float, sprite
 @export var hunger_rate: int = 1 
+@export var happy_rate: int = 1 
+@export var hygiene_rate: int = 1 
 @export var _can_get_hungry:bool = true
+@export var _can_get_happy:bool = true
+@export var _can_get_hygiene:bool = true
 @onready var hunger_tick: Timer = %HungerTick
+@onready var happy_tick: Timer = %HappyTick
+@onready var hygiene_tick: Timer = %HygieneTick
 
 
 
@@ -35,9 +41,33 @@ func update_globals_from_pet(pet: PetResource) -> void: ## Sets up fucntions and
 func start_hunger_tick()->void:
 	if _can_get_hungry == true :
 		hunger_tick.start(1.0)
-	
+
+func start_happy_tick()->void:
+	if _can_get_happy == true :
+		happy_tick.start(1.0)
+
+func start_hygiene_tick()->void:
+	if _can_get_hygiene == true :
+		hygiene_tick.start(1.0)
 
 
 func _on_hunger_tick_timeout() -> void:
-	var value = Globals.current_hunger 
+	var rate = 0.01 * hunger_rate
+	var value = Globals.current_hunger - rate
 	Globals.set_current_hunger(value)
+	push_warning("_on_hunger_tick_timeout")
+
+
+
+func _on_happy_tick_timeout() -> void:
+	var rate = 0.01 * happy_rate
+	var value = Globals.current_happiness - rate
+	Globals.set_current_happiness(value)
+	push_warning("_on_happy_tick_timeout")
+
+
+func _on_hygiene_tick_timeout() -> void:
+	var rate = 0.01 * hygiene_rate
+	var value = Globals.current_hygiene - rate
+	Globals.set_current_hygiene(value)
+	push_warning("_on_hygiene_tick_timeout")
