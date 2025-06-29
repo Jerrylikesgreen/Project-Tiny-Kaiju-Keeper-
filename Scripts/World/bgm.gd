@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 
-func play_track(track: Track, fade_time := 1.0) -> void:  ## Function that plays a track that was passed through. 
+func play_track(track: Track, fade_time: float = 1.0) -> void:  ## Function that plays a track that was passed through. 
 	if track == _current_track:         
 		return
 
