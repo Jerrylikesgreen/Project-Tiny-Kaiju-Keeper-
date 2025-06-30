@@ -13,7 +13,7 @@ func hunger_changed_value(value: float) -> void:
 	print("hunger")
 func hygiene_changed_value(value: float) -> void:
 	emit_signal("hygiene_changed", str(value), value)
-	print("hygine")
+	print("hygiene")
 
 
 
