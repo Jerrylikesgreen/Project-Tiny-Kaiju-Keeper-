@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bt0na8r061r11"]
+
+[ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Scripts/Mob/base_body.gd" id="1_pr8gr"]
+[ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resources/pet_resource.tres" id="2_0uue3"]
+[ext_resource type="PackedScene" uid="uid://dfu8vj5tyovfp" path="res://Scenes/state_machine.tscn" id="3_0uue3"]
+[ext_resource type="Texture2D" uid="uid://26xljpkec0jo" path="res://Assets/PNG/egg_sprites_16x16 (1).png" id="3_7fsvj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg4ue"]
+atlas = ExtResource("3_7fsvj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3mqv"]
+atlas = ExtResource("3_7fsvj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cmid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg4ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3mqv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]
+radius = 4.0
+height = 17.3333
+
+[node name="BaseBody" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_pr8gr")
+pet_resource = ExtResource("2_0uue3")
+
+[node name="StateMachine" parent="." instance=ExtResource("3_0uue3")]
+
+[node name="BaseBodySprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2cmid")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.965349
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.333333, 0.333333)
+shape = SubResource("CapsuleShape2D_hjya1")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="HungerTick" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="HappyTick" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="HygieneTick" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="timeout" from="Timers/HungerTick" to="." method="_on_hunger_tick_timeout"]
+[connection signal="timeout" from="Timers/HappyTick" to="." method="_on_happy_tick_timeout"]
+[connection signal="timeout" from="Timers/HygieneTick" to="." method="_on_hygiene_tick_timeout"]

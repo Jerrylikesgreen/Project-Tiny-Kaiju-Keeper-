@@ -214,7 +214,7 @@ Root node observer. Will handle all scene transitions.
 
 1. WorldManagerworld\_manager \[default: \<unknown\>\]
 
-    World Observer \- Will receive all children signals. 
+	World Observer \- Will receive all children signals. 
 
 # 
 
@@ -304,5 +304,3 @@ private function that sends happiness to Globals.
 ● void update\_globals\_from\_pet(pet: PetResource)
 
 Sets up fucntions and variabnles to distribute resource across
-
-

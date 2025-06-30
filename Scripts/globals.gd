@@ -14,6 +14,11 @@ extends Node
 
 
 
+
+var alerts:Dictionary[String, int] = {
+	
+}
+
 # ────────────────────────────────[ Game-state enum ]───────────────────────────────
 enum GameState { GUI, MAIN, MINI_1, GAME_OVER } ## Game‑state enum & label lookup
 ## High-level scenes / modes the game can be in.
