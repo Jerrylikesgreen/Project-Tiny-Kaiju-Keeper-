@@ -1,47 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
+[gd_scene load_steps=19 format=3 uid="uid://cn5lx5caavnr7"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Scripts/World/scene_manager.gd" id="1_wi563"]
-[ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Assets/Pixelbasel.ttf" id="1_yueht"]
-[ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Scripts/Mob/base_body.gd" id="2_7xrkh"]
-[ext_resource type="Texture2D" uid="uid://5qhua8yf7gso" path="res://Assets/image.png" id="2_8ysa5"]
+[ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Assets/Font/Pixelbasel.ttf" id="1_yueht"]
+[ext_resource type="Texture2D" uid="uid://5qhua8yf7gso" path="res://Assets/PNG/image.png" id="2_8ysa5"]
 [ext_resource type="Script" uid="uid://db256hcjuxke7" path="res://Scripts/GUI/world_background.gd" id="2_gbsx4"]
-[ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resources/pet_resource.tres" id="3_83gc0"]
 [ext_resource type="Script" uid="uid://wtflmtow768h" path="res://Scripts/GUI/title_screen.gd" id="3_hjya1"]
-[ext_resource type="Texture2D" uid="uid://cv0068teefpg1" path="res://Assets/sada.png" id="6_q4unc"]
+[ext_resource type="Texture2D" uid="uid://cv0068teefpg1" path="res://Assets/PNG/sada.png" id="6_q4unc"]
+[ext_resource type="PackedScene" uid="uid://bt0na8r061r11" path="res://Scenes/base_body.tscn" id="8_cl5ej"]
 [ext_resource type="Script" uid="uid://dx617k7gbrj0e" path="res://Scripts/GUI/happy_meter.gd" id="9_8kvsk"]
 [ext_resource type="Script" uid="uid://bvdbux3pwo2ea" path="res://Scripts/GUI/hunger_label.gd" id="10_8kvsk"]
 [ext_resource type="PackedScene" uid="uid://bl0ujhrgl2r44" path="res://Scenes/player_camera.tscn" id="10_b0fb2"]
 [ext_resource type="Script" uid="uid://befl1oxcgetrb" path="res://Scripts/GUI/hygiene_label.gd" id="11_2qisj"]
-[ext_resource type="Texture2D" uid="uid://26xljpkec0jo" path="res://Assets/egg_sprites_16x16 (1).png" id="11_5ifd6"]
 [ext_resource type="Script" uid="uid://dlxtf13dpvw5m" path="res://Scripts/World/player_camera.gd" id="11_wi563"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scenes/bgm.tscn" id="16_8kvsk"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mg4ue"]
-atlas = ExtResource("11_5ifd6")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3mqv"]
-atlas = ExtResource("11_5ifd6")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2cmid"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mg4ue")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k3mqv")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 2.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]
-radius = 4.0
-height = 17.3333
 
 [sub_resource type="Theme" id="Theme_j62oj"]
 default_font = ExtResource("1_yueht")
@@ -114,33 +86,8 @@ texture = ExtResource("2_8ysa5")
 expand_mode = 1
 script = ExtResource("2_gbsx4")
 
-[node name="BaseBody" type="CharacterBody2D" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager"]
+[node name="BaseBody" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager" instance=ExtResource("8_cl5ej")]
 position = Vector2(251, 316)
-scale = Vector2(3, 3)
-script = ExtResource("2_7xrkh")
-pet_resource = ExtResource("3_83gc0")
-
-[node name="BaseBodySprite" type="AnimatedSprite2D" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-sprite_frames = SubResource("SpriteFrames_2cmid")
-animation = &"Idle"
-autoplay = "Idle"
-frame_progress = 0.965349
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-position = Vector2(-0.333333, 0.333333)
-shape = SubResource("CapsuleShape2D_hjya1")
-
-[node name="HungerTick" type="Timer" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-unique_name_in_owner = true
-autostart = true
-
-[node name="HappyTick" type="Timer" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-unique_name_in_owner = true
-autostart = true
-
-[node name="HygieneTick" type="Timer" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-unique_name_in_owner = true
-autostart = true
 
 [node name="InfoDisplay" type="HBoxContainer" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 1
@@ -182,6 +129,7 @@ horizontal_alignment = 1
 script = ExtResource("10_8kvsk")
 
 [node name="HungerProgressBar" type="ProgressBar" parent="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay/HungerLabel"]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 131.0
@@ -313,7 +261,4 @@ size_flags_vertical = 4
 text = "Start"
 
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
-[connection signal="timeout" from="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody/HungerTick" to="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody" method="_on_hunger_tick_timeout"]
-[connection signal="timeout" from="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody/HappyTick" to="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody" method="_on_happy_tick_timeout"]
-[connection signal="timeout" from="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody/HygieneTick" to="AspectRatioContainer/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody" method="_on_hygiene_tick_timeout"]
 [connection signal="pressed" from="AspectRatioContainer/GUI/TitleScreen/Title/Button" to="AspectRatioContainer/GUI/TitleScreen" method="_on_button_pressed"]
