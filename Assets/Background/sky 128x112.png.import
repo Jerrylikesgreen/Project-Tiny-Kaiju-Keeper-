@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://26xljpkec0jo"
-path="res://.godot/imported/egg_sprites_16x16 (1).png-0462fc26c418285781b7d0207efec235.ctex"
+uid="uid://cuuqwwq6uxwib"
+path="res://.godot/imported/sky 128x112.png-245d964f71ed0929ecfa3592bea313b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/egg_sprites_16x16 (1).png"
-dest_files=["res://.godot/imported/egg_sprites_16x16 (1).png-0462fc26c418285781b7d0207efec235.ctex"]
+source_file="res://Assets/Background/sky 128x112.png"
+dest_files=["res://.godot/imported/sky 128x112.png-245d964f71ed0929ecfa3592bea313b1.ctex"]
 
 [params]
 
