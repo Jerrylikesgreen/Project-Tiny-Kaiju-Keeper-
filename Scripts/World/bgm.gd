@@ -15,17 +15,16 @@ enum Track { ## [ Enum: LOGICAL_NAME → int ]  Refrences the differant tracks P
 
 ## [ Lookup table: enum value → AudioStream ] Refrence to each Path for each Track. 
 const TRACK_STREAMS := {
-	Track.ADULT_1:                 preload("res://Assets/mp3/Adult.ogg"),
-	Track.BABY_1:                  preload("res://Assets/mp3/Baby.ogg"),
-	Track.EGG_1:                   preload("res://Assets/mp3/Egg.ogg"),
-	Track.JUVENILE_1:              preload("res://Assets/mp3/Juvenile.ogg"),
-	Track.NAPTIME_SWEET_KAIJU:     preload("res://Assets/mp3/Naptime, sweet kaiju.ogg"),
-	Track.THEY_GROW_UP_SO_FAST_1:  preload("res://Assets/mp3/They grow up so fast (1) (1).ogg"),
-	Track.TODDLER_1:               preload("res://Assets/mp3/Toddler.ogg")
+	Track.ADULT_1:                 preload("res://Assets/mp3/Adult (1).mp3"),
+	Track.BABY_1:                  preload("res://Assets/mp3/Baby (1).mp3"),
+	Track.EGG_1:                   preload("res://Assets/mp3/Egg (1).mp3"),
+	Track.JUVENILE_1:              preload("res://Assets/mp3/Juvenile (1).mp3"),
+	Track.NAPTIME_SWEET_KAIJU:     preload("res://Assets/mp3/Naptime, sweet kaiju.mp3"),
+	Track.THEY_GROW_UP_SO_FAST_1:  preload("res://Assets/mp3/They grow up so fast (1).ogg"),
+	Track.TODDLER_1:               preload("res://Assets/mp3/Toddler (1).mp3")
 }
 
 var _current_track : Track        ## remember what’s playing
-var _fade: bool = true
 
 func _ready() -> void:
 	play_track(Track.NAPTIME_SWEET_KAIJU) ## Ensures audio gets played at start. 
@@ -33,19 +32,15 @@ func _ready() -> void:
 
 
 
-func play_track(track: Track, fade_time: float = 2.0) -> void:  ## Function that plays a track along with fade_time[float]=2.
+func play_track(track: Track, fade_time: float = 1.0) -> void:  ## Function that plays a track that was passed through. 
 	if track == _current_track:         
 		return
 
-	if _fade and playing:
+	if playing:
 		_fade_out_then_switch(track, fade_time)
 	else:
 		_switch_stream(track)
 		_fade_in(fade_time)
-
-
-
-
 func _update_track()->void: ## Function that calls pl_track and assigns Track based on current_game_state
 	if Globals.current_game_state == 0: ## GUI 
 		play_track(Track.NAPTIME_SWEET_KAIJU)

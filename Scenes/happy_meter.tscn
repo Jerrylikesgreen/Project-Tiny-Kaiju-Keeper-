@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://da3lqm3m661s"]
 
-[ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Assets/Font/Pixelbasel.ttf" id="1_arn1h"]
+[ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Assets/Pixelbasel.ttf" id="1_arn1h"]
 
 [sub_resource type="Theme" id="Theme_j62oj"]
 default_font = ExtResource("1_arn1h")
