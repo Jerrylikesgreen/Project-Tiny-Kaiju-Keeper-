@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cbibty7nocvi"
+path="res://.godot/imported/Naptime, sweet kaiju.ogg-ecea8cf172fe5bb7a0375615a21b4010.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/mp3/Naptime, sweet kaiju.ogg"
+dest_files=["res://.godot/imported/Naptime, sweet kaiju.ogg-ecea8cf172fe5bb7a0375615a21b4010.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
