@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dx56scq2povoq"
+path="res://.godot/imported/Munch 2.ogg-15b5ca16d9545d969652a14531e5f4e5.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/OGG/Munch 2.ogg"
+dest_files=["res://.godot/imported/Munch 2.ogg-15b5ca16d9545d969652a14531e5f4e5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

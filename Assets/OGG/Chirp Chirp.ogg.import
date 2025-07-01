@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cleapnv0bcy7v"
+path="res://.godot/imported/Chirp Chirp.ogg-ba6f69cf3c6754188fac633d71bec061.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/OGG/Chirp Chirp.ogg"
+dest_files=["res://.godot/imported/Chirp Chirp.ogg-ba6f69cf3c6754188fac633d71bec061.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

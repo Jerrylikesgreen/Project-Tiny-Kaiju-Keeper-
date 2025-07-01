@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://4y4f0laua3k4"
+path="res://.godot/imported/Baby (1).ogg-8a010ece281a5f8ab1848d1fbf1771ad.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/OGG/Baby (1).ogg"
+dest_files=["res://.godot/imported/Baby (1).ogg-8a010ece281a5f8ab1848d1fbf1771ad.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

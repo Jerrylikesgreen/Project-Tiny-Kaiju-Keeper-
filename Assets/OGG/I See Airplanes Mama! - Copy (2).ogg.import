@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dylsbemlwwu5m"
+path="res://.godot/imported/I See Airplanes Mama! - Copy (2).ogg-ef1587e130e4b4176a30f8cf0141b218.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/OGG/I See Airplanes Mama! - Copy (2).ogg"
+dest_files=["res://.godot/imported/I See Airplanes Mama! - Copy (2).ogg-ef1587e130e4b4176a30f8cf0141b218.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

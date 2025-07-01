@@ -9,6 +9,6 @@ func _ready() -> void: ## At ready, label will connect with Events Global to upd
 
 
 func _on_happiness_changed(h_tex: String, value: float) -> void: ## Triggered on happyness signal from Events. 
-	set_text("Happy:" + h_tex) ## turns float:String for label. Will use float for progress bar. 
+	set_text("Happiness") ## turns float:String for label. Will use float for progress bar. 
 	happy_progress_bar.set_value(value)
 	push_warning("set_text →", value)
