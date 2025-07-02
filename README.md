@@ -53,7 +53,7 @@ The latest HTML5 build is always on **itch.io**:
 ## Core Loop & Controls
 ### Core Loop
 1. **Feed** – Drop snacks to recharge *Hunger*.  
-2. **Clean** – Swipe away messes to restore *Hygiene*.  
+2. **Clean** – Clean up after your tiny kaiju, to restore *Hygiene*.  
 3. **Play** – Launch **Sky Flutter**; keep Mini-Kaiju airborne for score & *Happiness*.
 
 Maintaining stats influences which kaiju your pet becomes after the 72-hour evolution check.
