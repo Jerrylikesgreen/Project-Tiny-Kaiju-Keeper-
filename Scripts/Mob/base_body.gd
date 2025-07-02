@@ -98,8 +98,10 @@ func _on_evolution(stage:int)->void:
 		2:
 			if !_is_godzilla:
 				base_body_sprite.set_stage(base_body_sprite.Stage.JUV_MOTH)
+				print(_is_godzilla, "mothy")
 			else:
 				base_body_sprite.set_stage(base_body_sprite.Stage.JUV_GIGA)
+				print(_is_godzilla, "gigi")
 		3:
 			if !_is_godzilla:
 				base_body_sprite.set_stage(base_body_sprite.Stage.ADULT_MOTH)
