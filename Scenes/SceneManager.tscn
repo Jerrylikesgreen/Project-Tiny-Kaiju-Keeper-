@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cn5lx5caavnr7"]
+[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Scripts/World/scene_manager.gd" id="1_wi563"]
@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://17x4vh1ltwl" path="res://Scenes/base_body.tscn" id="12_mg4ue"]
 [ext_resource type="Theme" uid="uid://csfdjcxm263dk" path="res://Resources/Default.tres" id="13_k3mqv"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scenes/bgm.tscn" id="16_8kvsk"]
+[ext_resource type="Script" uid="uid://bjjmmm8sbhyql" path="res://Scripts/GUI/feed_button.gd" id="19_k3mqv"]
+[ext_resource type="Script" uid="uid://s28v3bjq816l" path="res://Scripts/GUI/clean_button.gd" id="20_b6n0h"]
+[ext_resource type="Script" uid="uid://bigblpkgj3c57" path="res://Scenes/play.gd" id="21_j16kb"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("1_yueht")
@@ -101,6 +104,12 @@ texture = ExtResource("8_k3mqv")
 
 [node name="BaseBody" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager" instance=ExtResource("12_mg4ue")]
 position = Vector2(251, 316)
+age = 0
+growth_speed = 1
+_can_get_hungry = true
+_can_get_happy = true
+_can_get_hygiene = true
+_is_godzilla = false
 
 [node name="InfoDisplay" type="HBoxContainer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 2
@@ -208,7 +217,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
 
-[node name="Button3" type="Button" parent="Container/GUI/PlayerButtons2"]
+[node name="FEED" type="Button" parent="Container/GUI/PlayerButtons2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -218,8 +227,9 @@ text = "FEED"
 clip_text = true
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("19_k3mqv")
 
-[node name="Button4" type="Button" parent="Container/GUI/PlayerButtons2"]
+[node name="CLEAN" type="Button" parent="Container/GUI/PlayerButtons2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -229,8 +239,9 @@ text = "CLEAN"
 clip_text = true
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("20_b6n0h")
 
-[node name="Button5" type="Button" parent="Container/GUI/PlayerButtons2"]
+[node name="PLAY" type="Button" parent="Container/GUI/PlayerButtons2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -240,8 +251,9 @@ text = "PLAY"
 clip_text = true
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("21_j16kb")
 
-[node name="Button6" type="Button" parent="Container/GUI/PlayerButtons2"]
+[node name="MENU" type="Button" parent="Container/GUI/PlayerButtons2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -282,4 +294,7 @@ size_flags_vertical = 4
 text = "Start"
 
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons2/FEED" to="Container/GUI/PlayerButtons2/FEED" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons2/CLEAN" to="Container/GUI/PlayerButtons2/CLEAN" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons2/PLAY" to="Container/GUI/PlayerButtons2/PLAY" method="_on_pressed"]
 [connection signal="pressed" from="Container/GUI/TitleScreen/Title/Button" to="Container/GUI/TitleScreen" method="_on_button_pressed"]

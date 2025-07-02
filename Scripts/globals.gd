@@ -57,24 +57,37 @@ func _ready() -> void:
 ##   (broadcasts fire **after** change)
 # ─────────────────────────────[ Lifecycle ]──────────┐
 func set_current_happiness(value: float) -> void:
-	_happiness = value
-	if _happiness > 0.9:
-		Events.pet_event("Happy", 0.9)
+	value = clamp(value, 0.0, 1.0)
+	
+	if is_equal_approx(value, _happiness):
+		return
 		
-		pass
-	Events.happiness_changed_value(value)
+	_happiness = value
+
+	if _happiness > 0.9:
+		Events.pet_event("Happy", _happiness) 
+		
+	Events.happiness_changed_value(_happiness)
+
 
 func get_current_happiness() -> float:
 	return _happiness
 
 func set_current_hunger(value: float) -> void:
+	value = clamp(value, 0.0, 1.0)
+	if is_equal_approx(value, _hunger):
+		return 
 	_hunger = value
 	Events.hunger_changed_value(value)
+
 
 func get_current_hunger() -> float:
 	return _hunger
 
 func set_current_hygiene(value: float) -> void:
+	value = clamp(value, 0.0, 1.0)
+	if is_equal_approx(value, _hygiene):
+		return                     # no change, no event spam
 	_hygiene = value
 	Events.hygiene_changed_value(value)
 

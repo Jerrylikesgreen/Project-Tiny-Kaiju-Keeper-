@@ -18,12 +18,9 @@ class_name BaseBody extends CharacterBody2D
 @onready var base_body_sprite: BaseBodySprite = $BaseBodySprite
 
 
-func _ready() -> void:
-	call_deferred("_push_happiness")     ## ensures broadcast happens last
 
-func _push_happiness() -> void: ## private function that sends happiness to Globals. 
+func _ready() -> void:
 	update_globals_from_pet(pet_resource)
-	print(pet_resource.happiness)
 
 
 func update_globals_from_pet(pet: PetResource) -> void: ## Sets up fucntions and variabnles to distribute resource across 
@@ -35,7 +32,6 @@ func update_globals_from_pet(pet: PetResource) -> void: ## Sets up fucntions and
 	Globals.set_current_happiness(pet.happiness)
 	Globals.set_current_hygiene(pet.hygiene)
 	Globals.set_current_hunger(pet.hunger)
-	print(pet.happiness, pet.hunger, pet.hygiene )
 
 	if has_node("Sprite2D") and pet.sprite != null:
 		$"Sprite2D".texture = pet.sprite
@@ -62,12 +58,12 @@ func _on_hunger_tick_timeout() -> void:
 
 
 
+
 func _on_happy_tick_timeout() -> void:
 	var rate = 0.01 * happy_rate
 	var value = Globals.current_happiness - rate
 	Globals.set_current_happiness(value)
 	push_warning("_on_happy_tick_timeout")
-
 
 func _on_hygiene_tick_timeout() -> void:
 	var rate = 0.01 * hygiene_rate
@@ -82,12 +78,12 @@ func _on_chipring_state_chirp() -> void:
 
 
 func _on_growth_tick_timeout() -> void:
-	age = age + 1 
-	if age == 5:
+	age = age + 1 * growth_speed
+	if age == 10:
 		_on_evolution(1)
-	if age == 15:
-		_on_evolution(2)
 	if age == 30:
+		_on_evolution(2)
+	if age == 60:
 		_on_evolution(3)
 	pass # Replace with function body.
 	
