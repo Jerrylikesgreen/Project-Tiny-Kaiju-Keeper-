@@ -101,14 +101,6 @@ texture = ExtResource("8_k3mqv")
 
 [node name="BaseBody" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager" instance=ExtResource("12_mg4ue")]
 position = Vector2(251, 316)
-age = 0
-growth_speed = 1
-hunger_rate = 1
-happy_rate = 1
-hygiene_rate = 1
-_can_get_hungry = true
-_can_get_happy = true
-_can_get_hygiene = true
 
 [node name="InfoDisplay" type="HBoxContainer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 2

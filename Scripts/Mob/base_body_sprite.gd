@@ -15,9 +15,10 @@ const STAGE_FRAMES := {
 	Stage.EGG_2:         EGG_2,
 	Stage.HATCHLING:     HATCHLING,
 	Stage.JUV_GIGA:      JUVINIAL_GIGAZILLA,
-	Stage.JUV_MOTH:      JUVINIAL_GIGAZILLA,
-	Stage.ADULT_MOTH:    ADULT_MOTHLYN,
+	Stage.JUV_MOTH:      JUVINIAL_MOTHLYN,
 	Stage.ADULT_GIGA:    ADULT_GIGAZILLA,
+	Stage.ADULT_MOTH:    ADULT_MOTHLYN,
+	
 }
 
 
@@ -27,12 +28,11 @@ func _ready() -> void:
 
 
 func _on_signal(animation:String)-> void:
-	
 	play(animation)
 	
 func set_stage(stage: Stage) -> void:
 	if not STAGE_FRAMES.has(stage):
-		push_error("Unknown stage: %s" % stage)
+		print("Unknown stage: %s" % stage)
 		return
 
 	var new_frames: SpriteFrames = STAGE_FRAMES[stage]
