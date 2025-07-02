@@ -66,17 +66,6 @@
 
 * Else 50 / 50 random.
 
----
-
-## **6\. Art & Audio Budget**
-
-| Asset | Budget |
-| ----- | ----- |
-| **Sprites** | Hatchling (≈ 8 frames); Juvenile & Adult reuse \+2 unique poses each |
-| **Background** | Single city diorama, 2 parallax layers |
-| **Palette** | Limited Color Palette.  |
-| **SFX** | 6 clips (roar, flap, munch, happy chirp, UI blip, evolution jingle) via **bfxr** |
-| **Music** | 30‑sec looping chill/easy major key chiptune |
 
 ---
 
@@ -108,29 +97,6 @@
 | 9 | Polish & bug‑fix; integrate critical playtest fixes; wishlist mini‑game if stable |
 | 10 | Final build, itch.io page, launch tweet, capture screenshots/GIFs |
 
----
-
-## **9\. Testing Plan**
-
-* **Community‑Driven Playtest** (Day 8\)
-
-  * Post Web build link in relevant Discord & itch.io jam forums.
-
-  * Quick survey on controls, clarity, and bugs.
-
-  * Prioritize “show‑stopper” issues for Day 9\.
-
-* **Internal Smoke Tests**: Every commit must boot & reach nurture loop in \< 30 s.
-
----
-
-## **10\. Retention & Session‑Length Targets**
-
-| Metric | Target |
-| ----- | ----- |
-| **Average Session** | **30 s – 3 min** (snack‑size check‑in) |
-| **Daily Opens** | 4–6 times for engaged users (driven by hourly stat drain) |
-| **Jam Success** | 50 % of play‑testers evolve to final form within 24 hrs of real time |
 
 ---
 
@@ -159,30 +125,6 @@ CopyEdit
   `items.json        # food defs (price field stub)`
 
 Clean separation showcases future F2P injection without touching core loop.
-
----
-
-## **12\. Portfolio Deliverables**
-
-1. **Playable Build** (Web + Win).
-
-2. **1‑Minute Feature Reel** (loop, mini‑game, evolution).
-
-3. **Post‑Mortem Devlog** (scope, risks, learnings, monetization readiness).
-
-4. **Public GitHub** (MIT, clear README \+ build script).
-
----
-
-## **13\. Success Criteria (Jam)**
-
-* Core nurture loop stable by **Day 8**.
-
-* Zero critical crashes in 30‑min community test.
-
-* Positive peer notes on limited‑palette visuals.
-
-* Final build \+ reel uploaded to personal portfolio page.
 
 ---
 
