@@ -7,4 +7,8 @@ class_name PetResource extends Resource
 @export var hygiene: float = 1.0  ## Variable holding hygine value, 0 = empty, 1 = full. 
 
 
-@export var sprite: CompressedTexture2D ## Variable holding sprite 
+
+@export var egg_sprite: CompressedTexture2D
+@export var juvinial: CompressedTexture2D ## Variable holding sprite 
+@export var adult: CompressedTexture2D
+@export var hatchling: CompressedTexture2D

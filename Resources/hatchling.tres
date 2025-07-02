@@ -1,0 +1,82 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://btc1flxmeyiq"]
+
+[ext_resource type="Texture2D" uid="uid://dedvyxnhfcsdt" path="res://Assets/Hatchling/hatchling temp 16x16.png" id="1_10wc3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au158"]
+atlas = ExtResource("1_10wc3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86cxi"]
+atlas = ExtResource("1_10wc3")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ediuy"]
+atlas = ExtResource("1_10wc3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwl0c"]
+atlas = ExtResource("1_10wc3")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpa8l"]
+atlas = ExtResource("1_10wc3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kee4"]
+atlas = ExtResource("1_10wc3")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7elv"]
+atlas = ExtResource("1_10wc3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n52ue"]
+atlas = ExtResource("1_10wc3")
+region = Rect2(32, 16, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au158")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86cxi")
+}],
+"loop": true,
+"name": &"Happy",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ediuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwl0c")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpa8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kee4")
+}],
+"loop": true,
+"name": &"Mad",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7elv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n52ue")
+}],
+"loop": true,
+"name": &"Shocked",
+"speed": 2.0
+}]

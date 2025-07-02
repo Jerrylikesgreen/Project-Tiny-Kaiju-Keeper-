@@ -1,51 +1,24 @@
-[gd_scene load_steps=27 format=3 uid="uid://cn5lx5caavnr7"]
+[gd_scene load_steps=22 format=3 uid="uid://cn5lx5caavnr7"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Scripts/World/scene_manager.gd" id="1_wi563"]
 [ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Resources/Pixelbasel.ttf" id="1_yueht"]
-[ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Scripts/Mob/base_body.gd" id="2_7xrkh"]
-[ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resources/pet_resource.tres" id="3_83gc0"]
 [ext_resource type="Script" uid="uid://wtflmtow768h" path="res://Scripts/GUI/title_screen.gd" id="3_hjya1"]
 [ext_resource type="PackedScene" uid="uid://ce77p7t6uoopb" path="res://Scenes/sfx.tscn" id="5_k3mqv"]
 [ext_resource type="Texture2D" uid="uid://dng17xpkjb274" path="res://Assets/Background/city 2 128x112.png" id="6_5ifd6"]
-[ext_resource type="Script" uid="uid://dm4u6xltbqacu" path="res://Scenes/sfx.gd" id="6_b6n0h"]
+[ext_resource type="Script" uid="uid://dm4u6xltbqacu" path="res://Scripts/World/sfx.gd" id="6_b6n0h"]
 [ext_resource type="Texture2D" uid="uid://dagldaom3kqcv" path="res://Assets/Background/city 1 128x112.png" id="7_mg4ue"]
+[ext_resource type="Texture2D" uid="uid://cuuqwwq6uxwib" path="res://Assets/Background/sky 128x112.png" id="8_b6n0h"]
 [ext_resource type="Texture2D" uid="uid://dl35sbrqe71ft" path="res://Assets/Background/ground 128x112.png" id="8_k3mqv"]
 [ext_resource type="Script" uid="uid://dx617k7gbrj0e" path="res://Scripts/GUI/happy_meter.gd" id="9_8kvsk"]
 [ext_resource type="Script" uid="uid://bvdbux3pwo2ea" path="res://Scripts/GUI/hunger_label.gd" id="10_8kvsk"]
 [ext_resource type="PackedScene" uid="uid://bl0ujhrgl2r44" path="res://Scenes/player_camera.tscn" id="10_b0fb2"]
 [ext_resource type="Script" uid="uid://befl1oxcgetrb" path="res://Scripts/GUI/hygiene_label.gd" id="11_2qisj"]
-[ext_resource type="Texture2D" uid="uid://26xljpkec0jo" path="res://Assets/Egg/egg_sprites_16x16 (1).png" id="11_5ifd6"]
 [ext_resource type="LabelSettings" uid="uid://bqa25qssvogie" path="res://Resources/LableDefault.tres" id="11_mg4ue"]
 [ext_resource type="Script" uid="uid://dlxtf13dpvw5m" path="res://Scripts/World/player_camera.gd" id="11_wi563"]
+[ext_resource type="PackedScene" uid="uid://17x4vh1ltwl" path="res://Scenes/base_body.tscn" id="12_mg4ue"]
 [ext_resource type="Theme" uid="uid://csfdjcxm263dk" path="res://Resources/Default.tres" id="13_k3mqv"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scenes/bgm.tscn" id="16_8kvsk"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mg4ue"]
-atlas = ExtResource("11_5ifd6")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3mqv"]
-atlas = ExtResource("11_5ifd6")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2cmid"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mg4ue")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k3mqv")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 2.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]
-radius = 4.0
-height = 17.3333
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("1_yueht")
@@ -105,11 +78,11 @@ script = ExtResource("1_75dai")
 [node name="Bacground" type="Control" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 2
 
-[node name="COLOR" type="ColorRect" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/Bacground"]
+[node name="COLOR" type="TextureRect" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/Bacground"]
 layout_mode = 2
 offset_right = 512.0
 offset_bottom = 448.0
-color = Color(0.933333, 0.858824, 0.784314, 1)
+texture = ExtResource("8_b6n0h")
 
 [node name="City2128x112" type="Sprite2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/Bacground"]
 position = Vector2(256, 224)
@@ -126,33 +99,16 @@ position = Vector2(256, 224)
 scale = Vector2(4, 4)
 texture = ExtResource("8_k3mqv")
 
-[node name="BaseBody" type="CharacterBody2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
+[node name="BaseBody" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager" instance=ExtResource("12_mg4ue")]
 position = Vector2(251, 316)
-scale = Vector2(3, 3)
-script = ExtResource("2_7xrkh")
-pet_resource = ExtResource("3_83gc0")
-
-[node name="BaseBodySprite" type="AnimatedSprite2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-sprite_frames = SubResource("SpriteFrames_2cmid")
-animation = &"Idle"
-autoplay = "Idle"
-frame_progress = 0.965349
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-position = Vector2(-0.333333, 0.333333)
-shape = SubResource("CapsuleShape2D_hjya1")
-
-[node name="HungerTick" type="Timer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-unique_name_in_owner = true
-autostart = true
-
-[node name="HappyTick" type="Timer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-unique_name_in_owner = true
-autostart = true
-
-[node name="HygieneTick" type="Timer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody"]
-unique_name_in_owner = true
-autostart = true
+age = 0
+growth_speed = 1
+hunger_rate = 1
+happy_rate = 1
+hygiene_rate = 1
+_can_get_hungry = true
+_can_get_happy = true
+_can_get_hygiene = true
 
 [node name="InfoDisplay" type="HBoxContainer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 2
@@ -334,7 +290,4 @@ size_flags_vertical = 4
 text = "Start"
 
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
-[connection signal="timeout" from="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody/HungerTick" to="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody" method="_on_hunger_tick_timeout"]
-[connection signal="timeout" from="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody/HappyTick" to="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody" method="_on_happy_tick_timeout"]
-[connection signal="timeout" from="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody/HygieneTick" to="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/BaseBody" method="_on_hygiene_tick_timeout"]
 [connection signal="pressed" from="Container/GUI/TitleScreen/Title/Button" to="Container/GUI/TitleScreen" method="_on_button_pressed"]

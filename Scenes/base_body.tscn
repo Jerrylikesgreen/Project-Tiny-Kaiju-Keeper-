@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://17x4vh1ltwl"]
+
+[ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Scripts/Mob/base_body.gd" id="1_en3gj"]
+[ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resources/pet_resource.tres" id="2_jqlm0"]
+[ext_resource type="Script" uid="uid://b5rykj005wecv" path="res://Scripts/World/state_machine.gd" id="3_jqlm0"]
+[ext_resource type="Script" uid="uid://cr0a685bltuti" path="res://Scripts/World/idle_state.gd" id="4_wgf83"]
+[ext_resource type="Script" uid="uid://dwwil5hyspauy" path="res://Scripts/World/chipring_state.gd" id="5_1ywop"]
+[ext_resource type="PackedScene" uid="uid://ce77p7t6uoopb" path="res://Scenes/sfx.tscn" id="7_euqgv"]
+[ext_resource type="Script" uid="uid://dm4u6xltbqacu" path="res://Scripts/World/sfx.gd" id="8_euqgv"]
+[ext_resource type="SpriteFrames" uid="uid://0kcstxmso4hu" path="res://Resources/egg_2.tres" id="8_itufd"]
+[ext_resource type="Script" uid="uid://dn1v737xmk5d2" path="res://Scripts/Mob/base_body_sprite.gd" id="9_d0ldd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]
+radius = 4.0
+height = 17.3333
+
+[node name="BaseBody" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_en3gj")
+pet_resource = ExtResource("2_jqlm0")
+
+[node name="SFX" parent="." instance=ExtResource("7_euqgv")]
+script = ExtResource("8_euqgv")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_jqlm0")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("4_wgf83")
+
+[node name="ChipringState" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("5_1ywop")
+metadata/_custom_type_script = "uid://b5rykj005wecv"
+
+[node name="BaseBodySprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.333333, 0)
+sprite_frames = ExtResource("8_itufd")
+animation = &"Happy"
+script = ExtResource("9_d0ldd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.333333, 0.333333)
+shape = SubResource("CapsuleShape2D_hjya1")
+
+[node name="HungerTick" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="HappyTick" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="HygieneTick" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="GrowthTick" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="finished" from="SFX" to="StateMachine/ChipringState" method="_on_sfx_finished"]
+[connection signal="chirp" from="StateMachine/ChipringState" to="." method="_on_chipring_state_chirp"]
+[connection signal="chirp_state_ended" from="StateMachine/ChipringState" to="StateMachine" method="_on_chipring_state_chirp_state_ended"]
+[connection signal="timeout" from="HungerTick" to="." method="_on_hunger_tick_timeout"]
+[connection signal="timeout" from="HappyTick" to="." method="_on_happy_tick_timeout"]
+[connection signal="timeout" from="HygieneTick" to="." method="_on_hygiene_tick_timeout"]
+[connection signal="timeout" from="GrowthTick" to="." method="_on_growth_tick_timeout"]

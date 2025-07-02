@@ -1,0 +1,82 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://dk45w86sfh5xp"]
+
+[ext_resource type="Texture2D" uid="uid://brmtwncduml81" path="res://Assets/Gigazilla/juvinial gigazilla sprite sheet 16x16.png" id="1_x0gad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au158"]
+atlas = ExtResource("1_x0gad")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86cxi"]
+atlas = ExtResource("1_x0gad")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ediuy"]
+atlas = ExtResource("1_x0gad")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwl0c"]
+atlas = ExtResource("1_x0gad")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0ldd"]
+atlas = ExtResource("1_x0gad")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpa8l"]
+atlas = ExtResource("1_x0gad")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kee4"]
+atlas = ExtResource("1_x0gad")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7elv"]
+atlas = ExtResource("1_x0gad")
+region = Rect2(32, 16, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au158")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86cxi")
+}],
+"loop": true,
+"name": &"Happy",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ediuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwl0c")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0ldd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpa8l")
+}],
+"loop": true,
+"name": &"Mad",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kee4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7elv")
+}],
+"loop": true,
+"name": &"Shocked",
+"speed": 2.0
+}]

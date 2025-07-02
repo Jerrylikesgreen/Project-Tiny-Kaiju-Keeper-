@@ -58,6 +58,10 @@ func _ready() -> void:
 # ─────────────────────────────[ Lifecycle ]──────────┐
 func set_current_happiness(value: float) -> void:
 	_happiness = value
+	if _happiness > 0.9:
+		Events.pet_event("Happy", 0.9)
+		
+		pass
 	Events.happiness_changed_value(value)
 
 func get_current_happiness() -> float:

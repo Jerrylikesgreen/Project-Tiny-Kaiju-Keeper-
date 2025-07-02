@@ -67,6 +67,3 @@ func _fade_in(t: float) -> void:
 func _switch_stream(track: Track) -> void:
 	_current_track = track
 	stream = TRACK_STREAMS[track]
-
-func _on_finished() -> void:
-	play()

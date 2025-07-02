@@ -1,6 +1,7 @@
 class_name BaseBody extends CharacterBody2D
 ## Base body class that all Movable Enteties : Mobs Will inharit. 
 
+@export var age:int = 0
 @export var growth_speed: int = 1 ## Variable determining the rate in which pet grows. 
 @export var pet_resource: PetResource      ## happiness[1.0]:float, hunger[1.0]:float, hygiene[1.0]:float, sprite
 @export var hunger_rate: int = 1 
@@ -12,7 +13,9 @@ class_name BaseBody extends CharacterBody2D
 @onready var hunger_tick: Timer = %HungerTick
 @onready var happy_tick: Timer = %HappyTick
 @onready var hygiene_tick: Timer = %HygieneTick
-
+@onready var sfx: SFX = $SFX
+@export var _is_godzilla = false
+@onready var base_body_sprite: BaseBodySprite = $BaseBodySprite
 
 
 func _ready() -> void:
@@ -71,3 +74,34 @@ func _on_hygiene_tick_timeout() -> void:
 	var value = Globals.current_hygiene - rate
 	Globals.set_current_hygiene(value)
 	push_warning("_on_hygiene_tick_timeout")
+
+
+func _on_chipring_state_chirp() -> void:
+	sfx.play_track(sfx.Track.CHIRP)
+	pass # Replace with function body.
+
+
+func _on_growth_tick_timeout() -> void:
+	age = age + 1 
+	if age == 5:
+		_on_evolution(1)
+	if age == 15:
+		_on_evolution(2)
+	if age == 30:
+		_on_evolution(3)
+	pass # Replace with function body.
+	
+func _on_evolution(stage:int)->void:
+	match stage:
+		1:
+			base_body_sprite.set_stage(base_body_sprite.Stage.HATCHLING)
+		2:
+			if !_is_godzilla:
+				base_body_sprite.set_stage(base_body_sprite.Stage.JUV_MOTH)
+			else:
+				base_body_sprite.set_stage(base_body_sprite.Stage.JUV_GIGA)
+		3:
+			if !_is_godzilla:
+				base_body_sprite.set_stage(base_body_sprite.Stage.ADULT_MOTH)
+			else:
+				base_body_sprite.set_stage(base_body_sprite.Stage.ADULT_GIGA)
