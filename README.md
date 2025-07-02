@@ -1,248 +1,129 @@
-# **Project:**
+# Project: Tiny Kaiju Keeper
 
-# **Tiny Kaiju Keeper – Jam‑Scope GDD (v 1.1)**
+[![Play Web HTML5](https://img.shields.io/badge/Play-Web--HTML5-orange)](https://jerrylikesgreen.itch.io/project)
+![License](https://img.shields.io/badge/License-Proprietary-lightgrey)
 
----
-
-## **1\. High‑Concept (Bite‑Size)**
-
-“Raise a baby kaiju in your browser or on Windows. Feed, clean, and play—your choices forge either a benevolent sky guardian (*Mothlyn*) or a city‑stomping titan (*Gigazilla*).”
+> **“Raise a baby kaiju in your browser, feed, clean, and play—your choices forge either a benevolent sky guardian (Mothlyn) or a city-stomping titan (Gigazilla).”** :contentReference[oaicite:1]{index=1}
 
 ---
 
-## **2\. Scope & Constraints**
-
-| Constraint | Jam‑Friendly Decision |
-| :---- | :---- |
-| **Jam Length** | 10 days (hard stop) |
-| **Team Size** | 3 core members |
-| **Platforms** | Web (HTML5) & Windows |
-| **Palette** | Fixed 4‑to‑6 colors (may fall back to full monochrome) |
-| **Core Mini‑Game** | **Sky Flutter** – tap/space to keep *Mini‑Kaiju* airborne |
-| **Wishlist Mini‑Games** | • **City Stomp** (rhythm) • **Memory Match** (tile flip) — only if time permits |
-| **Monetization** | None for jam, but the codebase keeps a disabled **Shop** scene \+ DLC tables to showcase F2P readiness |
-| **Marketing** | Single launch tweet \+ itch.io page; focus is portfolio quality |
-
-## ---
-
-## **3\. Core Pillars**
-
-1. **Nurture Loop** – Feed, Clean, Play (1 mini‑game).
-
-2. **Branching Evolution** – 3 stages → final forms *Mothlyn* (guardian) or *Gigazilla* (titan).
-
-3. **Fixed‑Palette Charm** – Cohesive, limited‑color art direction.
+## Table of Contents
+1. [Overview](#overview)  
+2. [Screenshots / Trailer](#screenshots--trailer)  
+3. [Play Now](#play-now)  
+4. [Core Loop & Controls](#core-loop--controls)  
+5. [Built With](#built-with)  
+6. [Installation & Running](#installation--running)  
+7. [Roadmap & Known Issues](#roadmap--known-issues)  
+8. [Contributing](#contributing)  
+9. [License](#license)  
+10. [Credits](#credits)  
+11. [Links & Social](#links--social)
 
 ---
 
-## **4\. Gameplay Loop (Minute‑to‑Minute)**
+## Overview
+**Tiny Kaiju Keeper** is a 10-day game-jam prototype created in Godot 4.3.  
+It blends classic virtual-pet nurturing with light minigames and branching evolution paths.
 
-`Open Game → Check Stats →`
-
-`Choose Action (Feed / Clean / Play) →`
-
-`Stat Change & Animation →`
-
-`Idle Timer / Close Game`
-
-*Idle Drain:* Stats tick down every real‑time hour (LocalStorage / JSON save).  
- *Notification:* Browser favicon pulse only (no push).
+### Jam Scope Pillars :contentReference[oaicite:2]{index=2}
+| Pillar | Short Description |
+|--------|------------------|
+| **Nurture Loop** | Feed — Clean — Play (one minigame for now). |
+| **Branching Evolution** | Three growth stages leading to *Mothlyn* or *Gigazilla*. |
+| **Fixed-Palette Charm** | All art uses a six-colour palette for a cohesive retro look. |
 
 ---
 
-## **5\. Stats & Evolution (Simplified)**
-
-| Stat | Drain | Player Fix | Notes |
-| ----- | ----- | ----- | ----- |
-| **Hunger** | −1 every 2 hrs | Feed snacks | Overfeed bias → *Gigazilla* |
-| **Hygiene** | Event‑based (“Poop”) | Swipe clean | High hygiene bias → *Mothlyn* |
-| **Happiness** | −1 every 3 hrs | Play mini‑game | Affects color variant |
-
-**72‑Hour Evolution Check**
-
-* Avg Hygiene ≥ 80 % → **Mothlyn Path**
-
-* Else if Avg Hunger ≥ 80 % → **Gigazilla Path**
-
-* Else 50 / 50 random.
-
+## Screenshots / Trailer
+<p align="center">
+  <img src="https://img.itch.zone/aW1nLzIxOTMxMzY3LmdpZg==/original/cgAAu6.gif" alt="Gameplay GIF"><br/>
+  <img src="https://img.itch.zone/aW1nLzIxOTMxMTIzLnBuZw==/original/sB2OrY.png"   alt="Banner"/>
+</p>
 
 ---
 
-## **7\. Tool / Tech Stack**
+## Play Now
+The latest HTML5 build is always on **itch.io**:
 
-| Purpose | Tool |
-| ----- | ----- |
-| **Engine & Export** | **Godot 4.x** (HTML5 & Windows) |
-| **Version Control** | **GitHub** repo |
-| **Graphics** | **Aseprite** |
-| **SFX Generator** | **Bfxr** |
-| **Project Management** | **Trello** (Backlog → Working → Review → Done) |
-| **Comms** | Discord stand‑ups (daily) |
+[![Play on Itch.io](https://img.shields.io/badge/Play-Itch.io-red)](https://your-itch-page.example.com)
 
 ---
 
-## **8\. Development Timeline (10 Days)**
+## Core Loop & Controls
+### Core Loop
+1. **Feed** – Drop snacks to recharge *Hunger*.  
+2. **Clean** – Swipe away messes to restore *Hygiene*.  
+3. **Play** – Launch **Sky Flutter**; keep Mini-Kaiju airborne for score & *Happiness*.
 
-| Day | Goal |
-| ----- | ----- |
-| 1 | Lock palette, set up Git/Trello, scaffold state machine |
-| 2 | Implement a stat system & data save/load |
-| 3 | Feed & Clean actions are functional |
-| 4 | **Sky Flutter** prototype is playable |
-| 5 | Hatchling art & basic UI in‑game |
-| 6 | Hygiene \+ “Poop” events \+ animation |
-| 7 | Juvenile stage & evolution logic |
-| 8 | **Community Playtest**: push Web build, collect feedback (Google Form, Discord) |
-| 9 | Polish & bug‑fix; integrate critical playtest fixes; wishlist mini‑game if stable |
-| 10 | Final build, itch.io page, launch tweet, capture screenshots/GIFs |
+Maintaining stats influences which kaiju your pet becomes after the 72-hour evolution check.
 
+### Controls
+| Platform | Action | Input |
+|----------|--------|-------|
+| Browser / Desktop | All menus & minigames | **Mouse (LMB)** |
+| Mobile | All menus & minigames | **Tap** |
 
----
-
-## **11\. Code Architecture Snapshot**
-
-bash
-
-CopyEdit
-
-`/scenes`
-
-  `Main.tscn         # boot & router`
-
-  `Kaiju.tscn        # pet FSM`
-
-  `UI.tscn           # stat bars, buttons`
-
-  `MiniGame_Sky.tscn # core mini‑game`
-
-  `Shop.tscn         # disabled, future DLC`
-
-`/data`
-
-  `stats.json        # drains & thresholds`
-
-  `items.json        # food defs (price field stub)`
-
-Clean separation showcases future F2P injection without touching core loop.
+*No dev shortcuts yet.*
 
 ---
 
-### **Elevator Tagline**
+## Built With
+- **Godot 4.3** (HTML5 export)  
+- **Aseprite** (pixel art)  
+- **Adobe Illustrator & Photoshop** (assets)  
+- **Bfxr** (prototype SFX)  
+- Custom BGM & SFX manager classes 
 
-“Care for a cute pixel kaiju, keep it well‑fed and happy, and watch it grow into *Mothlyn* or *Gigazilla*—all crafted in ten jam‑packed days with a laser‑focused scope and professional, future‑ready code.”
+---
 
-## 
+## Installation & Running
+> **Quick Play**: Just click the itch.io link above and play in-browser (Desktop or Mobile).
 
-## **Code Structure \[ Documentation \]:**
 
-# **Class:   WorldBackground**
 
-### **Inherits:   TextureRect \<   Control \<   CanvasItem \<   Node \<   Object**
+## Roadmap & Known Issues
+### Planned Post-Jam
+- More minigames  
+- In-game **Audio Debugger**  
+- Additional kaiju evolution lines & cosmetic variants  
 
-Node that holds a \[texture\]: PNG This is the background img used to display the envirorment the v-pet lives in. Currently set to stretch to screen size.
+### Known Issues
+- **BGM loop gap** – brief silence at the end of each music loop.  
 
-# **Class:   SceneManager**
+---
 
-### **Inherits:   Node \<   Object**
+## Contributing
+We welcome pull requests!
 
-Root node observer. Will handle all scene transitions.
+1. **Branch** from `main` for each new feature.  
+2. Open a **PR**; another team member must review & approve.  
+3. Follow the standard Code of Conduct (see [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)).  
 
-#### **Properties**
+---
 
-1. WorldManagerworld\_manager\[default: \<unknown\>\]
+## License
+This project is **Proprietary**. All rights reserved.  
+Contact the maintainer for uses beyond personal cloning and local testing.  
 
-**Property Descriptions**
+---
 
-1. WorldManagerworld\_manager \[default: \<unknown\>\]
+## Credits
+| Role            | Name / Handle      |
+|-----------------|--------------------|
+| Art             | **Dot / @0dotzip** |
+| Music           | **Willow**         |
+| Programming & PM| **Jerry Azamar**   |
 
-	World Observer \- Will receive all children signals. 
+*Tools & libraries:* Aseprite, Godot, Adobe Illustrator, Adobe Photoshop.
 
-# 
+---
 
-# **Class:   PetResource**
+## Links & Social
 
-### **Inherits:   Resource \<   RefCounted \<   Object**
+- **Devlog:** <https://jerrylikesgreen.itch.io/project>  
+<!-- Add Twitter, Discord, etc. here -->
 
-  There is currently no description for this class.
+---
 
-## Properties
-
-1. Float: happiness \[default: 1.0\]  
-2. Float: hunger \[default: 1.0\]  
-3. Float: hygiene \[default: 1.0\]  
-4. CompressedTexture2D \- sprite
-
-Property Descriptions
-
-##### **● float: happiness \[default: 1.0\]**
-
-##### 
-
-##### Variable holding happiness value,  0 \= empty, 1 \= full.
-
-##### 
-
-##### 
-
-##### **● float: hunger \[default: 1.0\]**
-
-##### 
-
-##### Variable holding hunger value, 0 \= empty, 1 \= full.
-
-##### 
-
-##### 
-
-##### **● float: hygiene \[default: 1.0\]**
-
-##### 
-
-##### Variable holding hygine value, 0 \= empty, 1 \= full.
-
-##### 
-
-##### **● CompressedTexture2Dsprite**
-
-##### 
-
-##### Variable holding sprite
-
-# **Class:   BaseBody**
-
-### **Inherits:   CharacterBody2D \<   PhysicsBody2D \<   CollisionObject2D \<   Node2D \<   CanvasItem \<   Node \<   Object**
-
- Base body class that all Movable Enteties : Mobs inherit.
-
-## Properties
-
-Int: growth\_speed \[default: 1\]   
-
-PetResource: pet\_resource
-
-## Methods
-
-Void: \_push\_happiness()
-
-Void: update\_globals\_from\_pet(pet: PetResource)
-
-## Property Descriptions
-
-● int: growth\_speed \[default: 1\]
-
-Variable determining the rate in which pet grows.
-
-● PetResourcepet\_resource
-
-Custome resource holding: happiness, hunger, hygiene, sprite
-
-## Method Descriptions
-
-● void \_push\_happiness()
-
-private function that sends happiness to Globals.
-
-● void update\_globals\_from\_pet(pet: PetResource)
-
-Sets up fucntions and variabnles to distribute resource across
+*Made with ♥ during a hectic 10-day jam—enjoy raising your own tiny kaiju!*
