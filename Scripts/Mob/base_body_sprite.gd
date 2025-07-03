@@ -32,14 +32,14 @@ func _on_signal(animation:String)-> void:
 	
 func set_stage(stage: Stage) -> void:
 	if not STAGE_FRAMES.has(stage):
-		print("Unknown stage: %s" % stage)
+		push_warning("Unknown stage: %s" % stage)
 		return
 
 	var new_frames: SpriteFrames = STAGE_FRAMES[stage]
+	var current_anim: String = animation 
 
-	sprite_frames = new_frames
+	sprite_frames = new_frames 
 
-	var current_anim = sprite_frames
 	if new_frames.has_animation(current_anim):
 		play(current_anim)
 	else:

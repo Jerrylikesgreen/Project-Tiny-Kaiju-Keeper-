@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
+[gd_scene load_steps=26 format=3 uid="uid://cn5lx5caavnr7"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Scripts/World/scene_manager.gd" id="1_wi563"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bjjmmm8sbhyql" path="res://Scripts/GUI/feed_button.gd" id="19_k3mqv"]
 [ext_resource type="Script" uid="uid://s28v3bjq816l" path="res://Scripts/GUI/clean_button.gd" id="20_b6n0h"]
 [ext_resource type="Script" uid="uid://bigblpkgj3c57" path="res://Scenes/play.gd" id="21_j16kb"]
+[ext_resource type="Texture2D" uid="uid://ft3dph6xdfey" path="res://Assets/Cookie/cookie 16x16.png" id="23_0aass"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("1_yueht")
@@ -222,6 +223,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
 theme = ExtResource("13_k3mqv")
+toggle_mode = true
 action_mode = 0
 text = "FEED"
 clip_text = true
@@ -265,7 +267,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="TitleScreen" type="PanelContainer" parent="Container/GUI"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -275,23 +276,32 @@ script = ExtResource("3_hjya1")
 
 [node name="TitleScreenBackground" type="ColorRect" parent="Container/GUI/TitleScreen"]
 layout_mode = 2
-color = Color(0.177806, 0.355417, 0.364607, 1)
+color = Color(0.625675, 0.503613, 0.218345, 1)
 
 [node name="Title" type="Label" parent="Container/GUI/TitleScreen"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Project Tiny Kaiju Keeper"
 label_settings = SubResource("LabelSettings_ebsso")
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Container/GUI/TitleScreen/Title"]
-layout_mode = 2
-offset_left = 235.0
-offset_top = 33.0
-offset_right = 273.0
-offset_bottom = 56.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = 54.0
+offset_right = 23.5
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Start"
+icon = ExtResource("23_0aass")
 
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
 [connection signal="pressed" from="Container/GUI/PlayerButtons2/FEED" to="Container/GUI/PlayerButtons2/FEED" method="_on_pressed"]
