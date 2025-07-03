@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Kaiju Keeper"
-run/main_scene="uid://cn5lx5caavnr7"
+run/main_scene="res://Scenes/SceneManager.tscn"
 config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0.0615095, 0.171558, 0.0872641, 1)
 boot_splash/fullsize=false
