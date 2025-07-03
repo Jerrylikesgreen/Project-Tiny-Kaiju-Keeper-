@@ -1,11 +1,17 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [gd_scene load_steps=26 format=3 uid="uid://cn5lx5caavnr7"]
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 [gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
 =======
 [gd_scene load_steps=24 format=3 uid="uid://cn5lx5caavnr7"]
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_75dai"]
