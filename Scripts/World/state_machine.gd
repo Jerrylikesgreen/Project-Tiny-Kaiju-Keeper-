@@ -7,14 +7,12 @@ class_name StateMachine extends Node
 
 
 @export_enum("IDLE", "CHIRPING", "EATING", "CLEANING") var PET_STATE = 0
-
-
 var event: String
 var value: float
 
 func _ready() -> void:
 	
-	Events.pet_event_signal.connect(_on_pet_event)
+	Events.pet_event_signal.connect(_on_pet_event(event, value))
 
 func _change_state(pet_state: int)-> void:
 	if PET_STATE == pet_state:

@@ -5,7 +5,7 @@ signal hygiene_changed(hygiene_text: String, value:float)
 signal game_state
 signal pet_event_signal(listener, event)
 signal change_pet_animation(animation: String)
-signal start_game
+
 var event_list: Dictionary[String, float]
 signal play_sfx_signal(sfx: SFX.Track)
 

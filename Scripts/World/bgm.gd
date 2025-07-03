@@ -28,8 +28,8 @@ const TRACK_STREAMS := {
 var _current_track : Track        ## remember what’s playing
 
 func _ready() -> void:
+	play_track(Track.NAPTIME_SWEET_KAIJU) ## Ensures audio gets played at start. 
 	Events.game_state.connect(_update_track)
-	Events.start_game.connect(_on_start_game)
 
 
 func play_track(track: Track, fade_time: float = 1.0) -> void:  ## Function that plays a track that was passed through. 
@@ -81,6 +81,3 @@ func _switch_stream(track: Track) -> void:
 
 func _on_finished() -> void:
 	play()
-
-func _on_start_game():
-	play_track(Track.NAPTIME_SWEET_KAIJU)
