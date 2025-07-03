@@ -26,7 +26,7 @@
 **Tiny Kaiju Keeper** is a 10-day game-jam prototype created in Godot 4.3.  
 It blends classic virtual-pet nurturing with light minigames and branching evolution paths.
 
-### Jam Scope Pillars :contentReference[oaicite:2]{index=2}
+### Jam Scope Pillars {:contentReference[oaicite:2]{index=2}
 | Pillar | Short Description |
 |--------|------------------|
 | **Nurture Loop** | Feed — Clean — Play (one minigame for now). |
