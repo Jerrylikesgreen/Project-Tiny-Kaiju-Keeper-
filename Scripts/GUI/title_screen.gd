@@ -4,4 +4,4 @@ class_name TitleScreen extends PanelContainer
 
 func _on_button_pressed() -> void: ## When button is pressed, triggers this function to turn Title Screen off. 
 	set_visible(false)
-	Events.change_bgm()
+	Events.emit_signal("start_game")

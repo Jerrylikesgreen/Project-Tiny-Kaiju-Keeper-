@@ -5,7 +5,7 @@ signal hygiene_changed(hygiene_text: String, value:float)
 signal game_state
 signal pet_event_signal(listener, event)
 signal change_pet_animation(animation: String)
-
+signal start_game
 var event_list: Dictionary[String, float]
 ## ------------------------------------------------------------------
 ## 1.  Tiny helper that translates a %‑value into an animation name
