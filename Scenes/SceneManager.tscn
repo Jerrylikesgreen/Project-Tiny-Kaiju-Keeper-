@@ -1,12 +1,18 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=26 format=3 uid="uid://cn5lx5caavnr7"]
+=======
+<<<<<<< Updated upstream
+[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
+=======
+[gd_scene load_steps=24 format=3 uid="uid://cn5lx5caavnr7"]
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Scripts/World/scene_manager.gd" id="1_wi563"]
 [ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Resources/Pixelbasel.ttf" id="1_yueht"]
 [ext_resource type="Script" uid="uid://wtflmtow768h" path="res://Scripts/GUI/title_screen.gd" id="3_hjya1"]
-[ext_resource type="PackedScene" uid="uid://ce77p7t6uoopb" path="res://Scenes/sfx.tscn" id="5_k3mqv"]
 [ext_resource type="Texture2D" uid="uid://dng17xpkjb274" path="res://Assets/Background/city 2 128x112.png" id="6_5ifd6"]
-[ext_resource type="Script" uid="uid://dm4u6xltbqacu" path="res://Scripts/World/sfx.gd" id="6_b6n0h"]
 [ext_resource type="Texture2D" uid="uid://dagldaom3kqcv" path="res://Assets/Background/city 1 128x112.png" id="7_mg4ue"]
 [ext_resource type="Texture2D" uid="uid://cuuqwwq6uxwib" path="res://Assets/Background/sky 128x112.png" id="8_b6n0h"]
 [ext_resource type="Texture2D" uid="uid://dl35sbrqe71ft" path="res://Assets/Background/ground 128x112.png" id="8_k3mqv"]
@@ -44,9 +50,7 @@ script = ExtResource("1_wi563")
 script = ExtResource("11_wi563")
 
 [node name="BGM" parent="." instance=ExtResource("16_8kvsk")]
-
-[node name="SFX" parent="." instance=ExtResource("5_k3mqv")]
-script = ExtResource("6_b6n0h")
+fade_enabled = false
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 3
@@ -105,12 +109,6 @@ texture = ExtResource("8_k3mqv")
 
 [node name="BaseBody" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager" instance=ExtResource("12_mg4ue")]
 position = Vector2(251, 316)
-age = 0
-growth_speed = 1
-_can_get_hungry = true
-_can_get_happy = true
-_can_get_hygiene = true
-_is_godzilla = false
 
 [node name="InfoDisplay" type="HBoxContainer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 2

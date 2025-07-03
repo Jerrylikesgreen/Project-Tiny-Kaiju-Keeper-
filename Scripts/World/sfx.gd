@@ -26,7 +26,8 @@ const TRACK_STREAMS := {
 
 var _current_track : Track        ## remember what’s playing
 
-
+func _ready() -> void:
+	Events.play_sfx_signal.connect(_on_play_sfx)
 
 func play_track(track: Track, fade_time: float = 1.0) -> void:  ## Function that plays a track that was passed through. 
 	if track == _current_track:         
@@ -38,11 +39,6 @@ func play_track(track: Track, fade_time: float = 1.0) -> void:  ## Function that
 		_switch_stream(track)
 		_fade_in(fade_time)
 		
-##func _update_track()->void: ## Function that calls pl_track and assigns Track based on current_game_state
-##	if Globals.current_game_state == 0: ## GUI 
-##		play_track(Track.NAPTIME_SWEET_KAIJU)
-##	if Globals.current_game_state == 1: ## MAIN
-##		play_track(Track.EGG_1)
 
 func _fade_out_then_switch(new_track: Track, t: float) -> void:## {PRIVATE} Helper to fade bgm  
 	var tw := get_tree().create_tween() ## Create tween
@@ -67,3 +63,9 @@ func _fade_in(t: float) -> void:
 func _switch_stream(track: Track) -> void:
 	_current_track = track
 	stream = TRACK_STREAMS[track]
+
+func _on_play_sfx(Track)-> void:
+	if is_playing():
+		return
+	play(Track)
+	print(Track, "plays")

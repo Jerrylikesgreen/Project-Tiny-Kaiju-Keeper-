@@ -13,7 +13,7 @@ class_name BaseBody extends CharacterBody2D
 @onready var hunger_tick: Timer = %HungerTick
 @onready var happy_tick: Timer = %HappyTick
 @onready var hygiene_tick: Timer = %HygieneTick
-@onready var sfx: SFX = $SFX
+@onready var sfx: SFX = %SFX
 @export var _is_godzilla = false
 @onready var base_body_sprite: BaseBodySprite = $BaseBodySprite
 
@@ -88,6 +88,7 @@ func _on_growth_tick_timeout() -> void:
 	pass # Replace with function body.
 	
 func _on_evolution(stage:int)->void:
+	sfx.play_track(sfx.Track.EVOLUTION)
 	match stage:
 		1:
 			base_body_sprite.set_stage(base_body_sprite.Stage.HATCHLING)

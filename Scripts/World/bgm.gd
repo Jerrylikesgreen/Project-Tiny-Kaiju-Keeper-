@@ -1,6 +1,7 @@
 class_name BGM extends AudioStreamPlayer
 ## Node that controls Background music for thhe game, depending on Game State and other variables. 
 
+@export var fade_enabled: bool = true 
 
 
 enum Track { ## [ Enum: LOGICAL_NAME → int ]  Refrences the differant tracks Player can play. 
@@ -19,7 +20,7 @@ const TRACK_STREAMS := {
 	Track.BABY_1:                  preload("res://Assets/OGG/Baby (1).ogg"),
 	Track.EGG_1:                   preload("res://Assets/OGG/Egg (1).ogg"),
 	Track.JUVENILE_1:              preload("res://Assets/OGG/Juvenile (1).ogg"),
-	Track.NAPTIME_SWEET_KAIJU:     preload("res://Assets/mp3/Naptime, sweet kaiju.mp3"),
+	Track.NAPTIME_SWEET_KAIJU:     preload("res://Assets/OGG/Naptime, sweet kaiju (2).ogg"),
 	Track.THEY_GROW_UP_SO_FAST_1:  preload("res://Assets/mp3/They grow up so fast (1).ogg"),
 	Track.TODDLER_1:               preload("res://Assets/OGG/Toddler (1).ogg")
 }
@@ -46,12 +47,20 @@ func _update_track()->void: ## Function that calls pl_track and assigns Track ba
 	if Globals.current_game_state == 1: ## MAIN
 		play_track(Track.EGG_1)
 
-func _fade_out_then_switch(new_track: Track, t: float) -> void:## {PRIVATE} Helper to fade bgm  
-	var tw := get_tree().create_tween() ## Create tween
-	tw.tween_property(self, "volume_db", -80, t).set_trans(Tween.TRANS_SINE) ## Define tween properites 
+func _fade_out_then_switch(new_track: Track, t: float) -> void:
+	if not fade_enabled or t <= 0.0:
+		stop()
+		_switch_stream(new_track)
+		_play_no_fade()
+		return
 
-	var cb := Callable(self, "_on_fade_out_done").bind(new_track, t)
-	tw.tween_callback(cb)
+	var tw := get_tree().create_tween()
+	tw.tween_property(self, "volume_db", -80, t).set_trans(Tween.TRANS_SINE)
+	tw.tween_callback(Callable(self, "_on_fade_out_done").bind(new_track, t))
+
+func _play_no_fade() -> void:
+	volume_db = 0
+	play()
 
 
 func _on_fade_out_done(new_track: Track, t: float) -> void: ## When Fadeout is done, switches track to reloop. 
