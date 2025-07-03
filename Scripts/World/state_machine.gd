@@ -12,7 +12,7 @@ var value: float
 
 func _ready() -> void:
 	
-	Events.pet_event_signal.connect(_on_pet_event(event, value))
+	Events.pet_event_signal.connect(_on_pet_event)
 
 func _change_state(pet_state: int)-> void:
 	if PET_STATE == pet_state:
