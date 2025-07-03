@@ -1,22 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-[gd_scene load_steps=26 format=3 uid="uid://cn5lx5caavnr7"]
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
-[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
-=======
-[gd_scene load_steps=24 format=3 uid="uid://cn5lx5caavnr7"]
->>>>>>> Stashed changes
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
-[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
->>>>>>> parent of c1a4816 (Refactor title screen start logic and BGM handling)
+[gd_scene load_steps=23 format=3 uid="uid://cn5lx5caavnr7"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Scripts/World/scene_manager.gd" id="1_wi563"]
@@ -59,7 +41,6 @@ script = ExtResource("1_wi563")
 script = ExtResource("11_wi563")
 
 [node name="BGM" parent="." instance=ExtResource("16_8kvsk")]
-fade_enabled = false
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 3

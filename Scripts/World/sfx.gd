@@ -1,6 +1,8 @@
 class_name SFX extends AudioStreamPlayer
 
 
+@export var sfx_bank: Array[AudioStream]  
+
 enum Track { ## [ Enum: LOGICAL_NAME → int ]  Refrences the differant tracks Player can play. 
 	EVOLUTION,                   ## 0
 	BLIP,
@@ -64,8 +66,14 @@ func _switch_stream(track: Track) -> void:
 	_current_track = track
 	stream = TRACK_STREAMS[track]
 
-func _on_play_sfx(Track)-> void:
+
+
+
+func _on_play_sfx(index: int) -> void:
+	if index < 0 or index >= sfx_bank.size():
+		push_warning("No SFX for index %d" % index)
+		return
 	if is_playing():
 		return
-	play(Track)
-	print(Track, "plays")
+	stream = sfx_bank[index]
+	play()
