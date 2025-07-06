@@ -1,14 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://17x4vh1ltwl"]
+[gd_scene load_steps=21 format=3 uid="uid://17x4vh1ltwl"]
 
 [ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Script/Mob/base_body.gd" id="1_en3gj"]
 [ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resource/Data/pet_resource.tres" id="2_jqlm0"]
 [ext_resource type="Script" uid="uid://b5rykj005wecv" path="res://Script/World/StateMachine/state_machine.gd" id="3_jqlm0"]
 [ext_resource type="Script" uid="uid://cr0a685bltuti" path="res://Script/World/StateMachine/idle_state.gd" id="4_wgf83"]
 [ext_resource type="Script" uid="uid://dwwil5hyspauy" path="res://Script/World/StateMachine/chipring_state.gd" id="5_1ywop"]
+[ext_resource type="AudioStream" uid="uid://c2hxcrk40n8mm" path="res://Asset/OGG/Upgrade.ogg" id="5_u2o8b"]
+[ext_resource type="AudioStream" uid="uid://bk8cnhuxj1a3l" path="res://Asset/OGG/Blip.ogg" id="6_t6atn"]
 [ext_resource type="PackedScene" uid="uid://ce77p7t6uoopb" path="res://Scene/sfx.tscn" id="7_euqgv"]
+[ext_resource type="AudioStream" uid="uid://bddie7ngbeg3e" path="res://Asset/OGG/Chirp Chirp.ogg" id="7_roohl"]
+[ext_resource type="AudioStream" uid="uid://b46uqp2vd800g" path="res://Asset/OGG/Flap.ogg" id="8_3lcda"]
 [ext_resource type="Script" uid="uid://dm4u6xltbqacu" path="res://Script/World/Audio/sfx.gd" id="8_euqgv"]
 [ext_resource type="SpriteFrames" uid="uid://0kcstxmso4hu" path="res://Resource/Sprite/egg_2.tres" id="8_itufd"]
+[ext_resource type="AudioStream" uid="uid://dlrt8glkw04fl" path="res://Asset/OGG/Munch 1.ogg" id="9_0qbfa"]
 [ext_resource type="Script" uid="uid://dn1v737xmk5d2" path="res://Script/Mob/base_body_sprite.gd" id="9_d0ldd"]
+[ext_resource type="AudioStream" uid="uid://ciwiqwm2w4dx8" path="res://Asset/OGG/Munch 2.ogg" id="10_l5wnn"]
+[ext_resource type="AudioStream" uid="uid://bpmc66h1av61w" path="res://Asset/OGG/Roar.ogg" id="11_x28jh"]
+[ext_resource type="AudioStream" uid="uid://bequ0t3hvje00" path="res://Resource/Data/ev_sfx.tres" id="12_roohl"]
+[ext_resource type="Script" uid="uid://sheyvmqdvrjm" path="res://Scene/ev_sfx.gd" id="12_t6atn"]
+[ext_resource type="PackedScene" uid="uid://cy7wvvkqrhp1i" path="res://Scene/ev_visual_effect.tscn" id="19_3lcda"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]
 radius = 4.0
@@ -25,6 +35,11 @@ hygiene_rate = 2
 [node name="SFX" parent="." instance=ExtResource("7_euqgv")]
 unique_name_in_owner = true
 script = ExtResource("8_euqgv")
+sfx_bank = Array[AudioStream]([ExtResource("5_u2o8b"), ExtResource("6_t6atn"), ExtResource("7_roohl"), ExtResource("8_3lcda"), ExtResource("9_0qbfa"), ExtResource("10_l5wnn"), ExtResource("11_x28jh")])
+
+[node name="EvSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_roohl")
+script = ExtResource("12_t6atn")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_jqlm0")
@@ -43,6 +58,8 @@ position = Vector2(-0.333333, 0)
 sprite_frames = ExtResource("8_itufd")
 animation = &"Happy"
 script = ExtResource("9_d0ldd")
+
+[node name="Ev Visual Effect" parent="BaseBodySprite" instance=ExtResource("19_3lcda")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.333333, 0.333333)

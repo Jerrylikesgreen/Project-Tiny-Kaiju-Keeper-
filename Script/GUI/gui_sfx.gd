@@ -19,20 +19,19 @@ enum Track { ## [ Enum: LOGICAL_NAME → int ]  Refrences the differant tracks P
 
 ## [ Lookup table: enum value → AudioStream ] Refrence to each Path for each Track. 
 const TRACK_STREAMS := {
-	Track.EVOLUTION: preload("res://Assets/OGG/Upgrade.ogg"),
-	Track.BLIP:  preload("res://Assets/OGG/Blip.ogg"),
-	Track.CHIRP: preload("res://Assets/OGG/Chirp Chirp.ogg"),
-	Track.FLAP: preload("res://Assets/OGG/Flap.ogg"),
-	Track.MUNCH_1: preload("res://Assets/OGG/Munch 1.ogg"),
-	Track.MUNCH_2: preload("res://Assets/OGG/Munch 2.ogg"),
-	Track.ROAR: preload("res://Assets/OGG/Roar.ogg")
+	Track.EVOLUTION: preload("res://Asset/OGG/Upgrade.ogg"),
+	Track.BLIP:  preload("res://Asset/OGG/Blip.ogg"),
+	Track.CHIRP: preload("res://Asset/OGG/Chirp Chirp.ogg"),
+	Track.FLAP: preload("res://Asset/OGG/Flap.ogg"),
+	Track.MUNCH_1: preload("res://Asset/OGG/Munch 1.ogg"),
+	Track.MUNCH_2: preload("res://Asset/OGG/Munch 2.ogg"),
+	Track.ROAR: preload("res://Asset/OGG/Roar.ogg")
 
 }
 
 var _current_track : Track        ## remember what’s playing
 
-func _ready() -> void:
-	Events.GUI_SFX.connect(_on_call)
+
 
 
 func _on_call(NewTrack:Track):

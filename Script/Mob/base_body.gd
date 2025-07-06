@@ -16,6 +16,8 @@ class_name BaseBody extends CharacterBody2D
 @onready var sfx: SFX = %SFX
 @export var _is_godzilla = false
 @onready var base_body_sprite: BaseBodySprite = $BaseBodySprite
+@onready var ev_sfx: AudioStreamPlayer = $EvSFX
+@onready var ev_visual_effect: Node2D = $"BaseBodySprite/Ev Visual Effect"
 
 
 
@@ -88,7 +90,8 @@ func _on_growth_tick_timeout() -> void:
 	pass # Replace with function body.
 	
 func _on_evolution(stage:int)->void:
-	sfx.play_track(sfx.Track.EVOLUTION)
+	ev_sfx.play()
+	print("ERvolution SFX trigger")
 	match stage:
 		1:
 			base_body_sprite.set_stage(base_body_sprite.Stage.HATCHLING)
@@ -104,3 +107,4 @@ func _on_evolution(stage:int)->void:
 				base_body_sprite.set_stage(base_body_sprite.Stage.ADULT_MOTH)
 			else:
 				base_body_sprite.set_stage(base_body_sprite.Stage.ADULT_GIGA)
+	ev_visual_effect.play()

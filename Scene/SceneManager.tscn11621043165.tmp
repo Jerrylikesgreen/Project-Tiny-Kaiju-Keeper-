@@ -19,9 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scene/bgm.tscn" id="16_8kvsk"]
 [ext_resource type="Script" uid="uid://bjjmmm8sbhyql" path="res://Script/GUI/feed_button.gd" id="19_k3mqv"]
 [ext_resource type="Script" uid="uid://s28v3bjq816l" path="res://Script/GUI/clean_button.gd" id="20_b6n0h"]
-[ext_resource type="Script" uid="uid://r2pw83qjplan" path="res://Script/GUI/menu_button.gd" id="20_j16kb"]
-[ext_resource type="Script" uid="uid://bigblpkgj3c57" path="res://Script/GUI/play.gd" id="21_j16kb"]
-[ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Script/GUI/gui_sfx.gd" id="22_j16kb"]
+[ext_resource type="Script" uid="uid://r2pw83qjplan" path="res://Scene/menu_button.gd" id="20_j16kb"]
+[ext_resource type="Script" uid="uid://bigblpkgj3c57" path="res://Scene/play.gd" id="21_j16kb"]
+[ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Scene/gui_sfx.gd" id="22_j16kb"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("1_yueht")
