@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ft3dph6xdfey" path="res://Asset/Cookie/cookie 16x16.png" id="1_fllre"]
 [ext_resource type="Texture2D" uid="uid://dcgkvpvt3y0h7" path="res://Asset/UI/meter base.png" id="2_fllre"]
 [ext_resource type="Texture2D" uid="uid://bbjpo7g4a606e" path="res://Asset/UI/light green bar.png" id="2_nu8xn"]
-[ext_resource type="StyleBox" uid="uid://bhycxstgq217k" path="res://new_style_box_texture.tres" id="3_r5mtt"]
+[ext_resource type="StyleBox" uid="uid://bhycxstgq217k" path="res://Resource/Theme/new_style_box_texture.tres" id="3_r5mtt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tqug"]
 bg_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
@@ -97,7 +97,7 @@ Button/colors/font_outline_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
 Button/colors/font_pressed_color = Color(0.592157, 0.701961, 0.305882, 1)
 Button/constants/align_to_largest_stylebox = 1
 Button/constants/outline_size = 10
-Button/font_sizes/font_size = 35
+Button/font_sizes/font_size = 36
 Button/styles/focus = SubResource("StyleBoxFlat_8tqug")
 Button/styles/hover = SubResource("StyleBoxFlat_6bllo")
 Button/styles/normal = SubResource("StyleBoxFlat_73axr")

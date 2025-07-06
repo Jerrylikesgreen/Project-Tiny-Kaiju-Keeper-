@@ -10,7 +10,7 @@ signal pet_event_signal(listener, event)
 signal change_pet_animation(anim: String)
 signal play_sfx_signal(track_id: int)
 signal gui_sfx(track_id: int)
-
+signal poop(vale:bool)
 const THRESHOLD := 0.7
 
 ## If you still need this elsewhere, keep it
@@ -41,6 +41,7 @@ func _anim_for_level(stat_name: String, value: float) -> String:
 		if stat_name == "hunger":
 			Globals.gigazilla_points = Globals.gigazilla_points + 1
 		
+	
 	elif value > 0.5:
 		band = 2
 		anim = "Idle"
@@ -72,6 +73,7 @@ func game_state_change()->void:
 	pass
 
 func pet_event(event: String, value: float)-> void:
+	print("Event")
 	event_list[event]=value
 	emit_signal("pet_event_signal", event, value)
 	pass 
