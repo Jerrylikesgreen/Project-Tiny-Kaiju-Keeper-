@@ -45,4 +45,4 @@ func _on_play_sfx(index: int) -> void:## iNT: iNDEX TO REFRENCE A TRACK STORED O
 		return
 	stream = sfx_bank[index]
 	play()
-	print("Playing")
+	print_debug("Playing")
