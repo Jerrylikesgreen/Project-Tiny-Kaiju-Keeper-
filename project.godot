@@ -35,6 +35,12 @@ window/handheld/orientation=1
 theme/custom_font="uid://dy00p4wwvsw10"
 theme/default_font_antialiasing=2
 
+[importer_defaults]
+
+oggvorbisstr={
+&"loop": true
+}
+
 [input_devices]
 
 pointing/android/enable_long_press_as_right_click=true

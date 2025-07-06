@@ -1,7 +1,7 @@
 class_name BGM extends AudioStreamPlayer
 ## Node that controls Background music for thhe game, depending on Game State and other variables. 
 
-@export var fade_enabled: bool = true 
+@export var fade_enabled: bool = false 
 
 
 enum Track { ## [ Enum: LOGICAL_NAME → int ]  Refrences the differant tracks Player can play. 
@@ -41,6 +41,8 @@ func play_track(track: Track, fade_time: float = 1.0) -> void:  ## Function that
 	else:
 		_switch_stream(track)
 		_fade_in(fade_time)
+
+
 func _update_track()->void: ## Function that calls pl_track and assigns Track based on current_game_state
 	if Globals.current_game_state == 0: ## GUI 
 		play_track(Track.NAPTIME_SWEET_KAIJU)
@@ -74,6 +76,7 @@ func _fade_in(t: float) -> void:
 	get_tree().create_tween() \
 		.tween_property(self, "volume_db", 0, t) \
 		.set_trans(Tween.TRANS_SINE)
+
 
 func _switch_stream(track: Track) -> void:
 	_current_track = track

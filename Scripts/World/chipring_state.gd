@@ -8,10 +8,8 @@ signal chirp_state_ended
 func run_chirping_state()-> void:
 	PET_STATE = 1
 	emit_signal("chirp")
-	pass
 
 
 func _on_sfx_finished() -> void:
 	PET_STATE = 0
 	emit_signal("chirp_state_ended")
-	pass # Replace with function body.

@@ -6,22 +6,23 @@ signal game_state
 signal pet_event_signal(listener, event)
 signal change_pet_animation(animation: String)
 signal play_sfx_signal(index: int)
+signal GUI_SFX(index: int)
 
 const THRESHOLD := 0.7
-var _happy_sent := false     # false  → haven’t sent “Happy” yet
+var _happy_sent := false   
 var event_list: Dictionary[String, float]
 
 ## ------------------------------------------------------------------
 ## 1.  Tiny helper that translates a %‑value into an animation name
 ## ------------------------------------------------------------------
 func _anim_for_level(value: float) -> String:
-	if value > 0.7:
+	if value > 0.9:
 		emit_signal("play_sfx_signal", SFX.Track.CHIRP)
 		return "Happy"
-	elif value > 0.4:
+	elif value > 0.5:
 		emit_signal("play_sfx_signal", SFX.Track.CHIRP)
 		return "Idle"
-	elif value > 0.1:
+	elif value > 0.2:
 		emit_signal("play_sfx_signal", SFX.Track.ROAR)
 		return "Mad"
 	return "Dead"          # ≤ 0.1 – optional fallback
@@ -44,7 +45,7 @@ func happiness_changed_value(new_value: float) -> void:
 			emit_signal("change_pet_animation", "Happy")
 			_happy_sent = true
 	else:
-		_happy_sent = false       # we dropped below 0.7 → reset
+		_happy_sent = false 
 
 
 func hunger_changed_value(value: float) -> void:
@@ -62,3 +63,11 @@ func pet_event(event: String, value: float)-> void:
 	event_list[event]=value
 	emit_signal("pet_event_signal", event, value)
 	pass 
+
+func sfx_trigger(sfx: SFX.Track ):
+	emit_signal("play_sfx_signal", sfx)
+	print(sfx)
+
+
+func GUI_SFX_trigger(sfx: SFX.Track):
+	pass

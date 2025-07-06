@@ -8,3 +8,4 @@ func _on_pressed() -> void:
 	var value = Globals.current_happiness + rate
 	Globals.set_current_happiness(value)
 	push_warning("Clean Button Pressed ", value)
+	Events.sfx_trigger(SFX.Track.BLIP)

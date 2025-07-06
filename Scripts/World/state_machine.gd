@@ -6,7 +6,7 @@ class_name StateMachine extends Node
 @onready var chipring_state: ChirpingState = %ChipringState
 
 
-@export_enum("IDLE", "CHIRPING", "EATING", "CLEANING") var PET_STATE = 0
+@export_enum("IDLE", "CHIRPING", "EATING", "CLEANING", "EVOLTING") var PET_STATE = 0
 var event: String
 var value: float
 

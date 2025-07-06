@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cn5lx5caavnr7"]
+[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Scripts/World/scene_manager.gd" id="1_wi563"]
@@ -19,7 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scenes/bgm.tscn" id="16_8kvsk"]
 [ext_resource type="Script" uid="uid://bjjmmm8sbhyql" path="res://Scripts/GUI/feed_button.gd" id="19_k3mqv"]
 [ext_resource type="Script" uid="uid://s28v3bjq816l" path="res://Scripts/GUI/clean_button.gd" id="20_b6n0h"]
+[ext_resource type="Script" uid="uid://r2pw83qjplan" path="res://Scenes/menu_button.gd" id="20_j16kb"]
 [ext_resource type="Script" uid="uid://bigblpkgj3c57" path="res://Scenes/play.gd" id="21_j16kb"]
+[ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Scenes/gui_sfx.gd" id="22_j16kb"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("1_yueht")
@@ -252,6 +254,7 @@ text = "MENU"
 clip_text = true
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("20_j16kb")
 
 [node name="TitleScreen" type="PanelContainer" parent="Container/GUI"]
 visible = false
@@ -282,8 +285,39 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Start"
 
+[node name="MenuScreen" type="PanelContainer" parent="Container/GUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="Container/GUI/MenuScreen"]
+layout_mode = 2
+color = Color(0.329412, 0.545098, 0.443137, 1)
+
+[node name="GridContainer" type="GridContainer" parent="Container/GUI/MenuScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="Sound" type="Button" parent="Container/GUI/MenuScreen/GridContainer"]
+layout_mode = 2
+text = "Sound"
+
+[node name="Back" type="Button" parent="Container/GUI/MenuScreen/GridContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[node name="GuiSfx" type="AudioStreamPlayer" parent="."]
+script = ExtResource("22_j16kb")
+
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
 [connection signal="pressed" from="Container/GUI/PlayerButtons2/FEED" to="Container/GUI/PlayerButtons2/FEED" method="_on_pressed"]
 [connection signal="pressed" from="Container/GUI/PlayerButtons2/CLEAN" to="Container/GUI/PlayerButtons2/CLEAN" method="_on_pressed"]
 [connection signal="pressed" from="Container/GUI/PlayerButtons2/PLAY" to="Container/GUI/PlayerButtons2/PLAY" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons2/MENU" to="Container/GUI/PlayerButtons2/MENU" method="_on_pressed"]
 [connection signal="pressed" from="Container/GUI/TitleScreen/Title/Button" to="Container/GUI/TitleScreen" method="_on_button_pressed"]
