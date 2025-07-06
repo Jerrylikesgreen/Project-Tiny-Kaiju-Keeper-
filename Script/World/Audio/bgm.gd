@@ -88,4 +88,4 @@ func _on_finished() -> void:
 
 func _on_volume_value_changed(value: float) -> void:
 	set_volume_db(value) 
-	print(value)
+	push_warning("Volume changed to: %s" % value)
