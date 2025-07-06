@@ -16,6 +16,7 @@ const THRESHOLD := 0.7
 ## If you still need this elsewhere, keep it
 var event_list: Dictionary[String, float] = {}
 
+
 ## Track the last band for each individual stat
 var _band_last := {
 	"happiness": -1,
@@ -31,9 +32,15 @@ func _anim_for_level(stat_name: String, value: float) -> String:
 	var sfx  : int
 
 	if value > 0.9:
+		
 		band = 3
 		anim = "Happy"
 		sfx  = SFX.Track.CHIRP
+		if stat_name == "happiness":
+			Globals.mothlyn_points = Globals.mothlyn_points + 1
+		if stat_name == "hunger":
+			Globals.gigazilla_points = Globals.gigazilla_points + 1
+		
 	elif value > 0.5:
 		band = 2
 		anim = "Idle"
@@ -52,7 +59,9 @@ func _anim_for_level(stat_name: String, value: float) -> String:
 		_band_last[stat_name] = band
 		emit_signal("play_sfx_signal", sfx)
 		print("SFX:", anim, "for", stat_name)
+	
 
+	
 	return anim
 
 

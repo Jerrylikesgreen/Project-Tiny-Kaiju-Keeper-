@@ -1,4 +1,9 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://csfdjcxm263dk"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://csfdjcxm263dk"]
+
+[ext_resource type="Texture2D" uid="uid://ft3dph6xdfey" path="res://Asset/Cookie/cookie 16x16.png" id="1_fllre"]
+[ext_resource type="Texture2D" uid="uid://dcgkvpvt3y0h7" path="res://Asset/UI/meter base.png" id="2_fllre"]
+[ext_resource type="Texture2D" uid="uid://bbjpo7g4a606e" path="res://Asset/UI/light green bar.png" id="2_nu8xn"]
+[ext_resource type="StyleBox" uid="uid://bhycxstgq217k" path="res://new_style_box_texture.tres" id="3_r5mtt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tqug"]
 bg_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
@@ -48,6 +53,13 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_prt2e"]
+texture = ExtResource("2_nu8xn")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x16r"]
 bg_color = Color(0.933333, 0.858824, 0.784314, 1)
 border_width_left = 4
@@ -85,11 +97,18 @@ Button/colors/font_outline_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
 Button/colors/font_pressed_color = Color(0.592157, 0.701961, 0.305882, 1)
 Button/constants/align_to_largest_stylebox = 1
 Button/constants/outline_size = 10
-Button/font_sizes/font_size = 37
+Button/font_sizes/font_size = 35
 Button/styles/focus = SubResource("StyleBoxFlat_8tqug")
 Button/styles/hover = SubResource("StyleBoxFlat_6bllo")
 Button/styles/normal = SubResource("StyleBoxFlat_73axr")
 Button/styles/pressed = SubResource("StyleBoxFlat_k0s2m")
+HSlider/icons/grabber = ExtResource("1_fllre")
+HSlider/icons/grabber_disabled = ExtResource("1_fllre")
+HSlider/icons/grabber_highlight = ExtResource("1_fllre")
+HSlider/icons/tick = ExtResource("2_fllre")
+HSlider/styles/grabber_area = ExtResource("3_r5mtt")
+HSlider/styles/grabber_area_highlight = ExtResource("3_r5mtt")
+HSlider/styles/slider = SubResource("StyleBoxTexture_prt2e")
 ProgressBar/colors/font_color = Color(0.592157, 0.701961, 0.305882, 1)
 ProgressBar/colors/font_outline_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
 ProgressBar/constants/outline_size = 4
