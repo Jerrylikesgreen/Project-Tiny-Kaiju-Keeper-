@@ -94,7 +94,8 @@ func _on_evolution(stage:int)->void:
 	print("Evolution SFX trigger")
 	match stage:
 		1:
-			base_body_sprite.set_stage(base_body_sprite.Stage.HATCHLING)
+			await base_body_sprite.set_stage(base_body_sprite.Stage.HATCHLING)
+			
 		2:
 			if !_is_godzilla:
 				base_body_sprite.set_stage(base_body_sprite.Stage.JUV_MOTH)

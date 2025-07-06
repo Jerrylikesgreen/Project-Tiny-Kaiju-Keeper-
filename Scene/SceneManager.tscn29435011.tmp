@@ -99,9 +99,7 @@ position = Vector2(256, 224)
 scale = Vector2(4, 4)
 texture = ExtResource("8_k3mqv")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
-
-[node name="BaseBody" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/CanvasLayer" instance=ExtResource("12_mg4ue")]
+[node name="BaseBody" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager" instance=ExtResource("12_mg4ue")]
 position = Vector2(251, 316)
 
 [node name="InfoDisplay" type="HBoxContainer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
