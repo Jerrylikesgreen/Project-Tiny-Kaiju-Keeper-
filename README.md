@@ -26,12 +26,14 @@
 **Tiny Kaiju Keeper** is a 10-day game-jam prototype created in Godot 4.3.  
 It blends classic virtual-pet nurturing with light minigames and branching evolution paths.
 
-### Jam Scope Pillars {:contentReference[oaicite:2]{index=2}
-| Pillar | Short Description |
-|--------|------------------|
-| **Nurture Loop** | Feed — Clean — Play (one minigame for now). |
-| **Branching Evolution** | Three growth stages leading to *Mothlyn* or *Gigazilla*. |
-| **Fixed-Palette Charm** | All art uses a six-colour palette for a cohesive retro look. |
+### Jam Scope Pillars
+
+| Pillar               | Short description                               |
+| ---                  | ---                                             |
+| **Nurture loop**     | Feed, clean, and play (one minigame for now).   |
+| **Branching evolution** | Three growth stages leading to *Mothlyn* or *Gigazilla*. |
+| **Fixed‑palette charm** | All art uses a six‑color palette for a cohesive retro look. |
+
 
 ---
 
