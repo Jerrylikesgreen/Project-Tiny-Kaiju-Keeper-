@@ -5,8 +5,8 @@ const ADULT_MOTHLYN = preload("res://Resource/Sprite/adult_mothlyn.tres")
 const EGG = preload("res://Resource/Sprite/egg.tres")
 const EGG_2 = preload("res://Resource/Sprite/egg_2.tres")
 const HATCHLING = preload("res://Resource/Sprite/hatchling.tres")
-const JUVINIAL_GIGAZILLA = preload("res://Resource/Sprite/juvinial_gigazilla.tres")
-const JUVINIAL_MOTHLYN = preload("res://Resource/Sprite/juvinial_mothlyn.tres")
+const JUVENILE_GIGAZILLA = preload("res://Resource/Sprite/juvenile_gigazilla.tres")
+const JUVENILE_MOTHLYN = preload("res://Resource/Sprite/juvenile_mothlyn.tres")
 
 enum Stage { EGG, EGG_2, HATCHLING, JUV_GIGA, JUV_MOTH, ADULT_MOTH, ADULT_GIGA }
 
