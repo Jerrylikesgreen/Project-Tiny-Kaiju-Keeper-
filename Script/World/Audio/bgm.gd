@@ -16,13 +16,13 @@ enum Track { ## [ Enum: LOGICAL_NAME → int ]  Refrences the differant tracks P
 
 ## [ Lookup table: enum value → AudioStream ] Refrence to each Path for each Track. 
 const TRACK_STREAMS := {
-	Track.ADULT_1:                 preload("res://Assets/OGG/Adult (1).ogg"),
-	Track.BABY_1:                  preload("res://Assets/OGG/Baby (1).ogg"),
-	Track.EGG_1:                   preload("res://Assets/OGG/Egg (1).ogg"),
-	Track.JUVENILE_1:              preload("res://Assets/OGG/Juvenile (1).ogg"),
-	Track.NAPTIME_SWEET_KAIJU:     preload("res://Assets/OGG/Naptime, sweet kaiju (2).ogg"),
-	Track.THEY_GROW_UP_SO_FAST_1:  preload("res://Assets/mp3/They grow up so fast (1).ogg"),
-	Track.TODDLER_1:               preload("res://Assets/OGG/Toddler (1).ogg")
+	Track.ADULT_1:                 preload("res://Asset/OGG/Adult (1).ogg"),
+	Track.BABY_1:                  preload("res://Asset/OGG/Baby (1).ogg"),
+	Track.EGG_1:                   preload("res://Asset/OGG/Egg (1).ogg"),
+	Track.JUVENILE_1:              preload("res://Asset/OGG/Juvenile (1).ogg"),
+	Track.NAPTIME_SWEET_KAIJU:     preload("res://Asset/OGG/Naptime, sweet kaiju (2).ogg"),
+	Track.THEY_GROW_UP_SO_FAST_1:  preload("res://Asset/mp3/They grow up so fast (1).ogg"),
+	Track.TODDLER_1:               preload("res://Asset/OGG/Toddler (1).ogg")
 }
 
 var _current_track : Track        ## remember what’s playing

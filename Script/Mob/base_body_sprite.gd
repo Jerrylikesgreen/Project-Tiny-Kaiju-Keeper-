@@ -1,12 +1,12 @@
 class_name BaseBodySprite extends AnimatedSprite2D
 
-const ADULT_GIGAZILLA = preload("res://Resources/adult_gigazilla.tres")
-const ADULT_MOTHLYN = preload("res://Resources/adult_mothlyn.tres")
-const EGG = preload("res://Resources/egg.tres")
-const EGG_2 = preload("res://Resources/egg_2.tres")
-const HATCHLING = preload("res://Resources/hatchling.tres")
-const JUVINIAL_GIGAZILLA = preload("res://Resources/juvinial_gigazilla.tres")
-const JUVINIAL_MOTHLYN = preload("res://Resources/juvinial_mothlyn.tres")
+const ADULT_GIGAZILLA = preload("res://Resource/Sprite/adult_gigazilla.tres")
+const ADULT_MOTHLYN = preload("res://Resource/Sprite/adult_mothlyn.tres")
+const EGG = preload("res://Resource/Sprite/egg.tres")
+const EGG_2 = preload("res://Resource/Sprite/egg_2.tres")
+const HATCHLING = preload("res://Resource/Sprite/hatchling.tres")
+const JUVENILE_GIGAZILLA = preload("res://Resource/Sprite/juvenile_gigazilla.tres")
+const JUVENILE_MOTHLYN = preload("res://Resource/Sprite/juvenile_mothlyn.tres")
 
 enum Stage { EGG, EGG_2, HATCHLING, JUV_GIGA, JUV_MOTH, ADULT_MOTH, ADULT_GIGA }
 
@@ -27,8 +27,8 @@ func _ready() -> void:
 
 
 
-func _on_signal(animation:String)-> void:
-	play(animation)
+func _on_signal(new_animation:String)-> void:
+	play(new_animation)
 	
 func set_stage(stage: Stage) -> void:
 	if not STAGE_FRAMES.has(stage):

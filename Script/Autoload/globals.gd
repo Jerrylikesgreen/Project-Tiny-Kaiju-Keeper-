@@ -63,11 +63,9 @@ func set_current_happiness(value: float) -> void:
 		return
 		
 	_happiness = value
-
-	if _happiness > 0.9:
-		Events.pet_event("Happy", _happiness) 
-		
-	Events.happiness_changed_value(_happiness)
+	var anim := Events._anim_for_level("happiness", value)
+	Events.happiness_changed.emit(str(value), value)
+	Events.change_pet_animation.emit(anim)
 
 
 func get_current_happiness() -> float:
@@ -78,7 +76,9 @@ func set_current_hunger(value: float) -> void:
 	if is_equal_approx(value, _hunger):
 		return 
 	_hunger = value
-	Events.hunger_changed_value(value)
+	var anim := Events._anim_for_level("hunger", value)
+	Events.hunger_changed.emit(str(value), value)
+	Events.change_pet_animation.emit(anim)
 
 
 func get_current_hunger() -> float:
@@ -87,9 +87,12 @@ func get_current_hunger() -> float:
 func set_current_hygiene(value: float) -> void:
 	value = clamp(value, 0.0, 1.0)
 	if is_equal_approx(value, _hygiene):
-		return                     # no change, no event spam
+		return    
+
 	_hygiene = value
-	Events.hygiene_changed_value(value)
+	var anim := Events._anim_for_level("hygiene", value)
+	Events.hygiene_changed.emit(str(value), value)
+	Events.change_pet_animation.emit(anim)
 
 func get_current_hygiene() -> float:
 	return _hygiene

@@ -7,6 +7,6 @@ func _ready() -> void: ## At ready, label will connect with Events Global to upd
 	Events.hunger_changed.connect(_on_hunger_changed)
 
 func _on_hunger_changed(h_tex: String, value: float) -> void:## Triggered on happyness signal from Events. 
-	set_text("Hunger") ## turns float:String for label. Will use float for progress bar. 
+	set_text("Hunger") ## For Lable. 
 	hunger_progress_bar.set_value(value)
-	print("set_text →", value)
+	print("Hunger set_text →", h_tex)
