@@ -1,0 +1,323 @@
+[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
+
+[ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Script/World/world.gd" id="1_75dai"]
+[ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Script/World/Utl/scene_manager.gd" id="1_wi563"]
+[ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Resource/Theme/Pixelbasel.ttf" id="1_yueht"]
+[ext_resource type="Script" uid="uid://wtflmtow768h" path="res://Script/GUI/title_screen.gd" id="3_hjya1"]
+[ext_resource type="Texture2D" uid="uid://dng17xpkjb274" path="res://Asset/Background/city 2 128x112.png" id="6_5ifd6"]
+[ext_resource type="Texture2D" uid="uid://dagldaom3kqcv" path="res://Asset/Background/city 1 128x112.png" id="7_mg4ue"]
+[ext_resource type="Texture2D" uid="uid://cuuqwwq6uxwib" path="res://Asset/Background/sky 128x112.png" id="8_b6n0h"]
+[ext_resource type="Texture2D" uid="uid://dl35sbrqe71ft" path="res://Asset/Background/ground 128x112.png" id="8_k3mqv"]
+[ext_resource type="Script" uid="uid://dx617k7gbrj0e" path="res://Script/GUI/happy_meter.gd" id="9_8kvsk"]
+[ext_resource type="Script" uid="uid://bvdbux3pwo2ea" path="res://Script/GUI/hunger_label.gd" id="10_8kvsk"]
+[ext_resource type="PackedScene" uid="uid://bl0ujhrgl2r44" path="res://Scene/player_camera.tscn" id="10_b0fb2"]
+[ext_resource type="Script" uid="uid://befl1oxcgetrb" path="res://Script/GUI/hygiene_label.gd" id="11_2qisj"]
+[ext_resource type="LabelSettings" uid="uid://bqa25qssvogie" path="res://Resource/Theme/LableDefault.tres" id="11_mg4ue"]
+[ext_resource type="Script" uid="uid://dlxtf13dpvw5m" path="res://Script/World/Utl/player_camera.gd" id="11_wi563"]
+[ext_resource type="PackedScene" uid="uid://17x4vh1ltwl" path="res://Scene/base_body.tscn" id="12_mg4ue"]
+[ext_resource type="Theme" uid="uid://csfdjcxm263dk" path="res://Resource/Theme/Default.tres" id="13_k3mqv"]
+[ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scene/bgm.tscn" id="16_8kvsk"]
+[ext_resource type="Script" uid="uid://bjjmmm8sbhyql" path="res://Script/GUI/feed_button.gd" id="19_k3mqv"]
+[ext_resource type="Script" uid="uid://s28v3bjq816l" path="res://Script/GUI/clean_button.gd" id="20_b6n0h"]
+[ext_resource type="Script" uid="uid://r2pw83qjplan" path="res://Scene/menu_button.gd" id="20_j16kb"]
+[ext_resource type="Script" uid="uid://bigblpkgj3c57" path="res://Scene/play.gd" id="21_j16kb"]
+[ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Scene/gui_sfx.gd" id="22_j16kb"]
+
+[sub_resource type="Theme" id="Theme_cl5ej"]
+default_font = ExtResource("1_yueht")
+Label/colors/font_color = Color(0, 0.234705, 5.88158e-05, 1)
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("1_yueht")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ebsso"]
+font_size = 31
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.639216)
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_wi563")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("10_b0fb2")]
+script = ExtResource("11_wi563")
+
+[node name="BGM" parent="." instance=ExtResource("16_8kvsk")]
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainDisplayLayer" type="CanvasLayer" parent="Container"]
+unique_name_in_owner = true
+
+[node name="MainDisplayContainer" type="Control" parent="Container/MainDisplayLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="WorldManager" type="PanelContainer" parent="Container/MainDisplayLayer/MainDisplayContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+script = ExtResource("1_75dai")
+
+[node name="Bacground" type="Control" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
+layout_mode = 2
+
+[node name="COLOR" type="TextureRect" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/Bacground"]
+layout_mode = 2
+offset_right = 512.0
+offset_bottom = 448.0
+texture = ExtResource("8_b6n0h")
+
+[node name="City2128x112" type="Sprite2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/Bacground"]
+position = Vector2(256, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("6_5ifd6")
+
+[node name="City1128x112" type="Sprite2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/Bacground"]
+position = Vector2(256, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("7_mg4ue")
+
+[node name="Ground128x112" type="Sprite2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/Bacground"]
+position = Vector2(256, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("8_k3mqv")
+
+[node name="BaseBody" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager" instance=ExtResource("12_mg4ue")]
+position = Vector2(251, 316)
+
+[node name="InfoDisplay" type="HBoxContainer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
+layout_mode = 2
+
+[node name="HappyLabel" type="Label" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("13_k3mqv")
+text = "Info Display"
+label_settings = ExtResource("11_mg4ue")
+horizontal_alignment = 1
+script = ExtResource("9_8kvsk")
+
+[node name="HappyProgressBar" type="ProgressBar" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay/HappyLabel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -192.0
+offset_right = 55.0
+offset_bottom = -169.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_k3mqv")
+max_value = 1.0
+
+[node name="HungerLabel" type="Label" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = SubResource("Theme_cl5ej")
+text = "Info Display"
+label_settings = ExtResource("11_mg4ue")
+horizontal_alignment = 1
+script = ExtResource("10_8kvsk")
+
+[node name="HungerProgressBar" type="ProgressBar" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay/HungerLabel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 32.0
+offset_right = 59.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme = ExtResource("13_k3mqv")
+max_value = 1.0
+
+[node name="HygieneLabel" type="Label" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = SubResource("Theme_cl5ej")
+text = "Info Display"
+label_settings = ExtResource("11_mg4ue")
+horizontal_alignment = 1
+script = ExtResource("11_2qisj")
+
+[node name="HygieneProgressBar" type="ProgressBar" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/InfoDisplay/HygieneLabel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 32.0
+offset_right = 55.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme = ExtResource("13_k3mqv")
+max_value = 1.0
+
+[node name="GUI" type="CanvasLayer" parent="Container"]
+
+[node name="PlayerButtons" type="Control" parent="Container/GUI"]
+layout_mode = 3
+anchor_left = 0.029
+anchor_top = 1.0
+anchor_right = 0.959
+anchor_bottom = 1.0
+offset_left = -3.848
+offset_top = -55.0
+offset_right = -0.00802612
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+
+[node name="PlayerButtons2" type="HBoxContainer" parent="Container/GUI"]
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 1.0
+anchor_right = 0.959
+anchor_bottom = 1.0
+offset_left = -0.848
+offset_top = -74.0
+offset_right = 0.992004
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+
+[node name="FEED" type="Button" parent="Container/GUI/PlayerButtons2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme = ExtResource("13_k3mqv")
+action_mode = 0
+text = "FEED"
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("19_k3mqv")
+
+[node name="CLEAN" type="Button" parent="Container/GUI/PlayerButtons2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme = ExtResource("13_k3mqv")
+action_mode = 0
+text = "CLEAN"
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("20_b6n0h")
+
+[node name="PLAY" type="Button" parent="Container/GUI/PlayerButtons2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme = ExtResource("13_k3mqv")
+action_mode = 0
+text = "PLAY"
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("21_j16kb")
+
+[node name="MENU" type="Button" parent="Container/GUI/PlayerButtons2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme = ExtResource("13_k3mqv")
+action_mode = 0
+text = "MENU"
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("20_j16kb")
+
+[node name="TitleScreen" type="PanelContainer" parent="Container/GUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_hjya1")
+
+[node name="TitleScreenBackground" type="ColorRect" parent="Container/GUI/TitleScreen"]
+layout_mode = 2
+color = Color(0.177806, 0.355417, 0.364607, 1)
+
+[node name="Title" type="Label" parent="Container/GUI/TitleScreen"]
+layout_mode = 2
+text = "Project Tiny Kaiju Keeper"
+label_settings = SubResource("LabelSettings_ebsso")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Container/GUI/TitleScreen/Title"]
+layout_mode = 2
+offset_left = 235.0
+offset_top = 33.0
+offset_right = 273.0
+offset_bottom = 56.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start"
+
+[node name="MenuScreen" type="PanelContainer" parent="Container/GUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="Container/GUI/MenuScreen"]
+layout_mode = 2
+color = Color(0.329412, 0.545098, 0.443137, 1)
+
+[node name="GridContainer" type="GridContainer" parent="Container/GUI/MenuScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="Sound" type="Button" parent="Container/GUI/MenuScreen/GridContainer"]
+layout_mode = 2
+text = "Sound"
+
+[node name="Back" type="Button" parent="Container/GUI/MenuScreen/GridContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[node name="GuiSfx" type="AudioStreamPlayer" parent="."]
+script = ExtResource("22_j16kb")
+
+[connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons2/FEED" to="Container/GUI/PlayerButtons2/FEED" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons2/CLEAN" to="Container/GUI/PlayerButtons2/CLEAN" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons2/PLAY" to="Container/GUI/PlayerButtons2/PLAY" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons2/MENU" to="Container/GUI/PlayerButtons2/MENU" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/TitleScreen/Title/Button" to="Container/GUI/TitleScreen" method="_on_button_pressed"]

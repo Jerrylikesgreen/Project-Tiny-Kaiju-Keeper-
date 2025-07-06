@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://da3lqm3m661s"]
+
+[ext_resource type="FontFile" uid="uid://dy00p4wwvsw10" path="res://Resource/Theme/Pixelbasel.ttf" id="1_arn1h"]
+
+[sub_resource type="Theme" id="Theme_j62oj"]
+default_font = ExtResource("1_arn1h")
+Label/colors/font_color = Color(0, 0.234705, 5.88158e-05, 1)
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("1_arn1h")
+
+[node name="HappyMeter" type="Label"]
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = SubResource("Theme_j62oj")
+text = "Info Display"
+horizontal_alignment = 1

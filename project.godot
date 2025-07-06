@@ -20,8 +20,8 @@ config/icon="uid://cv3i2vcx1bg45"
 
 [autoload]
 
-Globals="*res://Scripts/globals.gd"
-Events="*res://Scripts/events.gd"
+Globals="*res://Script/Autoload/globals.gd"
+Events="*res://Script/Autoload/events.gd"
 
 [display]
 

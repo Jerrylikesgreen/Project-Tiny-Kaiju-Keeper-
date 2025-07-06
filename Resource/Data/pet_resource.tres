@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PetResource" load_steps=2 format=3 uid="uid://h6blcpa1ni5b"]
+
+[ext_resource type="Script" uid="uid://dasllghvayy78" path="res://Script/Mob/pet_resource_script.gd" id="1_i0yms"]
+
+[resource]
+script = ExtResource("1_i0yms")
+happiness = 1.0
+hunger = 1.0
+hygiene = 1.0
