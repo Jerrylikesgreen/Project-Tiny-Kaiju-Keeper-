@@ -22,7 +22,7 @@ func play_track(track: Track) -> void:
 
 	_switch_stream(track)
 	play()
-	print( "Track being played: ",track)
+	print_debug("Track being played: %s" % track)
 
 func _switch_stream(track: Track) -> void:
 	if track < 0 or track >= sfx_bank.size():
