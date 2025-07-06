@@ -47,6 +47,11 @@ var current_hygiene   : float     : set = set_current_hygiene,   get = get_curre
 var current_game_state: GameState : set = set_game_state,        get = get_game_state
 ## Active macro-state (GUI, MAIN play, etc.).
 
+
+var gigazilla_points: float
+var mothlyn_points: int
+
+
 ## At ready
 func _ready() -> void:
 	### Called once when the singleton is initialised.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cn5lx5caavnr7"]
+[gd_scene load_steps=29 format=3 uid="uid://cn5lx5caavnr7"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Script/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Script/World/Utl/scene_manager.gd" id="1_wi563"]
@@ -38,6 +38,8 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.639216)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_umu00"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_wi563")
@@ -250,7 +252,6 @@ expand_icon = true
 script = ExtResource("20_j16kb")
 
 [node name="TitleScreen" type="PanelContainer" parent="Container/GUI"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -270,12 +271,13 @@ horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Container/GUI/TitleScreen/Title"]
 layout_mode = 2
-offset_left = 235.0
-offset_top = 33.0
-offset_right = 273.0
-offset_bottom = 56.0
+offset_left = 211.0
+offset_top = 39.0
+offset_right = 287.0
+offset_bottom = 83.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("13_k3mqv")
 text = "Start"
 
 [node name="MenuScreen" type="PanelContainer" parent="Container/GUI"]
@@ -299,10 +301,17 @@ columns = 3
 
 [node name="Sound" type="Button" parent="Container/GUI/MenuScreen/GridContainer"]
 layout_mode = 2
+theme = ExtResource("13_k3mqv")
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 25
 text = "Sound"
 
 [node name="Back" type="Button" parent="Container/GUI/MenuScreen/GridContainer"]
 layout_mode = 2
+size_flags_stretch_ratio = 3.83
+theme = ExtResource("13_k3mqv")
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 25
 text = "Back
 "
 
@@ -311,38 +320,54 @@ layer = 10
 visible = false
 script = ExtResource("24_umu00")
 
-[node name="BackgroundColor2" type="ColorRect" parent="Container/GUI/MenuScreen/SoundMenu"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="BackgroundColor2" type="TextureRect" parent="Container/GUI/MenuScreen/SoundMenu"]
+material = SubResource("CanvasItemMaterial_umu00")
+anchors_preset = -1
+anchor_left = 0.104
+anchor_top = 0.134
+anchor_right = 0.914
+anchor_bottom = 0.766
+offset_left = -1.248
+offset_top = 8.968
+offset_right = -0.968018
+offset_bottom = 15.832
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.105517, 0.101088, 0.00166336, 1)
+texture = ExtResource("8_b6n0h")
 
-[node name="Volume" type="HSlider" parent="Container/GUI/MenuScreen/SoundMenu"]
+[node name="Volume" type="HSlider" parent="Container/GUI/MenuScreen/SoundMenu/BackgroundColor2"]
+layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 1.0
-offset_top = -8.0
-offset_right = 1.0
-offset_bottom = 8.0
+offset_top = 5.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("13_k3mqv")
 min_value = -20.0
 max_value = 15.0
 tick_count = 1
 ticks_on_borders = true
 
-[node name="Label" type="Label" parent="Container/GUI/MenuScreen/SoundMenu"]
-offset_left = 244.0
-offset_top = 201.0
-offset_right = 284.0
-offset_bottom = 216.0
+[node name="Label" type="Label" parent="Container/GUI/MenuScreen/SoundMenu/BackgroundColor2"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 132.0
+offset_right = 233.0
+offset_bottom = 147.0
+theme = ExtResource("13_k3mqv")
 text = "Volume"
 
-[node name="Back" type="Button" parent="Container/GUI/MenuScreen/SoundMenu"]
+[node name="Back" type="Button" parent="Container/GUI/MenuScreen/SoundMenu/BackgroundColor2"]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 245.0
+offset_right = 414.0
+offset_bottom = 290.0
+theme = ExtResource("13_k3mqv")
+theme_override_font_sizes/font_size = 25
 text = "Back"
 
 [node name="GuiSfx" type="AudioStreamPlayer" parent="."]
@@ -357,5 +382,5 @@ script = ExtResource("22_j16kb")
 [connection signal="pressed" from="Container/GUI/TitleScreen/Title/Button" to="Container/GUI/TitleScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="Container/GUI/MenuScreen/GridContainer/Sound" to="Container/GUI/MenuScreen" method="_on_sound_pressed"]
 [connection signal="pressed" from="Container/GUI/MenuScreen/GridContainer/Back" to="Container/GUI/MenuScreen" method="_on_back_pressed"]
-[connection signal="value_changed" from="Container/GUI/MenuScreen/SoundMenu/Volume" to="BGM" method="_on_volume_value_changed"]
-[connection signal="pressed" from="Container/GUI/MenuScreen/SoundMenu/Back" to="Container/GUI/MenuScreen/SoundMenu" method="_on_back_pressed"]
+[connection signal="value_changed" from="Container/GUI/MenuScreen/SoundMenu/BackgroundColor2/Volume" to="BGM" method="_on_volume_value_changed"]
+[connection signal="pressed" from="Container/GUI/MenuScreen/SoundMenu/BackgroundColor2/Back" to="Container/GUI/MenuScreen/SoundMenu" method="_on_back_pressed"]
