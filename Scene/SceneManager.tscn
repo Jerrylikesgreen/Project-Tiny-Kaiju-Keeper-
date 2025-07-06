@@ -343,8 +343,7 @@ offset_bottom = 216.0
 text = "Volume"
 
 [node name="Back" type="Button" parent="Container/GUI/MenuScreen/SoundMenu"]
-text = "Back
-"
+text = "Back"
 
 [node name="GuiSfx" type="AudioStreamPlayer" parent="."]
 script = ExtResource("22_j16kb")
