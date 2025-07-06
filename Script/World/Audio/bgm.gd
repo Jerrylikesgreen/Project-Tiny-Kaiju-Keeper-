@@ -84,3 +84,8 @@ func _switch_stream(track: Track) -> void:
 
 func _on_finished() -> void:
 	play()
+
+
+func _on_volume_value_changed(value: float) -> void:
+	set_volume_db(value) 
+	push_warning("Volume changed to: %s" % value)

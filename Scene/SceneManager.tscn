@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cn5lx5caavnr7"]
+[gd_scene load_steps=28 format=3 uid="uid://cn5lx5caavnr7"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Script/World/world.gd" id="1_75dai"]
 [ext_resource type="Script" uid="uid://b6olpgnblqb85" path="res://Script/World/Utl/scene_manager.gd" id="1_wi563"]
@@ -17,11 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://17x4vh1ltwl" path="res://Scene/base_body.tscn" id="12_mg4ue"]
 [ext_resource type="Theme" uid="uid://csfdjcxm263dk" path="res://Resource/Theme/Default.tres" id="13_k3mqv"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scene/bgm.tscn" id="16_8kvsk"]
+[ext_resource type="Script" uid="uid://c7p5d2curjbru" path="res://Scene/gui.gd" id="17_50k3x"]
 [ext_resource type="Script" uid="uid://bjjmmm8sbhyql" path="res://Script/GUI/feed_button.gd" id="19_k3mqv"]
 [ext_resource type="Script" uid="uid://s28v3bjq816l" path="res://Script/GUI/clean_button.gd" id="20_b6n0h"]
 [ext_resource type="Script" uid="uid://r2pw83qjplan" path="res://Script/GUI/menu_button.gd" id="20_j16kb"]
 [ext_resource type="Script" uid="uid://bigblpkgj3c57" path="res://Script/GUI/play.gd" id="21_j16kb"]
+[ext_resource type="Script" uid="uid://bihoilcsmpvcj" path="res://Scene/menu_screen.gd" id="22_eawhx"]
 [ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Script/GUI/gui_sfx.gd" id="22_j16kb"]
+[ext_resource type="Script" uid="uid://icjildfw6ey4" path="res://Scene/sound_menu.gd" id="24_umu00"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("1_yueht")
@@ -181,22 +184,10 @@ theme = ExtResource("13_k3mqv")
 max_value = 1.0
 
 [node name="GUI" type="CanvasLayer" parent="Container"]
+layer = 10
+script = ExtResource("17_50k3x")
 
-[node name="PlayerButtons" type="Control" parent="Container/GUI"]
-layout_mode = 3
-anchor_left = 0.029
-anchor_top = 1.0
-anchor_right = 0.959
-anchor_bottom = 1.0
-offset_left = -3.848
-offset_top = -55.0
-offset_right = -0.00802612
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 4
-
-[node name="PlayerButtons2" type="HBoxContainer" parent="Container/GUI"]
+[node name="PlayerButtons" type="HBoxContainer" parent="Container/GUI"]
 anchors_preset = -1
 anchor_left = 0.029
 anchor_top = 1.0
@@ -210,7 +201,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
 
-[node name="FEED" type="Button" parent="Container/GUI/PlayerButtons2"]
+[node name="FEED" type="Button" parent="Container/GUI/PlayerButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -222,7 +213,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("19_k3mqv")
 
-[node name="CLEAN" type="Button" parent="Container/GUI/PlayerButtons2"]
+[node name="CLEAN" type="Button" parent="Container/GUI/PlayerButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -234,7 +225,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("20_b6n0h")
 
-[node name="PLAY" type="Button" parent="Container/GUI/PlayerButtons2"]
+[node name="PLAY" type="Button" parent="Container/GUI/PlayerButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -246,7 +237,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("21_j16kb")
 
-[node name="MENU" type="Button" parent="Container/GUI/PlayerButtons2"]
+[node name="MENU" type="Button" parent="Container/GUI/PlayerButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
@@ -294,6 +285,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("22_eawhx")
 
 [node name="BackgroundColor" type="ColorRect" parent="Container/GUI/MenuScreen"]
 layout_mode = 2
@@ -314,12 +306,56 @@ layout_mode = 2
 text = "Back
 "
 
+[node name="SoundMenu" type="CanvasLayer" parent="Container/GUI/MenuScreen"]
+layer = 10
+visible = false
+script = ExtResource("24_umu00")
+
+[node name="BackgroundColor2" type="ColorRect" parent="Container/GUI/MenuScreen/SoundMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105517, 0.101088, 0.00166336, 1)
+
+[node name="Volume" type="HSlider" parent="Container/GUI/MenuScreen/SoundMenu"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -8.0
+offset_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -20.0
+max_value = 15.0
+tick_count = 1
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Container/GUI/MenuScreen/SoundMenu"]
+offset_left = 244.0
+offset_top = 201.0
+offset_right = 284.0
+offset_bottom = 216.0
+text = "Volume"
+
+[node name="Back" type="Button" parent="Container/GUI/MenuScreen/SoundMenu"]
+text = "Back"
+
 [node name="GuiSfx" type="AudioStreamPlayer" parent="."]
 script = ExtResource("22_j16kb")
 
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
-[connection signal="pressed" from="Container/GUI/PlayerButtons2/FEED" to="Container/GUI/PlayerButtons2/FEED" method="_on_pressed"]
-[connection signal="pressed" from="Container/GUI/PlayerButtons2/CLEAN" to="Container/GUI/PlayerButtons2/CLEAN" method="_on_pressed"]
-[connection signal="pressed" from="Container/GUI/PlayerButtons2/PLAY" to="Container/GUI/PlayerButtons2/PLAY" method="_on_pressed"]
-[connection signal="pressed" from="Container/GUI/PlayerButtons2/MENU" to="Container/GUI/PlayerButtons2/MENU" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons/FEED" to="Container/GUI/PlayerButtons/FEED" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons/CLEAN" to="Container/GUI/PlayerButtons/CLEAN" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons/PLAY" to="Container/GUI/PlayerButtons/PLAY" method="_on_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons/MENU" to="Container/GUI" method="_on_menu_pressed"]
+[connection signal="pressed" from="Container/GUI/PlayerButtons/MENU" to="Container/GUI/PlayerButtons/MENU" method="_on_pressed"]
 [connection signal="pressed" from="Container/GUI/TitleScreen/Title/Button" to="Container/GUI/TitleScreen" method="_on_button_pressed"]
+[connection signal="pressed" from="Container/GUI/MenuScreen/GridContainer/Sound" to="Container/GUI/MenuScreen" method="_on_sound_pressed"]
+[connection signal="pressed" from="Container/GUI/MenuScreen/GridContainer/Back" to="Container/GUI/MenuScreen" method="_on_back_pressed"]
+[connection signal="value_changed" from="Container/GUI/MenuScreen/SoundMenu/Volume" to="BGM" method="_on_volume_value_changed"]
+[connection signal="pressed" from="Container/GUI/MenuScreen/SoundMenu/Back" to="Container/GUI/MenuScreen/SoundMenu" method="_on_back_pressed"]
