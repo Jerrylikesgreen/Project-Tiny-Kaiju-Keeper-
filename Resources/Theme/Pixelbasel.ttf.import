@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dy00p4wwvsw10"
-path="res://.godot/imported/Pixelbasel.ttf-a309a8f7d7550aeef94ffe6dd662f765.fontdata"
+path="res://.godot/imported/Pixelbasel.ttf-e8ddd7956e656d9bcfdd458729ff6d74.fontdata"
 
 [deps]
 
-source_file="res://Resources/Pixelbasel.ttf"
-dest_files=["res://.godot/imported/Pixelbasel.ttf-a309a8f7d7550aeef94ffe6dd662f765.fontdata"]
+source_file="res://Resources/Theme/Pixelbasel.ttf"
+dest_files=["res://.godot/imported/Pixelbasel.ttf-e8ddd7956e656d9bcfdd458729ff6d74.fontdata"]
 
 [params]
 
