@@ -36,6 +36,13 @@ func _switch_stream(track: Track) -> void:
 	stream = sfx_bank[track]
 
 func _on_play_sfx(index: int) -> void:## iNT: iNDEX TO REFRENCE A TRACK STORED ON AN ENUM. 
+	if index < 0 or index >= sfx_bank.size():
+		push_warning("SFX index %d is out of range (bank size = %d)" %
+					 [index, sfx_bank.size()])
+		return
+	if sfx_bank[index] == null:
+		push_warning("SFX bank entry %d is empty" % index)
+		return
 	stream = sfx_bank[index]
 	play()
 	print("Playing")
