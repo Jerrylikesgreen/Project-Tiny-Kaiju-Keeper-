@@ -10,7 +10,12 @@ signal pet_event_signal(listener, event)
 signal change_pet_animation(anim: String)
 signal play_sfx_signal(track_id: int)
 signal gui_sfx(track_id: int)
-signal poop(vale:bool)
+signal poop(value:bool)
+signal evolve(value:int)
+signal game_start
+signal game_stop
+
+
 const THRESHOLD := 0.7
 
 ## If you still need this elsewhere, keep it
@@ -68,8 +73,9 @@ func _anim_for_level(stat_name: String, value: float) -> String:
 
 
 
-func game_state_change()->void:
+func game_state_change(value:int)->void:
 	emit_signal("game_state")
+	Globals.set_game_state(value)
 	pass
 
 func pet_event(event: String, value: float)-> void:

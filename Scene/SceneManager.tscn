@@ -266,7 +266,6 @@ expand_icon = true
 script = ExtResource("20_j16kb")
 
 [node name="TitleScreen" type="PanelContainer" parent="Container/GUI"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

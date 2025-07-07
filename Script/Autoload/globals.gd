@@ -116,8 +116,8 @@ func set_game_state(new_state: GameState) -> void:
 	if _game_state == new_state:
 		push_error("Already in that state")
 		return
+	
 	_game_state = new_state
-	Events.game_state_changed(_game_state)
 
 func get_game_state() -> GameState:
 	return _game_state

@@ -30,6 +30,8 @@ var _current_track : Track        ## remember what’s playing
 func _ready() -> void:
 	play_track(Track.NAPTIME_SWEET_KAIJU) ## Ensures audio gets played at start. 
 	Events.game_state.connect(_update_track)
+	Events.evolve.connect(_on_evolve)
+	Events.game_start.connect(_on_game_start)
 
 
 func play_track(track: Track, fade_time: float = 1.0) -> void:  ## Function that plays a track that was passed through. 
@@ -89,3 +91,9 @@ func _on_finished() -> void:
 func _on_volume_value_changed(value: float) -> void:
 	set_volume_db(value) 
 	push_warning("Volume changed to: %s" % value)
+
+func _on_evolve(value:int)->void:
+	play_track(value)
+
+func _on_game_start():
+	play_track(1)

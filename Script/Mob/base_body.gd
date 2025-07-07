@@ -24,6 +24,7 @@ class_name BaseBody extends CharacterBody2D
 func _ready() -> void:
 	update_globals_from_pet(pet_resource)
 	Events.poop.connect(_on_poop_call)
+	Events.game_start.connect(_on_game_start)
 
 
 func update_globals_from_pet(pet: PetResource) -> void: ## Sets up fucntions and variabnles to distribute resource across 
@@ -96,6 +97,7 @@ func _on_evolution(stage:int)->void:
 	match stage:
 		1:
 			await base_body_sprite.set_stage(base_body_sprite.Stage.HATCHLING)
+			Events.emit_signal("evolve", 2)
 			
 		2:
 			_check_ev_line()
@@ -105,11 +107,13 @@ func _on_evolution(stage:int)->void:
 			else:
 				base_body_sprite.set_stage(base_body_sprite.Stage.JUV_GIGA)
 				print(_is_godzilla, "gigi")
+			Events.emit_signal("evolve", 3)
 		3:
 			if !_is_godzilla:
 				base_body_sprite.set_stage(base_body_sprite.Stage.ADULT_MOTH)
 			else:
 				base_body_sprite.set_stage(base_body_sprite.Stage.ADULT_GIGA)
+			Events.emit_signal("evolve", 4)
 	ev_visual_effect.play()
 
 func _check_ev_line():
@@ -123,3 +127,8 @@ func _on_poop_call(v:bool):
 	else:
 		hygiene_rate = 1
 	pass
+
+func _on_game_start():
+	Globals.set_current_happiness(1.0)
+	Globals.set_current_hygiene(1.0)
+	Globals.set_current_hunger(1.0)
