@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxd83dpfly2yj"]
+
+[ext_resource type="Texture2D" uid="uid://ft3dph6xdfey" path="res://Asset/Cookie/cookie 16x16.png" id="1_5qx13"]
+[ext_resource type="Texture2D" uid="uid://ciwtbn1sux86n" path="res://Asset/Cookie/cookie 4x2.png" id="2_r4r8t"]
+[ext_resource type="Script" uid="uid://dwtawbo87tg51" path="res://Script/cookie_script.gd" id="3_r4r8t"]
+[ext_resource type="PackedScene" uid="uid://ce77p7t6uoopb" path="res://Scene/sfx.tscn" id="4_xm14c"]
+[ext_resource type="AudioStream" uid="uid://ciwiqwm2w4dx8" path="res://Asset/OGG/Munch 2.ogg" id="5_xm14c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxpib"]
+atlas = ExtResource("1_5qx13")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm14c"]
+atlas = ExtResource("2_r4r8t")
+region = Rect2(0, 0, 4, 2)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_da45p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxpib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm14c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Cookie" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_da45p")
+frame_progress = 0.505364
+script = ExtResource("3_r4r8t")
+
+[node name="SFX" parent="." instance=ExtResource("4_xm14c")]
+stream = ExtResource("5_xm14c")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="animation_looped" from="." to="." method="_on_animation_looped"]

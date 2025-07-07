@@ -23,6 +23,7 @@ class_name BaseBody extends CharacterBody2D
 
 func _ready() -> void:
 	update_globals_from_pet(pet_resource)
+	Events.poop.connect(_on_poop_call)
 
 
 func update_globals_from_pet(pet: PetResource) -> void: ## Sets up fucntions and variabnles to distribute resource across 
@@ -114,3 +115,11 @@ func _on_evolution(stage:int)->void:
 func _check_ev_line():
 	if Globals.gigazilla_points > Globals.mothlyn_points:
 		_is_godzilla = true
+
+
+func _on_poop_call(v:bool):
+	if v == true:
+		hygiene_rate = 2
+	else:
+		hygiene_rate = 1
+	pass

@@ -17,14 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://17x4vh1ltwl" path="res://Scene/base_body.tscn" id="12_mg4ue"]
 [ext_resource type="Theme" uid="uid://csfdjcxm263dk" path="res://Resource/Theme/Default.tres" id="13_k3mqv"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scene/bgm.tscn" id="16_8kvsk"]
-[ext_resource type="Script" uid="uid://c7p5d2curjbru" path="res://Script/gui.gd" id="17_50k3x"]
+[ext_resource type="Script" uid="uid://c7p5d2curjbru" path="res://Scene/gui.gd" id="17_50k3x"]
 [ext_resource type="PackedScene" uid="uid://ce77p7t6uoopb" path="res://Scene/sfx.tscn" id="17_sqoct"]
 [ext_resource type="AudioStream" uid="uid://dlrt8glkw04fl" path="res://Asset/OGG/Munch 1.ogg" id="18_sxgng"]
 [ext_resource type="Script" uid="uid://bjjmmm8sbhyql" path="res://Script/GUI/feed_button.gd" id="19_k3mqv"]
 [ext_resource type="Script" uid="uid://s28v3bjq816l" path="res://Script/GUI/clean_button.gd" id="20_b6n0h"]
 [ext_resource type="Script" uid="uid://r2pw83qjplan" path="res://Script/GUI/menu_button.gd" id="20_j16kb"]
 [ext_resource type="Script" uid="uid://bigblpkgj3c57" path="res://Script/GUI/play.gd" id="21_j16kb"]
-[ext_resource type="Script" uid="uid://bihoilcsmpvcj" path="res://Script/menu_screen.gd" id="22_eawhx"]
+[ext_resource type="Script" uid="uid://bihoilcsmpvcj" path="res://Scene/menu_screen.gd" id="22_eawhx"]
 [ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Script/GUI/gui_sfx.gd" id="22_j16kb"]
 [ext_resource type="Texture2D" uid="uid://e86vjhm6y8d4" path="res://Asset/Background/Titlebackground 128x112.png" id="23_7xny2"]
 [ext_resource type="Script" uid="uid://icjildfw6ey4" path="res://Scene/sound_menu.gd" id="24_umu00"]
@@ -115,10 +115,6 @@ position = Vector2(251, 316)
 [node name="CookieContainer" type="Node2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/PetLayer"]
 unique_name_in_owner = true
 position = Vector2(398, 318)
-
-[node name="PoopContainer" type="Node2D" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager/PetLayer"]
-unique_name_in_owner = true
-position = Vector2(133, 320)
 
 [node name="InfoDisplay" type="HBoxContainer" parent="Container/MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 2

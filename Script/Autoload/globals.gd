@@ -50,7 +50,8 @@ var current_game_state: GameState : set = set_game_state,        get = get_game_
 
 var gigazilla_points: float
 var mothlyn_points: int
-
+var poop_spawned:bool = false
+var feed_count: int = 0
 
 ## At ready
 func _ready() -> void:
@@ -78,13 +79,20 @@ func get_current_happiness() -> float:
 
 func set_current_hunger(value: float) -> void:
 	value = clamp(value, 0.0, 1.0)
+	var old_hunger = _hunger
 	if is_equal_approx(value, _hunger):
 		return 
 	_hunger = value
 	var anim := Events._anim_for_level("hunger", value)
 	Events.hunger_changed.emit(str(value), value)
 	Events.change_pet_animation.emit(anim)
-
+	if old_hunger < _hunger:
+		print("Poop counters")
+		feed_count = feed_count + 1
+		if feed_count == 5 and !poop_spawned :
+			Events.emit_signal("poop", true)
+			feed_count = 0
+			poop_spawned = true
 
 func get_current_hunger() -> float:
 	return _hunger

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://sjiy0fxc8ojc"]
+
+[ext_resource type="Texture2D" uid="uid://cysv5ka8qqn8l" path="res://Asset/Poo/poo sprite sheet.png" id="1_his16"]
+[ext_resource type="Script" uid="uid://bmvleipmsulst" path="res://Scene/poop.gd" id="2_j11jb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j11jb"]
+atlas = ExtResource("1_his16")
+region = Rect2(0, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfd81"]
+atlas = ExtResource("1_his16")
+region = Rect2(0, 11, 8, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oeqen"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j11jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfd81")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="poop_sprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_oeqen")
+script = ExtResource("2_j11jb")
