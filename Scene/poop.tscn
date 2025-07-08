@@ -26,5 +26,6 @@ animations = [{
 }]
 
 [node name="poop_sprite" type="AnimatedSprite2D"]
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_oeqen")
 script = ExtResource("2_j11jb")

@@ -29,6 +29,7 @@ animations = [{
 }]
 
 [node name="Cookie" type="AnimatedSprite2D"]
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_da45p")
 frame_progress = 0.505364
 script = ExtResource("3_r4r8t")
