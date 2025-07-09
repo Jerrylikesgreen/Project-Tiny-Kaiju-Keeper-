@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://csfdjcxm263dk"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://d0h6wtc7n12qn"]
 
-[ext_resource type="Texture2D" uid="uid://ft3dph6xdfey" path="res://Asset/Cookie/cookie 16x16.png" id="1_fllre"]
-[ext_resource type="Texture2D" uid="uid://dcgkvpvt3y0h7" path="res://Asset/UI/meter base.png" id="2_fllre"]
-[ext_resource type="StyleBox" uid="uid://bhycxstgq217k" path="res://Resource/Theme/new_style_box_texture.tres" id="3_r5mtt"]
+[ext_resource type="Texture2D" uid="uid://ft3dph6xdfey" path="res://Asset/Cookie/cookie 16x16.png" id="1_lg1j3"]
+[ext_resource type="Texture2D" uid="uid://dcgkvpvt3y0h7" path="res://Asset/UI/meter base.png" id="2_js8nb"]
+[ext_resource type="StyleBox" uid="uid://bhycxstgq217k" path="res://Resource/Theme/new_style_box_texture.tres" id="3_fbe61"]
+[ext_resource type="FontFile" uid="uid://cm6si4x8qv85y" path="res://Resource/Theme/PixelAE-Bold.ttf" id="4_js8nb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tqug"]
 bg_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
@@ -87,6 +88,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
+default_font = ExtResource("4_js8nb")
 Button/colors/font_color = Color(0.329412, 0.545098, 0.443137, 1)
 Button/colors/font_focus_color = Color(0.592157, 0.701961, 0.305882, 1)
 Button/colors/font_hover_color = Color(0.592157, 0.701961, 0.305882, 1)
@@ -94,22 +96,21 @@ Button/colors/font_hover_pressed_color = Color(0.592157, 0.701961, 0.305882, 1)
 Button/colors/font_outline_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
 Button/colors/font_pressed_color = Color(0.592157, 0.701961, 0.305882, 1)
 Button/constants/outline_size = 12
-Button/font_sizes/font_size = 27
+Button/font_sizes/font_size = 34
 Button/styles/focus = SubResource("StyleBoxFlat_8tqug")
 Button/styles/hover = SubResource("StyleBoxFlat_6bllo")
 Button/styles/normal = SubResource("StyleBoxFlat_73axr")
 Button/styles/pressed = SubResource("StyleBoxFlat_k0s2m")
-HSlider/icons/grabber = ExtResource("1_fllre")
-HSlider/icons/grabber_disabled = ExtResource("1_fllre")
-HSlider/icons/grabber_highlight = ExtResource("1_fllre")
-HSlider/icons/tick = ExtResource("2_fllre")
-HSlider/styles/grabber_area = ExtResource("3_r5mtt")
-HSlider/styles/grabber_area_highlight = ExtResource("3_r5mtt")
+HSlider/icons/grabber = ExtResource("1_lg1j3")
+HSlider/icons/grabber_disabled = ExtResource("1_lg1j3")
+HSlider/icons/grabber_highlight = ExtResource("1_lg1j3")
+HSlider/icons/tick = ExtResource("2_js8nb")
+HSlider/styles/grabber_area = ExtResource("3_fbe61")
+HSlider/styles/grabber_area_highlight = ExtResource("3_fbe61")
 HSlider/styles/slider = SubResource("StyleBoxTexture_prt2e")
-ProgressBar/colors/font_color = Color(0.592157, 0.701961, 0.305882, 1)
-ProgressBar/colors/font_outline_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
-ProgressBar/constants/outline_size = 4
-ProgressBar/font_sizes/font_size = 10
+ProgressBar/colors/font_color = Color(0.227451, 0.247059, 0, 1)
+ProgressBar/colors/font_outline_color = Color(0.329412, 0.545098, 0.443137, 1)
+ProgressBar/font_sizes/font_size = 20
 ProgressBar/styles/background = SubResource("StyleBoxFlat_1x16r")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_218ws")
 label/base_type = &"Button"

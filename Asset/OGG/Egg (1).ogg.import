@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Egg (1).ogg-9d3e9296510bbe01ff76ba508b0f28a2.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

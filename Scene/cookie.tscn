@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ft3dph6xdfey" path="res://Asset/Cookie/cookie 16x16.png" id="1_5qx13"]
 [ext_resource type="Texture2D" uid="uid://ciwtbn1sux86n" path="res://Asset/Cookie/cookie 4x2.png" id="2_r4r8t"]
-[ext_resource type="Script" uid="uid://dwtawbo87tg51" path="res://Script/cookie_script.gd" id="3_r4r8t"]
+[ext_resource type="Script" uid="uid://dwtawbo87tg51" path="res://Script/World/Audio/cookie_script.gd" id="3_r4r8t"]
 [ext_resource type="PackedScene" uid="uid://ce77p7t6uoopb" path="res://Scene/sfx.tscn" id="4_xm14c"]
 [ext_resource type="AudioStream" uid="uid://ciwiqwm2w4dx8" path="res://Asset/OGG/Munch 2.ogg" id="5_xm14c"]
 

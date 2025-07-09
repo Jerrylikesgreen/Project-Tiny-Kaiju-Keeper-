@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://ciwiqwm2w4dx8" path="res://Asset/OGG/Munch 2.ogg" id="10_l5wnn"]
 [ext_resource type="AudioStream" uid="uid://bpmc66h1av61w" path="res://Asset/OGG/Roar.ogg" id="11_x28jh"]
 [ext_resource type="AudioStream" uid="uid://bequ0t3hvje00" path="res://Resource/Data/ev_sfx.tres" id="12_roohl"]
-[ext_resource type="Script" uid="uid://sheyvmqdvrjm" path="res://Script/ev_sfx.gd" id="12_t6atn"]
+[ext_resource type="Script" uid="uid://sheyvmqdvrjm" path="res://Script/World/Audio/ev_sfx.gd" id="12_t6atn"]
 [ext_resource type="PackedScene" uid="uid://cy7wvvkqrhp1i" path="res://Scene/ev_visual_effect.tscn" id="19_3lcda"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]

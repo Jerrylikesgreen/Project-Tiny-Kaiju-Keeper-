@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cy7wvvkqrhp1i"]
 
-[ext_resource type="Script" uid="uid://cj2am2qtbahde" path="res://Script/ev_visual_effect.gd" id="1_kc8p7"]
+[ext_resource type="Script" uid="uid://cj2am2qtbahde" path="res://Script/World/Audio/ev_visual_effect.gd" id="1_kc8p7"]
 
 [sub_resource type="Animation" id="Animation_kc8p7"]
 resource_name = "EvFlash"

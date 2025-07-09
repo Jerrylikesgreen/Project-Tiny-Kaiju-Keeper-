@@ -1,6 +1,9 @@
-[gd_resource type="Theme" format=3 uid="uid://b2fr5qakg4ulj"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b2fr5qakg4ulj"]
+
+[ext_resource type="FontFile" uid="uid://cm6si4x8qv85y" path="res://Resource/Theme/PixelAE-Bold.ttf" id="1_b5hvs"]
 
 [resource]
+default_font = ExtResource("1_b5hvs")
 Button/colors/font_color = Color(0.329412, 0.545098, 0.443137, 1)
 Button/colors/font_focus_color = Color(0.592157, 0.701961, 0.305882, 1)
 Button/colors/font_hover_color = Color(0.592157, 0.701961, 0.305882, 1)

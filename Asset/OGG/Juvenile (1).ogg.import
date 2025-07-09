@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Juvenile (1).ogg-4d944631f0c94ff23c90bad41f46
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

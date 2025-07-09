@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Naptime, sweet kaiju (2).ogg-008db4098b88eacf
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
