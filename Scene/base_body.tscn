@@ -74,6 +74,7 @@ position = Vector2(-0.333333, 0.333333)
 shape = SubResource("CapsuleShape2D_hjya1")
 
 [node name="BaseBodySprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-0.333333, 0)
 sprite_frames = ExtResource("8_itufd")
 animation = &"Happy"

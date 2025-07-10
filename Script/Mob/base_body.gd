@@ -10,14 +10,16 @@ class_name BaseBody extends CharacterBody2D
 @export var _can_get_hungry:bool = true
 @export var _can_get_happy:bool = true
 @export var _can_get_hygiene:bool = true
+@export var _can_age:bool = false
 @onready var hunger_tick: Timer = %HungerTick
 @onready var happy_tick: Timer = %HappyTick
 @onready var hygiene_tick: Timer = %HygieneTick
 @onready var sfx: SFX = %SFX
 @export var _is_godzilla = false
-@onready var base_body_sprite: BaseBodySprite = $BaseBodySprite
+
 @onready var ev_sfx: AudioStreamPlayer = $EvSFX
 @onready var ev_visual_effect: Node2D = $"BaseBodySprite/Ev Visual Effect"
+@onready var base_body_sprite: BaseBodySprite = %BaseBodySprite
 
 
 
@@ -82,15 +84,20 @@ func _on_chipring_state_chirp() -> void:
 
 
 func _on_growth_tick_timeout() -> void:
-	age = age + 1 * growth_speed
-	if age == 10:
-		_on_evolution(1)
-	if age == 30:
-		_on_evolution(2)
-	if age == 60:
-		_on_evolution(3)
-	pass # Replace with function body.
-	
+	if _can_age == false:
+		return
+	else:
+		age = age + 1 * growth_speed
+		if age == 10:
+			_on_evolution(1)
+		if age == 30:
+			_on_evolution(2)
+		if age == 60:
+			_on_evolution(3)
+
+
+
+
 func _on_evolution(stage:int)->void:
 	ev_sfx.play()
 	print("Evolution SFX trigger")
@@ -132,3 +139,4 @@ func _on_game_start():
 	Globals.set_current_happiness(1.0)
 	Globals.set_current_hygiene(1.0)
 	Globals.set_current_hunger(1.0)
+	_can_age = true

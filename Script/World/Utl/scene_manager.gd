@@ -1,6 +1,11 @@
 class_name SceneManager extends Node
 ## Root node observer. Will handle all scene transitions. 
 
-@onready var world_manager: WorldManager = %WorldManager
+const MAIN_SCENE = preload("res://Scene/main_scene.tscn")
 
-## Refrence to [WorldManager] 
+
+
+func _ready() -> void:
+	var main_scene = MAIN_SCENE.instantiate()
+	add_child(main_scene)
+	var world_manager: WorldManager = %WorldManager
