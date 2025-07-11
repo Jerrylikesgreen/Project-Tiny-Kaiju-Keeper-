@@ -1,12 +1,94 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2gitsjyjmbyo"]
+[gd_scene load_steps=15 format=3 uid="uid://b2gitsjyjmbyo"]
 
-[ext_resource type="Script" uid="uid://ccavjb1e2mf1e" path="res://Scene/parallax_background.gd" id="1_t3iq2"]
+[ext_resource type="Script" uid="uid://ccavjb1e2mf1e" path="res://Script/World/parallax_background.gd" id="1_t3iq2"]
 [ext_resource type="Texture2D" uid="uid://bgkwc5lxcr5fo" path="res://Asset/Background/sky parallax.png" id="1_x4rm2"]
 [ext_resource type="Texture2D" uid="uid://brwt6tt44synf" path="res://Asset/Background/city 2 parallax.png" id="2_0o4gm"]
 [ext_resource type="Texture2D" uid="uid://duomquuj51alk" path="res://Asset/Background/city 1 parallax.png" id="3_b2b8k"]
 [ext_resource type="Texture2D" uid="uid://epga06brjmli" path="res://Asset/Background/ground parallax.png" id="4_t3iq2"]
 [ext_resource type="PackedScene" uid="uid://17x4vh1ltwl" path="res://Scene/base_body.tscn" id="5_0o4gm"]
-[ext_resource type="Script" uid="uid://d1tuwetqqwrn2" path="res://Scene/mini_game_body.gd" id="6_b2b8k"]
+[ext_resource type="Script" uid="uid://d1tuwetqqwrn2" path="res://Script/Mob/mini_game_body.gd" id="6_b2b8k"]
+[ext_resource type="LabelSettings" uid="uid://msy0fiwp5nok" path="res://Resource/Theme/Title.tres" id="8_7c8rw"]
+[ext_resource type="Script" uid="uid://dky3q50sk58ve" path="res://Script/World/animation_player.gd" id="9_bx2ic"]
+[ext_resource type="Script" uid="uid://bvgeayutirqid" path="res://Script/World/hazard_spawner.gd" id="10_72kfh"]
+
+[sub_resource type="Animation" id="Animation_72kfh"]
+resource_name = "Loop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-108, 24), Vector2(-108, 14), Vector2(-108, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_bx2ic"]
+resource_name = "PopUp"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.495656, 0.966667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-60, 24), Vector2(-108, 18.873), Vector2(-108, 14), Vector2(-108, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_7c8rw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-112, -14)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72kfh"]
+_data = {
+&"Loop": SubResource("Animation_72kfh"),
+&"PopUp": SubResource("Animation_bx2ic"),
+&"RESET": SubResource("Animation_7c8rw")
+}
 
 [node name="MiniGame" type="Control"]
 layout_mode = 3
@@ -26,15 +108,10 @@ motion_mirroring = Vector2(512, 0)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 texture_repeat = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = 1.0
 offset_top = -15.0
 offset_right = 513.0
 offset_bottom = 448.0
-grow_horizontal = 2
-grow_vertical = 2
 texture = ExtResource("1_x4rm2")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -83,7 +160,7 @@ grow_vertical = 2
 texture = ExtResource("4_t3iq2")
 
 [node name="MiniGameBody" parent="." instance=ExtResource("5_0o4gm")]
-position = Vector2(242, 277)
+position = Vector2(258, 283)
 script = ExtResource("6_b2b8k")
 flap_impulse = -250.0
 gravity = 900.0
@@ -91,3 +168,57 @@ max_fall = 1000.0
 flap_x_boost = 40.0
 max_x_speed = 150.0
 pet_resource = null
+
+[node name="PopUp" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="PopUp"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -112.0
+offset_top = -14.0
+offset_right = 143.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+text = "Tap! or Click! "
+label_settings = ExtResource("8_7c8rw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PopUp/Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_72kfh")
+}
+autoplay = "PopUp"
+script = ExtResource("9_bx2ic")
+
+[node name="HazardSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_1", "spawn_2", "spawn_3")]
+script = ExtResource("10_72kfh")
+spawn_1 = NodePath("HazardSpawnerLocation1")
+spawn_2 = NodePath("HazardSpawnerLocation2")
+spawn_3 = NodePath("HazardSpawnerLocation3")
+
+[node name="HazardSpawnerLocation1" type="Node2D" parent="HazardSpawner"]
+unique_name_in_owner = true
+position = Vector2(37, 94)
+
+[node name="HazardSpawnerLocation2" type="Node2D" parent="HazardSpawner"]
+unique_name_in_owner = true
+position = Vector2(34, 245)
+
+[node name="HazardSpawnerLocation3" type="Node2D" parent="HazardSpawner"]
+unique_name_in_owner = true
+position = Vector2(34, 400)
+
+[node name="Timer" type="Timer" parent="HazardSpawner"]
+wait_time = 3.0
+autostart = true
+
+[connection signal="animation_finished" from="PopUp/Label/AnimationPlayer" to="PopUp/Label/AnimationPlayer" method="_on_animation_finished"]
+[connection signal="timeout" from="HazardSpawner/Timer" to="HazardSpawner" method="_on_timer_timeout"]

@@ -65,6 +65,11 @@ flap={
 pointing/android/enable_long_press_as_right_click=true
 pointing/android/enable_pan_and_scale_gestures=true
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Hazard"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

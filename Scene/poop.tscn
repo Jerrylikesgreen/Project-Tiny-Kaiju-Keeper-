@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://sjiy0fxc8ojc"]
+[gd_scene load_steps=7 format=3 uid="uid://sjiy0fxc8ojc"]
 
 [ext_resource type="Texture2D" uid="uid://cysv5ka8qqn8l" path="res://Asset/Poo/poo sprite sheet.png" id="1_his16"]
 [ext_resource type="Script" uid="uid://bmvleipmsulst" path="res://Script/Mob/poop.gd" id="2_j11jb"]
@@ -25,7 +25,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j11jb"]
+radius = 3.66667
+height = 13.3333
+
 [node name="poop_sprite" type="AnimatedSprite2D"]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_oeqen")
+autoplay = "default"
 script = ExtResource("2_j11jb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_j11jb")
