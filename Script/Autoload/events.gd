@@ -14,6 +14,7 @@ signal poop(value:bool)
 signal evolve(value:int)
 signal game_start
 signal game_stop
+signal mini_game(hazard:String)
 
 
 const THRESHOLD := 0.7
@@ -87,3 +88,6 @@ func pet_event(event: String, value: float)-> void:
 func sfx_trigger(sfx: SFX.Track ):
 	emit_signal("play_sfx_signal", sfx)
 	print(sfx)
+
+func mini_game_hazard_trigger(hazard:String)->void:
+	emit_signal("mini_game", hazard)

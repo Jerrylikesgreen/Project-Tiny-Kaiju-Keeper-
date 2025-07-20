@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cayarfcoxnvaw"]
+
+[ext_resource type="Script" uid="uid://bfbsfthgo65bn" path="res://Script/Mob/poop_hazard.gd" id="1_bqto4"]
+[ext_resource type="Texture2D" uid="uid://cysv5ka8qqn8l" path="res://Asset/Poo/poo sprite sheet.png" id="1_tr4lx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr4lx"]
+atlas = ExtResource("1_tr4lx")
+region = Rect2(0, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqto4"]
+atlas = ExtResource("1_tr4lx")
+region = Rect2(0, 11, 8, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sy25p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr4lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqto4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tr4lx"]
+
+[node name="PoopHazard" type="Area2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_bqto4")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_sy25p")
+frame_progress = 0.232756
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_tr4lx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

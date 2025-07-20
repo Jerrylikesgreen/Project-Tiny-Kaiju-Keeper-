@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://c7sg24y01v6xn"]
+[gd_scene load_steps=39 format=3 uid="uid://c7sg24y01v6xn"]
 
+[ext_resource type="Script" uid="uid://blrv14tsncns2" path="res://Script/World/main_scene.gd" id="1_5qxgh"]
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Script/World/world.gd" id="1_gfmxp"]
 [ext_resource type="Texture2D" uid="uid://cuuqwwq6uxwib" path="res://Asset/Background/sky 128x112.png" id="2_1n88h"]
 [ext_resource type="Texture2D" uid="uid://dng17xpkjb274" path="res://Asset/Background/city 2 128x112.png" id="3_opjno"]
@@ -66,6 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_5qxgh")
 
 [node name="MainDisplayLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
