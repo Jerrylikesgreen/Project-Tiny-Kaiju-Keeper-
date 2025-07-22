@@ -15,8 +15,8 @@ signal evolve(value:int)
 signal game_start
 signal game_stop
 signal mini_game(hazard:String)
-
-
+signal mini_game_ended
+signal mini_game_started
 const THRESHOLD := 0.7
 
 ## If you still need this elsewhere, keep it
@@ -91,3 +91,9 @@ func sfx_trigger(sfx: SFX.Track ):
 
 func mini_game_hazard_trigger(hazard:String)->void:
 	emit_signal("mini_game", hazard)
+
+func mini_game_ended_signal():
+	emit_signal("mini_game_ended")
+	
+func mini_game_started_signal():
+	emit_signal("mini_game_started")

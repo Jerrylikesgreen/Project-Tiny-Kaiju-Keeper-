@@ -19,8 +19,10 @@ func _ready() -> void:
 # ─── PUBLIC API ────────────────────────────────────────────────────────────
 func goto_main(fade_time := -1.0) -> void:
 	_change_to_packed(MAIN_SCENE, fade_time)
+	
 
 func goto_mini_game(fade_time := -1.0) -> void:
+	Globals.save_game()         # <â new
 	_change_to_packed(MINI_GAME, fade_time)
 
 func change_to(path: String, fade_time := -1.0) -> void:
@@ -36,6 +38,7 @@ func _change_to_file(path: String, fade_time: float) -> void:
 	await _fade_out(fade_time)
 	get_tree().change_scene_to_file(path)
 	await _fade_in(fade_time)
+
 # ─── FADE LAYER SETUP ─────────────────────────────────────────────────────
 func _init_fade_layer() -> void:
 	var layer := CanvasLayer.new()

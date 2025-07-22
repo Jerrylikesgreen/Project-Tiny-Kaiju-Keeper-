@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Project Kaiju Keeper"
+config/name="Project Kaiju Keeper 2.0"
 config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0.0615095, 0.171558, 0.0872641, 1)
 boot_splash/fullsize=false

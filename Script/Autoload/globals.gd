@@ -27,7 +27,6 @@ const STATE_LABEL := {
 
 
 # ────────────────────────────────[ Backing fields ]───────────────────────────────
-
 var _happiness: float = 0.0
 
 var _hunger:   float = 0.0 
@@ -48,10 +47,16 @@ var current_game_state: GameState : set = set_game_state,        get = get_game_
 ## Active macro-state (GUI, MAIN play, etc.).
 
 
+var current_pet_stage: BaseBodySprite.Stage
 var gigazilla_points: float
 var mothlyn_points: int
 var poop_spawned:bool = false
 var feed_count: int = 0
+var _is_godzilla: bool 
+var new_game: bool = true
+var pet_age: int
+
+
 
 ## At ready
 func _ready() -> void:
@@ -121,3 +126,61 @@ func set_game_state(new_state: GameState) -> void:
 
 func get_game_state() -> GameState:
 	return _game_state
+
+
+	
+func save_game():
+	var data := SaveData.new()
+	data.happiness = _happiness
+	data.hunger = _hunger
+	data.hygiene = _hygiene
+	data.feed_count = feed_count
+	data.poop_spawned = poop_spawned
+	data.gigazilla_points = gigazilla_points
+	data.mothlyn_points = mothlyn_points
+	data.is_godzilla = _is_godzilla
+	
+
+	var pet = get_node_or_null("/root/Main/MainDisplayLayer/MainDisplayContainer/WorldManager/PetLayer/BaseBody")  # Adjust to your actual path
+	if pet:
+		data.age = pet.age
+		data.evolution_stage = pet.base_body_sprite.current_stage
+		data.is_new_game = pet._new_game
+
+	var save_result = ResourceSaver.save(data, "user://save_game.save")
+	print("Game saved." if save_result == OK else "Save failed!")
+
+
+func load_game():
+	var save_path = "user://save_game.save"
+	if not ResourceLoader.exists(save_path):
+		print("No save file found.")
+		return
+	
+	var loaded = ResourceLoader.load(save_path)
+	if loaded is SaveData:
+		# Apply loaded values to globals
+		_happiness = loaded.happiness
+		_hunger = loaded.hunger
+		_hygiene = loaded.hygiene
+		feed_count = loaded.feed_count
+		poop_spawned = loaded.poop_spawned
+		gigazilla_points = loaded.gigazilla_points
+		mothlyn_points = loaded.mothlyn_points
+	
+
+		var pet = get_node_or_null("/root/Main/MainDisplayLayer/MainDisplayContainer/WorldManager/PetLayer/BaseBody")
+		if pet:
+			pet.age = loaded.age
+			pet._new_game = loaded.is_new_game
+			await pet.base_body_sprite.set_stage(loaded.evolution_stage)
+
+		# Emit signals
+		Events.happiness_changed.emit(str(_happiness), _happiness)
+		Events.hunger_changed.emit(str(_hunger), _hunger)
+		Events.hygiene_changed.emit(str(_hygiene), _hygiene)
+
+		print("Game loaded.")
+	else:
+		print("Invalid save data.")
+		

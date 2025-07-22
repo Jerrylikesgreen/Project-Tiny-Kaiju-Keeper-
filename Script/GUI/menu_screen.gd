@@ -3,7 +3,7 @@ extends PanelContainer
 
 @onready var sound_menu: CanvasLayer = $SoundMenu
 @onready var pause_mgr   : Node      = get_node("/root/Pause")
-
+@onready var save_button: Button = %SaveButton
 @onready var back_button: Button = %BackButton
 @onready var pause_button: Button = %PauseButton
 @onready var sound_button: Button = %SoundButton
@@ -14,7 +14,7 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
 	sound_button.pressed.connect(_on_sound_button_pressed)
 	pause_button.pressed.connect(_on_pause_button_pressed)
-
+	save_button.pressed.connect(_on_save_button_pressed)
 
 func _on_back_pressed() -> void:
 	set_visible(false)
@@ -35,3 +35,6 @@ func _on_pause_button_pressed() -> void:
 		_paused      = false
 		process_mode = Node.PROCESS_MODE_PAUSABLE
 		pause_mgr.toggle_pause()
+
+func _on_save_button_pressed() -> void:
+	Globals.save_game()

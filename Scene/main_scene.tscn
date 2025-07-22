@@ -389,6 +389,7 @@ script = ExtResource("22_si2mt")
 sfx_bank = Array[AudioStream]([ExtResource("23_sp30j"), ExtResource("24_7tmle"), ExtResource("25_ya33n"), ExtResource("26_3wiol")])
 
 [node name="TitleScreen" type="PanelContainer" parent="GUI"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -466,10 +467,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 127.0
-offset_top = -25.0
-offset_right = 227.0
-offset_bottom = 26.0
+offset_left = 144.0
+offset_top = 88.0
+offset_right = 244.0
+offset_bottom = 139.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
@@ -573,6 +574,46 @@ offset_bottom = 20.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "SOUND"
+label_settings = ExtResource("8_iylel")
+
+[node name="SaveButton" type="Button" parent="GUI/MenuScreen/BackgroundColor"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 127.0
+offset_top = -24.0
+offset_right = 227.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 4.23
+theme = ExtResource("32_bqoel")
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("30_8quq7")
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="GUI/MenuScreen/BackgroundColor/SaveButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.529
+offset_left = -28.0
+offset_top = -15.5
+offset_right = 46.0
+offset_bottom = 19.021
+grow_horizontal = 2
+grow_vertical = 2
+text = "SAVE"
 label_settings = ExtResource("8_iylel")
 
 [node name="SoundMenu" type="CanvasLayer" parent="GUI/MenuScreen"]

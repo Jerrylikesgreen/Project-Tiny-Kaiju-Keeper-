@@ -82,6 +82,13 @@ script = ExtResource("9_d0ldd")
 
 [node name="Ev Visual Effect" parent="BaseBodySprite" instance=ExtResource("19_3lcda")]
 
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -20.0
+offset_top = -36.0
+offset_right = 20.0
+offset_bottom = -12.0
+
 [connection signal="finished" from="SFX" to="StateMachine/ChipringState" method="_on_sfx_finished"]
 [connection signal="chirp" from="StateMachine/ChipringState" to="." method="_on_chipring_state_chirp"]
 [connection signal="chirp_state_ended" from="StateMachine/ChipringState" to="StateMachine" method="_on_chipring_state_chirp_state_ended"]

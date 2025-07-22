@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2gitsjyjmbyo"]
+[gd_scene load_steps=23 format=3 uid="uid://b2gitsjyjmbyo"]
 
 [ext_resource type="Script" uid="uid://ccavjb1e2mf1e" path="res://Script/World/parallax_background.gd" id="1_t3iq2"]
+[ext_resource type="Script" uid="uid://b8ewyhd30ee56" path="res://Scene/mini_game.gd" id="1_va8ro"]
 [ext_resource type="Texture2D" uid="uid://bgkwc5lxcr5fo" path="res://Asset/Background/sky parallax.png" id="1_x4rm2"]
 [ext_resource type="Texture2D" uid="uid://brwt6tt44synf" path="res://Asset/Background/city 2 parallax.png" id="2_0o4gm"]
 [ext_resource type="Script" uid="uid://b8h8qr2nc1k6l" path="res://Script/GUI/cookie_count.gd" id="2_au4ri"]
@@ -13,6 +14,7 @@
 [ext_resource type="FontFile" uid="uid://cm6si4x8qv85y" path="res://Resource/Theme/PixelAE-Bold.ttf" id="10_4vex0"]
 [ext_resource type="Script" uid="uid://bvgeayutirqid" path="res://Script/World/hazard_spawner.gd" id="10_72kfh"]
 [ext_resource type="Script" uid="uid://d3oe35nm68ur5" path="res://Script/World/player_camera_mini.gd" id="12_vqfvc"]
+[ext_resource type="Script" uid="uid://bt2ge45bwcosy" path="res://Scene/game_over_area.gd" id="15_4gcxr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4vex0"]
 font = ExtResource("10_4vex0")
@@ -110,6 +112,9 @@ outline_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
 shadow_size = 18
 shadow_color = Color(0.124566, 0.13671, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_au4ri"]
+size = Vector2(512, 38)
+
 [node name="MiniGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -117,8 +122,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_va8ro")
 
 [node name="MiniGameHUD" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,6 +134,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Cookie Count" type="Label" parent="MiniGameHUD"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 16.0
 offset_top = 1.0
@@ -217,8 +225,10 @@ grow_horizontal = 2
 
 [node name="Label" type="Label" parent="PopUp"]
 layout_mode = 1
-offset_right = 255.0
-offset_bottom = 80.0
+offset_left = -112.0
+offset_top = -14.0
+offset_right = 143.0
+offset_bottom = 66.0
 scale = Vector2(0.1, 0.1)
 text = "Tap! or Click! "
 label_settings = ExtResource("8_7c8rw")
@@ -246,8 +256,10 @@ grow_horizontal = 2
 
 [node name="Label" type="Label" parent="PopUp2"]
 layout_mode = 1
-offset_right = 310.0
-offset_bottom = 174.0
+offset_left = -112.0
+offset_top = -14.0
+offset_right = 198.0
+offset_bottom = 160.0
 scale = Vector2(0.1, 0.1)
 text = "Dodge Poop 
 Collect 3 Cookies
@@ -289,6 +301,18 @@ position = Vector2(255, 223)
 script = ExtResource("12_vqfvc")
 metadata/_custom_type_script = "uid://dlxtf13dpvw5m"
 
+[node name="GameOverArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(10, 459)
+collision_layer = 0
+script = ExtResource("15_4gcxr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
+unique_name_in_owner = true
+position = Vector2(246, 9)
+shape = SubResource("RectangleShape2D_au4ri")
+
 [connection signal="animation_finished" from="PopUp/Label/AnimationPlayer" to="PopUp/Label/AnimationPlayer" method="_on_animation_finished"]
 [connection signal="animation_finished" from="PopUp2/Label/AnimationPlayer" to="PopUp2/Label/AnimationPlayer" method="_on_animation_finished"]
 [connection signal="timeout" from="HazardSpawner/Timer" to="HazardSpawner" method="_on_timer_timeout"]
+[connection signal="body_entered" from="GameOverArea" to="GameOverArea" method="_on_body_entered"]
