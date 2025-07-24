@@ -9,7 +9,8 @@ enum SpawnLocation { SPAWN_1, SPAWN_2, SPAWN_3 }
 @export var spawn_1 : Node2D
 @export var spawn_2 : Node2D
 @export var spawn_3 : Node2D
-
+@export var _is_running : bool 
+@onready var timer_spawner: Timer = %TimerSpawner
 
 var _spawn_nodes : Dictionary      ## Stores the 3 locator nodes
 var _last_spawn : SpawnLocation = SpawnLocation.SPAWN_3
@@ -22,7 +23,8 @@ var _pools := {
 }
 
 func _ready() -> void:
-	randomize()                    ## Make RNG non‑deterministic
+	Events.mini_game_started.connect(_on_start)
+	randomize()                    
 	_spawn_nodes = {
 		SpawnLocation.SPAWN_1: spawn_1,
 		SpawnLocation.SPAWN_2: spawn_2,
@@ -40,7 +42,7 @@ func spawn_hazard() -> void:
 	_activate(hazard, _spawn_nodes[loc].global_position)
 ## Helpers -------------------------------------------------------------------
 func _pick_hazard_resource() -> PackedScene:
-	var choose_cookie := (randi() % 2) == 0
+	var choose_cookie := randf() < 0.70
 	return COOKIE_HAZARD if choose_cookie else POOP_HAZARD
 
 
@@ -72,3 +74,8 @@ func _activate(hazard: Area2D, pos: Vector2) -> void:
 	hazard.visible    = true
 	hazard.monitoring = true
 	add_child(hazard)
+
+
+func _on_start()->void:
+	_is_running = true
+	timer_spawner.start()

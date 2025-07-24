@@ -16,7 +16,7 @@ class_name BaseBody extends CharacterBody2D
 @onready var hygiene_tick: Timer = %HygieneTick
 @onready var sfx: SFX = %SFX
 @export var _is_godzilla = false
-@onready var label: Label = %Label
+
 
 @onready var ev_sfx: AudioStreamPlayer = $EvSFX
 @onready var ev_visual_effect: Node2D = $"BaseBodySprite/Ev Visual Effect"
@@ -159,7 +159,6 @@ func _on_game_start():
 
 func _on_mini_game_return():
 	var s = str(Globals.current_pet_stage)
-	label.set_text(s)
 	base_body_sprite.set_stage(Globals.current_pet_stage)
 	age = Globals.pet_age
 	_can_age = true

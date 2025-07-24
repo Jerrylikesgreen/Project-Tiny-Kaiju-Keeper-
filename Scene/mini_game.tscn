@@ -1,50 +1,93 @@
-[gd_scene load_steps=23 format=3 uid="uid://b2gitsjyjmbyo"]
+[gd_scene load_steps=34 format=3 uid="uid://b2gitsjyjmbyo"]
 
 [ext_resource type="Script" uid="uid://ccavjb1e2mf1e" path="res://Script/World/parallax_background.gd" id="1_t3iq2"]
-[ext_resource type="Script" uid="uid://b8ewyhd30ee56" path="res://Scene/mini_game.gd" id="1_va8ro"]
 [ext_resource type="Texture2D" uid="uid://bgkwc5lxcr5fo" path="res://Asset/Background/sky parallax.png" id="1_x4rm2"]
+[ext_resource type="Theme" uid="uid://bauj4gssrpq0r" path="res://mini.tres" id="1_xsp06"]
 [ext_resource type="Texture2D" uid="uid://brwt6tt44synf" path="res://Asset/Background/city 2 parallax.png" id="2_0o4gm"]
 [ext_resource type="Script" uid="uid://b8h8qr2nc1k6l" path="res://Script/GUI/cookie_count.gd" id="2_au4ri"]
 [ext_resource type="Texture2D" uid="uid://duomquuj51alk" path="res://Asset/Background/city 1 parallax.png" id="3_b2b8k"]
+[ext_resource type="Script" uid="uid://c4e5qbp45n3om" path="res://Scene/countdown.gd" id="3_crik3"]
 [ext_resource type="Texture2D" uid="uid://epga06brjmli" path="res://Asset/Background/ground parallax.png" id="4_t3iq2"]
 [ext_resource type="PackedScene" uid="uid://17x4vh1ltwl" path="res://Scene/base_body.tscn" id="5_0o4gm"]
+[ext_resource type="Script" uid="uid://cux2xb3ro4xuo" path="res://Scene/pop_up_animation.gd" id="5_crik3"]
 [ext_resource type="Script" uid="uid://d1tuwetqqwrn2" path="res://Script/Mob/mini_game_body.gd" id="6_b2b8k"]
+[ext_resource type="Script" uid="uid://bfw65o6l8n1ei" path="res://Scene/pop_up_2_animation.gd" id="6_by7w2"]
 [ext_resource type="LabelSettings" uid="uid://msy0fiwp5nok" path="res://Resource/Theme/Title.tres" id="8_7c8rw"]
-[ext_resource type="Script" uid="uid://dky3q50sk58ve" path="res://Script/World/animation_player.gd" id="9_bx2ic"]
 [ext_resource type="FontFile" uid="uid://cm6si4x8qv85y" path="res://Resource/Theme/PixelAE-Bold.ttf" id="10_4vex0"]
 [ext_resource type="Script" uid="uid://bvgeayutirqid" path="res://Script/World/hazard_spawner.gd" id="10_72kfh"]
 [ext_resource type="Script" uid="uid://d3oe35nm68ur5" path="res://Script/World/player_camera_mini.gd" id="12_vqfvc"]
 [ext_resource type="Script" uid="uid://bt2ge45bwcosy" path="res://Scene/game_over_area.gd" id="15_4gcxr"]
+[ext_resource type="AudioStream" uid="uid://bvcoevi05ebbf" path="res://Asset/OGG/I_See_Airplanes_Mama!.ogg" id="15_xsp06"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4vex0"]
+[sub_resource type="LabelSettings" id="LabelSettings_xsp06"]
 font = ExtResource("10_4vex0")
-font_size = 20
-font_color = Color(0.227451, 0.247059, 0, 1)
-outline_size = 4
-outline_color = Color(0.592157, 0.701961, 0.305882, 1)
-shadow_size = 7
-shadow_color = Color(0.102365, 0.11329, 0, 1)
+font_size = 72
+font_color = Color(0.592157, 0.701961, 0.305882, 1)
+outline_size = 20
+outline_color = Color(0.227451, 0.247059, 0, 1)
+shadow_size = 30
+shadow_color = Color(0.124566, 0.13671, 0, 1)
 
-[sub_resource type="Animation" id="Animation_72kfh"]
-resource_name = "Loop"
-length = 2.0
+[sub_resource type="Animation" id="Animation_crik3"]
+resource_name = "CountDown"
 loop_mode = 1
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-108, 24), Vector2(-108, 14), Vector2(-108, 24)]
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.99)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.99)
 }
 
-[sub_resource type="Animation" id="Animation_bx2ic"]
-resource_name = "PopUp"
-length = 2.0
+[sub_resource type="Animation" id="Animation_xsp06"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_by7w2"]
+_data = {
+&"CountDown": SubResource("Animation_crik3"),
+&"RESET": SubResource("Animation_xsp06")
+}
+
+[sub_resource type="Animation" id="Animation_r3tfg"]
+resource_name = "Bounce"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,10 +95,10 @@ tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -64,13 +107,40 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.495656, 0.966667, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-60, 24), Vector2(-108, 18.873), Vector2(-108, 14), Vector2(-108, 24)]
+"values": [Vector2(-123, 50), Vector2(-123, 40), Vector2(-123, 50)]
 }
 
-[sub_resource type="Animation" id="Animation_7c8rw"]
+[sub_resource type="Animation" id="Animation_by7w2"]
+resource_name = "PopUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(207, 37)]
+}
+
+[sub_resource type="Animation" id="Animation_f6s4d"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -94,14 +164,14 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-112, -14)]
+"values": [Vector2(-123, 50)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_72kfh"]
 _data = {
-&"Loop": SubResource("Animation_72kfh"),
-&"PopUp": SubResource("Animation_bx2ic"),
-&"RESET": SubResource("Animation_7c8rw")
+&"Bounce": SubResource("Animation_r3tfg"),
+&"PopUp": SubResource("Animation_by7w2"),
+&"RESET": SubResource("Animation_f6s4d")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_vqfvc"]
@@ -111,6 +181,105 @@ outline_size = 11
 outline_color = Color(0.227882, 0.247012, 1.20327e-07, 1)
 shadow_size = 18
 shadow_color = Color(0.124566, 0.13671, 0, 1)
+
+[sub_resource type="Animation" id="Animation_6degw"]
+resource_name = "Bounce"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(153, -34), Vector2(153, -24), Vector2(153, -34)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8qyx4"]
+resource_name = "PopUp"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(211, 14), Vector2(153, -34), Vector2(120, -125), Vector2(153, -34)]
+}
+
+[sub_resource type="Animation" id="Animation_d63i7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(74, -3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6degw"]
+_data = {
+&"Bounce": SubResource("Animation_6degw"),
+&"PopUp": SubResource("Animation_8qyx4"),
+&"RESET": SubResource("Animation_d63i7")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_4vex0"]
+font = ExtResource("10_4vex0")
+font_size = 20
+font_color = Color(0.227451, 0.247059, 0, 1)
+outline_size = 4
+outline_color = Color(0.592157, 0.701961, 0.305882, 1)
+shadow_size = 7
+shadow_color = Color(0.102365, 0.11329, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_au4ri"]
 size = Vector2(512, 38)
@@ -122,7 +291,105 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_va8ro")
+
+[node name="Countdown" type="Label" parent="."]
+z_index = 20
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.037
+anchor_top = -0.85
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 253.444
+offset_top = 550.8
+offset_right = 296.444
+offset_bottom = 658.8
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("1_xsp06")
+text = "3"
+label_settings = SubResource("LabelSettings_xsp06")
+script = ExtResource("3_crik3")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayera" type="AnimationPlayer" parent="Countdown"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_by7w2")
+}
+autoplay = "CountDown"
+
+[node name="Timer" type="Timer" parent="Countdown"]
+unique_name_in_owner = true
+
+[node name="PopUp" type="Control" parent="."]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="PopUp"]
+layout_mode = 1
+offset_left = -123.0
+offset_top = 50.0
+offset_right = 132.0
+offset_bottom = 106.0
+scale = Vector2(0.1, 0.1)
+text = "Tap! or Click! "
+label_settings = ExtResource("8_7c8rw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PopUpAnimation" type="AnimationPlayer" parent="PopUp/Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_72kfh")
+}
+autoplay = "Bounce"
+script = ExtResource("5_crik3")
+
+[node name="PopUp2" type="Control" parent="."]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -227.0
+offset_top = 370.0
+offset_right = -227.0
+offset_bottom = 370.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="PopUp2"]
+layout_mode = 1
+offset_left = 74.0
+offset_top = -3.0
+offset_right = 208.0
+offset_bottom = 75.0
+scale = Vector2(0.1, 0.1)
+text = "Dodge Poop 
+Collect 3 Cookies
+"
+label_settings = SubResource("LabelSettings_vqfvc")
+horizontal_alignment = 1
+
+[node name="PopUp2Animation" type="AnimationPlayer" parent="PopUp2/Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_6degw")
+}
+autoplay = "PopUp"
+script = ExtResource("6_by7w2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("15_xsp06")
+autoplay = true
 
 [node name="MiniGameHUD" type="Control" parent="."]
 unique_name_in_owner = true
@@ -213,66 +480,8 @@ gravity = 900.0
 max_fall = 1000.0
 flap_x_boost = 40.0
 max_x_speed = 150.0
+_is_running = false
 pet_resource = null
-
-[node name="PopUp" type="Control" parent="."]
-z_index = 10
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="PopUp"]
-layout_mode = 1
-offset_left = -112.0
-offset_top = -14.0
-offset_right = 143.0
-offset_bottom = 66.0
-scale = Vector2(0.1, 0.1)
-text = "Tap! or Click! "
-label_settings = ExtResource("8_7c8rw")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PopUp/Label"]
-libraries = {
-&"": SubResource("AnimationLibrary_72kfh")
-}
-autoplay = "PopUp"
-script = ExtResource("9_bx2ic")
-
-[node name="PopUp2" type="Control" parent="."]
-z_index = 10
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -227.0
-offset_top = 370.0
-offset_right = -227.0
-offset_bottom = 370.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="PopUp2"]
-layout_mode = 1
-offset_left = -112.0
-offset_top = -14.0
-offset_right = 198.0
-offset_bottom = 160.0
-scale = Vector2(0.1, 0.1)
-text = "Dodge Poop 
-Collect 3 Cookies
-"
-label_settings = SubResource("LabelSettings_vqfvc")
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PopUp2/Label"]
-libraries = {
-&"": SubResource("AnimationLibrary_72kfh")
-}
-autoplay = "PopUp"
-script = ExtResource("9_bx2ic")
 
 [node name="HazardSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_1", "spawn_2", "spawn_3")]
 script = ExtResource("10_72kfh")
@@ -292,11 +501,12 @@ position = Vector2(34, 245)
 unique_name_in_owner = true
 position = Vector2(34, 400)
 
-[node name="Timer" type="Timer" parent="HazardSpawner"]
+[node name="TimerSpawner" type="Timer" parent="HazardSpawner"]
+unique_name_in_owner = true
 wait_time = 3.0
-autostart = true
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(255, 223)
 script = ExtResource("12_vqfvc")
 metadata/_custom_type_script = "uid://dlxtf13dpvw5m"
@@ -312,7 +522,7 @@ unique_name_in_owner = true
 position = Vector2(246, 9)
 shape = SubResource("RectangleShape2D_au4ri")
 
-[connection signal="animation_finished" from="PopUp/Label/AnimationPlayer" to="PopUp/Label/AnimationPlayer" method="_on_animation_finished"]
-[connection signal="animation_finished" from="PopUp2/Label/AnimationPlayer" to="PopUp2/Label/AnimationPlayer" method="_on_animation_finished"]
-[connection signal="timeout" from="HazardSpawner/Timer" to="HazardSpawner" method="_on_timer_timeout"]
+[connection signal="animation_finished" from="PopUp/Label/PopUpAnimation" to="PopUp/Label/PopUpAnimation" method="_on_animation_finished"]
+[connection signal="animation_finished" from="PopUp2/Label/PopUp2Animation" to="PopUp2/Label/PopUp2Animation" method="_on_animation_finished"]
+[connection signal="timeout" from="HazardSpawner/TimerSpawner" to="HazardSpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="GameOverArea" to="GameOverArea" method="_on_body_entered"]

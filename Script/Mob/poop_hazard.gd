@@ -14,7 +14,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	position += move_dir.normalized() * speed_px_per_sec * delta
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	Events.mini_game_hazard_trigger("Poop")
 	_deactivate()
 

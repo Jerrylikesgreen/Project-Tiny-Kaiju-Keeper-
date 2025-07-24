@@ -28,11 +28,13 @@ func _on_mini_game_signal(hazard: String) -> void:
 func _update_label(): text = str(_cookie_count)
 
 func _on_game_win():
-	Globals.set_current_happiness(.5)
+	var score = Globals.get_current_happiness() + 0.5
+	Globals.set_current_happiness(score)
 	Globals.save_game()
 	SceneManager.goto_main()
 
 func _on_game_over():
-	Globals.set_current_happiness(-.1)
+	var score = Globals.get_current_happiness() - 0.1
+	Globals.set_current_happiness(score)
 	Globals.save_game()
 	SceneManager.goto_main()

@@ -61,7 +61,7 @@ var pet_age: int
 ## At ready
 func _ready() -> void:
 	### Called once when the singleton is initialised.
-	_game_state = GameState.GUI
+	Events.game_state_change(Globals.GameState.MINI_1)
 	print("Current state:", STATE_LABEL[_game_state])
 
 ##        Stat setters / getters 
@@ -123,6 +123,7 @@ func set_game_state(new_state: GameState) -> void:
 		return
 	
 	_game_state = new_state
+	
 
 func get_game_state() -> GameState:
 	return _game_state

@@ -5,7 +5,7 @@ extends Node
 signal happiness_changed(text: String, value: float)
 signal hunger_changed(text: String, value: float)
 signal hygiene_changed(text: String, value: float)
-signal game_state
+signal game_state(value: int)
 signal pet_event_signal(listener, event)
 signal change_pet_animation(anim: String)
 signal play_sfx_signal(track_id: int)
@@ -75,9 +75,9 @@ func _anim_for_level(stat_name: String, value: float) -> String:
 
 
 func game_state_change(value:int)->void:
-	emit_signal("game_state")
+	emit_signal("game_state", value)
 	Globals.set_game_state(value)
-	pass
+	print(value)
 
 func pet_event(event: String, value: float)-> void:
 	print("Event")
@@ -96,4 +96,4 @@ func mini_game_ended_signal():
 	emit_signal("mini_game_ended")
 	
 func mini_game_started_signal():
-	emit_signal("mini_game_started")
+	await emit_signal("mini_game_started")

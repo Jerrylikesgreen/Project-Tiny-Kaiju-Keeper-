@@ -14,6 +14,7 @@ enum Track { ## [ Enum: LOGICAL_NAME → int ]  Refrences the differant tracks P
 	THEY_GROW_UP_SO_FAST_1   ## 6
 }
 
+var old_track 
 ## [ Lookup table: enum value → AudioStream ] Refrence to each Path for each Track. 
 const TRACK_STREAMS := {
 	Track.ADULT_1:                 preload("res://Asset/OGG/Adult (1).ogg"),
@@ -28,7 +29,7 @@ const TRACK_STREAMS := {
 var _current_track : Track        ## remember what’s playing
 
 func _ready() -> void:
-	play_track(Track.NAPTIME_SWEET_KAIJU) ## Ensures audio gets played at start. 
+	play_track(Track.THEY_GROW_UP_SO_FAST_1) ## Ensures audio gets played at start. 
 	Events.game_state.connect(_update_track)
 	Events.evolve.connect(_on_evolve)
 	Events.game_start.connect(_on_game_start)
@@ -45,11 +46,11 @@ func play_track(track: Track, fade_time: float = 1.0) -> void:  ## Function that
 		_fade_in(fade_time)
 
 
-func _update_track()->void: ## Function that calls pl_track and assigns Track based on current_game_state
+func _update_track(value)->void: ## Function that calls pl_track and assigns Track based on current_game_state
 	if Globals.current_game_state == 0: ## GUI 
 		play_track(Track.NAPTIME_SWEET_KAIJU)
-	if Globals.current_game_state == 1: ## MAIN
-		play_track(Track.EGG_1)
+	play_track(value)
+
 
 func _fade_out_then_switch(new_track: Track, t: float) -> void:
 	if not fade_enabled or t <= 0.0:
@@ -92,8 +93,11 @@ func _on_volume_value_changed(value: float) -> void:
 	set_volume_db(value) 
 	push_warning("Volume changed to: %s" % value)
 
-func _on_evolve(value:int)->void:
+func _on_evolve(value:Track)->void:
 	play_track(value)
+	old_track = value
 
 func _on_game_start():
-	play_track(1)
+	if old_track:
+		play_track(old_track)
+	play_track(Track.BABY_1)

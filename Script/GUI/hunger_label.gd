@@ -15,4 +15,3 @@ func _on_hunger_changed(h_tex: String, value: float) -> void:## Triggered on hap
 	var progress = int(value * 100)
 	var progress_display = str(progress)
 	hunger_progress_label.set_text(progress_display)
-	push_warning("set_text →", value)

@@ -1,6 +1,5 @@
-[gd_scene load_steps=39 format=3 uid="uid://c7sg24y01v6xn"]
+[gd_scene load_steps=40 format=3 uid="uid://c7sg24y01v6xn"]
 
-[ext_resource type="Script" uid="uid://blrv14tsncns2" path="res://Script/World/main_scene.gd" id="1_5qxgh"]
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Script/World/world.gd" id="1_gfmxp"]
 [ext_resource type="Texture2D" uid="uid://cuuqwwq6uxwib" path="res://Asset/Background/sky 128x112.png" id="2_1n88h"]
 [ext_resource type="Texture2D" uid="uid://dng17xpkjb274" path="res://Asset/Background/city 2 128x112.png" id="3_opjno"]
@@ -29,12 +28,14 @@
 [ext_resource type="AudioStream" uid="uid://b46uqp2vd800g" path="res://Asset/OGG/Flap.ogg" id="26_3wiol"]
 [ext_resource type="Script" uid="uid://wtflmtow768h" path="res://Script/GUI/title_screen.gd" id="27_6a02w"]
 [ext_resource type="Texture2D" uid="uid://e86vjhm6y8d4" path="res://Asset/Background/Titlebackground 128x112.png" id="28_clqk1"]
+[ext_resource type="LabelSettings" uid="uid://dd4gberveswp8" path="res://new_label_settings.tres" id="29_2r077"]
 [ext_resource type="FontFile" uid="uid://cm6si4x8qv85y" path="res://Resource/Theme/PixelAE-Bold.ttf" id="29_fxe4o"]
 [ext_resource type="Texture2D" uid="uid://ifjnwpmqlmip" path="res://Asset/UI/button.png" id="30_8quq7"]
 [ext_resource type="Script" uid="uid://bihoilcsmpvcj" path="res://Script/GUI/menu_screen.gd" id="31_vhc7d"]
 [ext_resource type="Theme" uid="uid://bkshl5opa74id" path="res://Resource/Theme/sound_menu.tres" id="32_bqoel"]
 [ext_resource type="Script" uid="uid://icjildfw6ey4" path="res://Script/World/Audio/sound_menu.gd" id="33_id12a"]
 [ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Script/GUI/gui_sfx.gd" id="34_rs42p"]
+[ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scene/bgm.tscn" id="35_5qxgh"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("7_uws2o")
@@ -67,7 +68,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_5qxgh")
 
 [node name="MainDisplayLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -404,43 +404,57 @@ texture = ExtResource("28_clqk1")
 [node name="Title" type="Label" parent="GUI/TitleScreen"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Project Tiny Kaiju Keeper"
-label_settings = ExtResource("18_y0lqw")
+text = "Project :
+Tiny Kaiju Keeper"
+label_settings = ExtResource("29_2r077")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="GUI/TitleScreen/Title"]
-layout_mode = 1
+[node name="Start" type="Control" parent="GUI/TitleScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label2" type="Polygon2D" parent="GUI/TitleScreen/Start"]
+z_index = 5
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-40, -32, -21.5, -31, -29, -20, -81, -10)
+uv = PackedVector2Array(-265.5, -25, -21.5, -31, -22.5, 63, -203.5, 45)
+
+[node name="Button" type="Button" parent="GUI/TitleScreen/Start/Label2"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = 172.0
-offset_right = 35.0
-offset_bottom = 221.0
+offset_left = -62.0
+offset_top = -30.0
+offset_right = 62.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.3, 1.3)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = SubResource("Theme_w20qy")
 icon = ExtResource("30_8quq7")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Label" type="Label" parent="GUI/TitleScreen/Title/Button"]
+[node name="Label" type="Label" parent="GUI/TitleScreen/Start/Label2/Button"]
+z_index = 5
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.4231
-offset_top = -16.0385
-offset_right = 38.5769
-offset_bottom = 19.9615
+offset_left = -38.0
+offset_top = -16.0
+offset_right = 39.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 text = "START"
 label_settings = ExtResource("8_iylel")
 
@@ -700,6 +714,8 @@ label_settings = ExtResource("8_iylel")
 [node name="GuiSfx" type="AudioStreamPlayer" parent="GUI"]
 script = ExtResource("34_rs42p")
 
+[node name="BGM" parent="." instance=ExtResource("35_5qxgh")]
+
 [connection signal="finished" from="MainDisplayLayer/MainDisplayContainer/WorldManager/SFX" to="MainDisplayLayer/MainDisplayContainer/WorldManager" method="_on_sfx_finished"]
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/FEED" to="MainDisplayLayer/MainDisplayContainer/WorldManager" method="_on_feed_pressed"]
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/FEED" to="GUI/PlayerButtons/X/Y/FEED" method="_on_pressed"]
@@ -707,5 +723,5 @@ script = ExtResource("34_rs42p")
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/PLAY" to="GUI/PlayerButtons/X/Y/PLAY" method="_on_pressed"]
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/MENU" to="GUI" method="_on_menu_pressed"]
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/MENU" to="GUI/PlayerButtons/X/Y/MENU" method="_on_pressed"]
-[connection signal="pressed" from="GUI/TitleScreen/Title/Button" to="GUI/TitleScreen" method="_on_button_pressed"]
+[connection signal="pressed" from="GUI/TitleScreen/Start/Label2/Button" to="GUI/TitleScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="GUI/MenuScreen/SoundMenu/BackgroundColor2/Back" to="GUI/MenuScreen/SoundMenu" method="_on_back_pressed"]

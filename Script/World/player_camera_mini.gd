@@ -9,7 +9,7 @@ var _decay_rate  : float = 1.0      # updated per shake call
 var _noise_timer : float = 0.0
 
 func _ready() -> void:
-	make_current()
+	
 	zoom = base_zoom
 	Events.mini_game.connect(_on_mini_game_signal)
 
