@@ -21,20 +21,16 @@ const STAGE_FRAMES := {
 	
 }
 
-
 func _ready() -> void:
 	Events.change_pet_animation.connect(_on_signal)
 	set_stage(Globals.current_pet_stage)
-	if Globals.current_game_state == Globals.GameState.MINI_1:
-		return      
 
 
 
-
-func _on_signal(new_animation:String)-> void:
+func _on_signal(new_stage_: Stage) -> void:
 	if Globals.current_game_state == Globals.GameState.MINI_1:
 		return
-	set_stage(new_stage)
+	set_stage(new_stage_)
 	
 func set_stage(new_stage: Stage) -> void:
 	if not STAGE_FRAMES.has(new_stage):

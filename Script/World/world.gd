@@ -14,6 +14,7 @@ var can_spawn_cookie: bool = true
 
 func _ready() -> void:
 	Events.poop.connect(_on_poop)
+	Events.mini_game_ended.connect(_on_mini_game_ended)
 
 func _on_feed_pressed() -> void:
 	if can_spawn_cookie:
@@ -29,7 +30,7 @@ func _on_feed_pressed() -> void:
 
 
 func _on_cookie_ate():
-	print("Signal Rerached ")
+	print("Signal Reached")
 	sfx.play()
 	if can_spawn_cookie == false:
 		can_spawn_cookie = true
@@ -40,3 +41,8 @@ func _on_poop(value:bool):
 		poop_container.add_child(poop)
 	else: 
 		pass
+
+
+func _on_mini_game_ended()->void:
+	
+	pass

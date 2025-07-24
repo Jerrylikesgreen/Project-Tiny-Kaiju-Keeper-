@@ -31,10 +31,10 @@ func _on_game_win():
 	var score = Globals.get_current_happiness() + 0.5
 	Globals.set_current_happiness(score)
 	Globals.save_game()
-	SceneManager.goto_main()
+	SceneManager.goto_main(7.0)
 
 func _on_game_over():
 	var score = Globals.get_current_happiness() - 0.1
 	Globals.set_current_happiness(score)
 	Globals.save_game()
-	SceneManager.goto_main()
+	SceneManager.goto_main(7.0)

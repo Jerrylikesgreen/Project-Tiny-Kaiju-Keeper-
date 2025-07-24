@@ -11,5 +11,5 @@ func _on_body_entered(_body: Node2D) -> void:
 
 func _on_game_over() -> void:
 	Globals.save_game()
-	SceneManager.goto_main()
+	SceneManager.goto_main(7.0)
 	pass

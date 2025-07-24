@@ -15,6 +15,7 @@ var _tween     : Tween
 
 func _ready() -> void:
 	_init_fade_layer()
+	
 
 # ─── PUBLIC API ────────────────────────────────────────────────────────────
 func goto_main(fade_time := -1.0) -> void:
@@ -55,7 +56,7 @@ func _init_fade_layer() -> void:
 
 # ─── FADE‑OUT ─────────────────────────────────────────────────────────────
 func _fade_out(seconds: float) -> Signal:
-	var dur := seconds if seconds > 0 else default_fade_s
+	var dur := seconds - 6.5 if seconds > 0 else default_fade_s
 	if _tween: _tween.kill()
 
 	_fade_rect.visible = true
