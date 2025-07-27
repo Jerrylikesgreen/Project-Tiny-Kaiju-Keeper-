@@ -3,10 +3,11 @@
 [ext_resource type="FontFile" uid="uid://cm6si4x8qv85y" path="res://Resource/Theme/PixelAE-Bold.ttf" id="1_gqo2k"]
 
 [resource]
+line_spacing = 0.0
 font = ExtResource("1_gqo2k")
-font_size = 38
+font_size = 50
 font_color = Color(0.227451, 0.247059, 0, 1)
-outline_size = 4
-outline_color = Color(0.592157, 0.701961, 0.305882, 0.576471)
-shadow_size = 7
+outline_size = 8
+outline_color = Color(0.592157, 0.701961, 0.305882, 0.815686)
+shadow_size = 10
 shadow_color = Color(0.101961, 0.113725, 0, 0.686275)

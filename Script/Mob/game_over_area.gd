@@ -1,13 +1,15 @@
-extends Label
+class_name GameOverArea extends Area2D
 signal win
 signal lose
 
 var _cookie_count := 0
 
 
+@onready var player_camera: MiniPlayerCamera = %PlayerCamera
+
 func _ready() -> void:
 	Events.mini_game.connect(_on_mini_game_signal)
-	_update_label()
+
 
 func _on_mini_game_signal(hazard: String) -> void:
 	match hazard:
@@ -18,11 +20,16 @@ func _on_mini_game_signal(hazard: String) -> void:
 		_:
 			return  # ignore other hazards
 
-	_update_label()
-	if _cookie_count > 2:
-		_on_game_win()
 
-func _update_label(): text = str(_cookie_count)
+func _on_body_entered(body: Node2D) -> void:
+	var score = Globals.get_cookie_count()
+	player_camera.shake()
+	if _cookie_count > 0:
+		_on_game_win()
+	else:
+		_on_game_over()
+
+
 
 func _on_game_win():
 	var happy_gain = Globals.get_current_happiness() + 0.5
@@ -36,7 +43,3 @@ func _on_game_over():
 	var new_cookie_count = Globals.get_cookie_count() + _cookie_count
 	Globals.set_cookie_count(new_cookie_count)
 	SceneManager.goto_main(7.0)
-
-
-func _on_game_over_area_body_entered(body: Node2D) -> void:
-	_on_game_over()

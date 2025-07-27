@@ -10,25 +10,28 @@ const COOKIE = preload("res://Scene/cookie.tscn")
 @onready var poop_container: Node2D = %PoopContainer
 
 
-var can_spawn_cookie: bool = true
+var can_spawn_cookie: bool = false
 
 func _ready() -> void:
 	Events.poop.connect(_on_poop)
 	Events.mini_game_ended.connect(_on_mini_game_ended)
 
 func _on_feed_pressed() -> void:
+	var get = Globals.get_cookie_count()
+	if get > 0:
+		can_spawn_cookie = true 
 	if can_spawn_cookie:
 		var cookie = COOKIE.instantiate()
 		cookie_container.add_child(cookie)
 		cookie.cookie_ate.connect(_on_cookie_ate)
 		can_spawn_cookie = false
 
-		print("Yes")
+		print("Feed - Yes")
 	else: 
-		print("No")
+		print("Feed - No")
+
+
 		return
-
-
 func _on_cookie_ate():
 	print("Signal Reached")
 	sfx.play()

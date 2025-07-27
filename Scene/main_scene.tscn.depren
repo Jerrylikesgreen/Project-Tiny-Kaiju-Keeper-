@@ -720,25 +720,20 @@ label_settings = ExtResource("8_iylel")
 script = ExtResource("34_rs42p")
 
 [node name="PlayerMessage" type="Label" parent="GUI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_right = -7.0
-offset_bottom = -1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -12.0
+offset_right = 0.5
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Test"
-label_settings = ExtResource("18_y0lqw")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-clip_text = true
+label_settings = ExtResource("29_2r077")
 script = ExtResource("36_qfgnl")
-
-[node name="Timer" type="Timer" parent="GUI/PlayerMessage"]
-unique_name_in_owner = true
-one_shot = true
 
 [node name="BGM" parent="." instance=ExtResource("35_5qxgh")]
 
@@ -751,4 +746,3 @@ one_shot = true
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/MENU" to="GUI/PlayerButtons/X/Y/MENU" method="_on_pressed"]
 [connection signal="pressed" from="GUI/TitleScreen/Start/Label2/Button" to="GUI/TitleScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="GUI/MenuScreen/SoundMenu/BackgroundColor2/Back" to="GUI/MenuScreen/SoundMenu" method="_on_back_pressed"]
-[connection signal="timeout" from="GUI/PlayerMessage/Timer" to="GUI/PlayerMessage" method="_on_timer_timeout"]

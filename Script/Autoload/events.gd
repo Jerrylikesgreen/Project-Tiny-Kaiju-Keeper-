@@ -17,6 +17,8 @@ signal game_stop
 signal mini_game(hazard:String)
 signal mini_game_ended
 signal mini_game_started
+signal player_message(player_message:String)
+signal can_feed(value:bool)
 const THRESHOLD := 0.7
 
 ## If you still need this elsewhere, keep it
@@ -97,3 +99,9 @@ func mini_game_ended_signal():
 	
 func mini_game_started_signal():
 	await emit_signal("mini_game_started")
+
+func trigger_can_feed(value:bool)-> void:
+	emit_signal("can_feed", value)
+
+func display_player_message(new_message:String)-> void:
+	emit_signal("player_message", new_message)

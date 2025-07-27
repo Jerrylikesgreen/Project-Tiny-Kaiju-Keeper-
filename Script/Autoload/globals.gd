@@ -34,6 +34,8 @@ var _hunger:   float = 0.0
 var _hygiene:  float = 0.0
 
 var _game_state: GameState = GameState.GUI 
+
+var _cookie_count: int = 0
 ## Current active `GameState`. Do **not** set directly – use `current_game_state`.
 ## Public properties (set/get)   
 # ─────────────────────────────────────┘
@@ -45,6 +47,7 @@ var current_hygiene   : float     : set = set_current_hygiene,   get = get_curre
 ## Pet’s hygiene level (0‒100).
 var current_game_state: GameState : set = set_game_state,        get = get_game_state
 ## Active macro-state (GUI, MAIN play, etc.).
+var current_cookie_count: int     : set = set_cookie_count,      get = get_cookie_count
 
 
 var current_pet_stage: BaseBodySprite.Stage
@@ -77,7 +80,6 @@ func set_current_happiness(value: float) -> void:
 	var anim := Events._anim_for_level("happiness", value)
 	Events.happiness_changed.emit(str(value), value)
 	Events.change_pet_animation.emit(anim)
-
 
 func get_current_happiness() -> float:
 	return _happiness
@@ -185,3 +187,20 @@ func load_game():
 	else:
 		print("Invalid save data.")
 		
+
+
+func set_cookie_count(value: int) -> void:
+	value = max(value, 0)
+	if is_equal_approx(value, _cookie_count):
+		return
+
+	_cookie_count = value
+
+	# Let other systems know
+	Events.trigger_can_feed(_cookie_count > 0)
+
+
+
+
+func get_cookie_count() -> int:
+	return _cookie_count

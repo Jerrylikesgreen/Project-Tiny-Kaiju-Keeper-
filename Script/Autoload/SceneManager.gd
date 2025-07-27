@@ -7,7 +7,7 @@ const MAIN_SCENE = preload("res://Scene/main_scene.tscn")
 
 ## ───────── TWEAKABLE ─────────
 @export var fade_color      : Color = Color.BLACK
-@export var default_fade_s  : float = 0.35      # seconds
+@export var default_fade_s  : float = 0.5     # seconds
 
 ## ───────── INTERNAL ─────────
 var _fade_rect : ColorRect
@@ -20,10 +20,14 @@ func _ready() -> void:
 # ─── PUBLIC API ────────────────────────────────────────────────────────────
 func goto_main(fade_time := -1.0) -> void:
 	_change_to_packed(MAIN_SCENE, fade_time)
+	var c = Globals.get_cookie_count()
+	Events.display_player_message("You gained %s cookies" % [c])
+
+	
 	
 
 func goto_mini_game(fade_time := -1.0) -> void:
-	Globals.save_game()         # <â new
+	Globals.save_game()        
 	_change_to_packed(MINI_GAME, fade_time)
 
 func change_to(path: String, fade_time := -1.0) -> void:
@@ -67,7 +71,7 @@ func _fade_out(seconds: float) -> Signal:
 
 # ─── FADE‑IN ──────────────────────────────────────────────────────────────
 func _fade_in(seconds: float) -> Signal:
-	var dur := seconds if seconds > 0 else default_fade_s
+	var dur := seconds - 0.5 if seconds > 0 else default_fade_s
 	if _tween: _tween.kill()
 
 	_tween = create_tween()

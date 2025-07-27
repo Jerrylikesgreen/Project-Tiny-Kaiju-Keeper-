@@ -17,7 +17,7 @@ func _ready() -> void:
 	save_button.pressed.connect(_on_save_button_pressed)
 
 func _on_back_pressed() -> void:
-	set_visible(false)
+	if !_paused:set_visible(false)
 
 
 
