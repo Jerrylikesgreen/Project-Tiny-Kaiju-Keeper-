@@ -7,6 +7,8 @@ extends Label
 @onready var pop_up: Control = %PopUp
 @onready var pop_up_2: Control = %PopUp2
 @onready var player_camera: MiniPlayerCamera = %PlayerCamera
+@onready var mini_game_hud: Control = %MiniGameHUD
+@onready var mini_sfx_2: MiniSFX = %mini_sfx2
 
 @export var start_value : int   = 3     # Editable in the inspector
 var value : int
@@ -22,6 +24,8 @@ func _ready() -> void:
 
 func _on_timeout() -> void:
 	value -= 1
+	mini_sfx_2.set_stream(mini_sfx_2.blip)
+	mini_sfx_2.play()
 	text  = str(value)
 
 	if value <= 0:

@@ -13,14 +13,12 @@ func  _ready() -> void:
 
 func _on_game_start()->void:
 	if !Globals.new_game:
-		Events.display_player_message("Welcome! this is your kaiju egg. In a moment it will hatch into a little Chick.")
-		Events.display_player_message("Take Care of your Kaiju and maybe he will grow to be nice and stro...cute.")
-		Events.display_player_message("Play with your kaiju and find yummy cookies to feed your pet.")
-		Events.display_player_message("Clean up after them or they will be mad!")
+		Events.display_player_message("Welcome, this here is your kaiju egg!")
+		Events.display_player_message("Take Care of your kaiju and it can grow to be strong, or cute!")
+		Events.display_player_message("Play with your kaiju and find yummy cookies to feed it")
+		Events.display_player_message("Clean up after them or they will get mad!")
 		Events.display_player_message("Tap on your egg to hatch!")
 		intro = true
-		
-		
 	pass
 
 func _on_pet_pressed()->void:

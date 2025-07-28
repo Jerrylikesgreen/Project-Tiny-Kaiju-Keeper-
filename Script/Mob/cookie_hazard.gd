@@ -24,7 +24,7 @@ func reactivate(world_pos: Vector2) -> void:
 
 func _physics_process(delta: float) -> void:
 	position += move_dir.normalized() * speed_px_per_sec * delta
-	if position.x > despawn_x:          #  ▶  compare “>” instead of “<”
+	if position.x > despawn_x:         
 		_deactivate()
 
 func _on_body_entered(_body: Node2D) -> void:

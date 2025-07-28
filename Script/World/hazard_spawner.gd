@@ -5,7 +5,7 @@ const COOKIE_HAZARD = preload("res://Scene/cookie_hazard.tscn")
 const POOP_HAZARD   = preload("res://Scene/poop_hazard.tscn")
 
 enum SpawnLocation { SPAWN_1, SPAWN_2, SPAWN_3 }
-
+@onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 @onready var spawn_1: Control = %HazardSpawnerLocation1
 @onready var spawn_2: Control = %HazardSpawnerLocation2
 @onready var spawn_3: Control = %HazardSpawnerLocation3

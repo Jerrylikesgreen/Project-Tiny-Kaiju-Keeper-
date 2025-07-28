@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2gitsjyjmbyo"]
+[gd_scene load_steps=43 format=3 uid="uid://b2gitsjyjmbyo"]
 
 [ext_resource type="Script" uid="uid://ccavjb1e2mf1e" path="res://Script/World/parallax_background.gd" id="1_t3iq2"]
 [ext_resource type="Texture2D" uid="uid://bgkwc5lxcr5fo" path="res://Asset/Background/sky parallax.png" id="1_x4rm2"]
@@ -19,6 +19,12 @@
 [ext_resource type="Script" uid="uid://d3oe35nm68ur5" path="res://Script/World/player_camera_mini.gd" id="12_vqfvc"]
 [ext_resource type="Script" uid="uid://bt2ge45bwcosy" path="res://Script/Mob/game_over_area.gd" id="15_4gcxr"]
 [ext_resource type="AudioStream" uid="uid://bvcoevi05ebbf" path="res://Asset/OGG/I_See_Airplanes_Mama!.ogg" id="15_xsp06"]
+[ext_resource type="Script" uid="uid://cyniyhxxd5f7v" path="res://Scene/node_2d.gd" id="18_r3tfg"]
+[ext_resource type="Script" uid="uid://csdwldu8iw1t1" path="res://Scene/mini_sfx.gd" id="21_8qyx4"]
+[ext_resource type="AudioStream" uid="uid://b46uqp2vd800g" path="res://Asset/OGG/Flap.ogg" id="22_d63i7"]
+[ext_resource type="AudioStream" uid="uid://dlrt8glkw04fl" path="res://Asset/OGG/Munch 1.ogg" id="23_qj2pu"]
+[ext_resource type="AudioStream" uid="uid://bk8cnhuxj1a3l" path="res://Asset/OGG/Blip.ogg" id="24_i7yn5"]
+[ext_resource type="AudioStream" uid="uid://bpmc66h1av61w" path="res://Asset/OGG/Roar.ogg" id="25_1skup"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f6s4d"]
 
@@ -299,6 +305,86 @@ _data = {
 &"RESET": SubResource("Animation_d63i7")
 }
 
+[sub_resource type="Animation" id="Animation_qj2pu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_8bq7w"]
+resource_name = "Tick"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.261799, 0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7yn5"]
+_data = {
+&"RESET": SubResource("Animation_qj2pu"),
+&"Tick": SubResource("Animation_8bq7w")
+}
+
 [node name="MiniGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -402,6 +488,16 @@ drag_top_margin = 1.0
 drag_bottom_margin = 1.0
 script = ExtResource("12_vqfvc")
 metadata/_custom_type_script = "uid://dlxtf13dpvw5m"
+
+[node name="mini_sfx3" type="AudioStreamPlayer" parent="MiniGameBody"]
+unique_name_in_owner = true
+volume_db = 5.0
+script = ExtResource("21_8qyx4")
+flap = ExtResource("22_d63i7")
+cookie = ExtResource("23_qj2pu")
+poop = ExtResource("24_i7yn5")
+blip = ExtResource("24_i7yn5")
+roar = ExtResource("25_1skup")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -547,11 +643,6 @@ libraries = {
 autoplay = "PopUp"
 script = ExtResource("6_by7w2")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HUD"]
-unique_name_in_owner = true
-stream = ExtResource("15_xsp06")
-autoplay = true
-
 [node name="MiniGameHUD" type="Control" parent="HUD"]
 unique_name_in_owner = true
 layout_mode = 3
@@ -561,20 +652,64 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Cookie Count" type="Label" parent="HUD/MiniGameHUD"]
-unique_name_in_owner = true
+[node name="Control" type="Control" parent="HUD/MiniGameHUD"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -11.5
-offset_top = 60.0
-offset_right = 11.5
-offset_bottom = 117.0
+offset_top = 80.0
+offset_bottom = 80.0
 grow_horizontal = 2
+
+[node name="Cookie" type="Node2D" parent="HUD/MiniGameHUD/Control"]
+unique_name_in_owner = true
+scale = Vector2(1.2, 1.2)
+script = ExtResource("18_r3tfg")
+
+[node name="CountPlayer" type="AnimationPlayer" parent="HUD/MiniGameHUD/Control/Cookie"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_i7yn5")
+}
+
+[node name="Cookie Count" type="Label" parent="HUD/MiniGameHUD/Control/Cookie"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -29.0
+offset_right = 17.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "0"
 label_settings = ExtResource("8_f6s4d")
 script = ExtResource("2_au4ri")
+
+[node name="mini_sfx2" type="AudioStreamPlayer" parent="HUD"]
+unique_name_in_owner = true
+script = ExtResource("21_8qyx4")
+flap = ExtResource("22_d63i7")
+cookie = ExtResource("23_qj2pu")
+poop = ExtResource("24_i7yn5")
+blip = ExtResource("24_i7yn5")
+roar = ExtResource("25_1skup")
+
+[node name="mini_sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("21_8qyx4")
+flap = ExtResource("22_d63i7")
+cookie = ExtResource("23_qj2pu")
+poop = ExtResource("24_i7yn5")
+blip = ExtResource("24_i7yn5")
+roar = ExtResource("25_1skup")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_xsp06")
+autoplay = true
 
 [connection signal="body_entered" from="GameOverArea" to="GameOverArea" method="_on_body_entered"]
 [connection signal="timeout" from="HUD/HazardSpawner/TimerSpawner" to="HUD/HazardSpawner" method="_on_timer_spawner_timeout"]
