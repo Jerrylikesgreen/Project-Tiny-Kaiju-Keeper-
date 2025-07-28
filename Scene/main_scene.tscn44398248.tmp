@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c7sg24y01v6xn"]
+[gd_scene load_steps=44 format=3 uid="uid://c7sg24y01v6xn"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Script/World/world.gd" id="1_gfmxp"]
 [ext_resource type="Script" uid="uid://bucal3fjmyf2p" path="res://Scene/main_scene.gd" id="1_p1ykx"]
@@ -39,7 +39,6 @@
 [ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Script/GUI/gui_sfx.gd" id="34_rs42p"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scene/bgm.tscn" id="35_5qxgh"]
 [ext_resource type="Script" uid="uid://cy630ouleptci" path="res://Script/player_message.gd" id="36_qfgnl"]
-[ext_resource type="Script" uid="uid://bsciqt4hwqs5x" path="res://Scene/pet_button.gd" id="39_mvmce"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("7_uws2o")
@@ -72,9 +71,7 @@ Button/colors/icon_pressed_color = Color(0.227451, 0.247059, 0, 1)
 Button/constants/outline_size = 8
 Button/font_sizes/font_size = 20
 
-[sub_resource type="ImageTexture" id="ImageTexture_mvmce"]
-
-[node name="Level1" type="Control"]
+[node name="MainScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +80,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 2
 script = ExtResource("1_p1ykx")
 
 [node name="MainDisplayLayer" type="CanvasLayer" parent="."]
@@ -98,7 +94,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
-mouse_filter = 2
 
 [node name="WorldManager" type="PanelContainer" parent="MainDisplayLayer/MainDisplayContainer"]
 unique_name_in_owner = true
@@ -106,7 +101,6 @@ layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
-mouse_filter = 2
 script = ExtResource("1_gfmxp")
 
 [node name="Control" type="Control" parent="MainDisplayLayer/MainDisplayContainer/WorldManager"]
@@ -139,7 +133,6 @@ texture = ExtResource("5_w30ff")
 [node name="PetLayer" type="CanvasLayer" parent="MainDisplayLayer/MainDisplayContainer/WorldManager"]
 
 [node name="BaseBody" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/PetLayer" instance=ExtResource("6_xy6fp")]
-unique_name_in_owner = true
 position = Vector2(256, 304)
 
 [node name="CookieContainer" type="Node2D" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/PetLayer"]
@@ -289,7 +282,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
 [node name="X" type="VBoxContainer" parent="GUI/PlayerButtons"]
 layout_mode = 1
@@ -697,53 +689,51 @@ label_settings = ExtResource("8_iylel")
 [node name="GuiSfx" type="AudioStreamPlayer" parent="GUI"]
 script = ExtResource("34_rs42p")
 
-[node name="PlayerMessage" type="Control" parent="GUI"]
-visible = false
-layout_mode = 3
+[node name="PlayerMessageConatiner" type="AspectRatioContainer" parent="GUI"]
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.143
+anchor_right = 1.0
+anchor_bottom = 0.821
+offset_left = -8.192
+offset_top = 1.936
+offset_bottom = 0.191986
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerMessage" type="Label" parent="GUI/PlayerMessageConatiner"]
+z_index = 1
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Test"
+label_settings = ExtResource("18_y0lqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("36_qfgnl")
+
+[node name="Timer" type="Timer" parent="GUI/PlayerMessageConatiner/PlayerMessage"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="Panel" type="Panel" parent="GUI/PlayerMessageConatiner/PlayerMessage"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("36_qfgnl")
-
-[node name="PC" type="PanelContainer" parent="GUI/PlayerMessage"]
-unique_name_in_owner = true
-self_modulate = Color(0.835294, 0.513726, 0.32549, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -50.0
-offset_right = 200.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="GUI/PlayerMessage/PC"]
-unique_name_in_owner = true
-clip_contents = true
-custom_minimum_size = Vector2(400, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Test"
-label_settings = ExtResource("8_iylel")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="Timer" type="Timer" parent="GUI/PlayerMessage"]
-unique_name_in_owner = true
-wait_time = 2.0
-one_shot = true
 
 [node name="TitleScreen" type="PanelContainer" parent="GUI"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -812,16 +802,6 @@ size_flags_horizontal = 4
 text = "START"
 label_settings = ExtResource("8_iylel")
 
-[node name="Pet" type="Button" parent="GUI"]
-unique_name_in_owner = true
-offset_left = 208.0
-offset_top = 256.0
-offset_right = 308.0
-offset_bottom = 356.0
-icon = SubResource("ImageTexture_mvmce")
-flat = true
-script = ExtResource("39_mvmce")
-
 [node name="BGM" parent="." instance=ExtResource("35_5qxgh")]
 
 [connection signal="finished" from="MainDisplayLayer/MainDisplayContainer/WorldManager/SFX" to="MainDisplayLayer/MainDisplayContainer/WorldManager" method="_on_sfx_finished"]
@@ -832,4 +812,5 @@ script = ExtResource("39_mvmce")
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/MENU" to="GUI" method="_on_menu_pressed"]
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/MENU" to="GUI/PlayerButtons/X/Y/MENU" method="_on_pressed"]
 [connection signal="pressed" from="GUI/MenuScreen/SoundMenu/BackgroundColor2/Back" to="GUI/MenuScreen/SoundMenu" method="_on_back_pressed"]
+[connection signal="timeout" from="GUI/PlayerMessageConatiner/PlayerMessage/Timer" to="GUI/PlayerMessageConatiner/PlayerMessage" method="_on_timer_timeout"]
 [connection signal="pressed" from="GUI/TitleScreen/Start/Label2/Button" to="GUI/TitleScreen" method="_on_button_pressed"]

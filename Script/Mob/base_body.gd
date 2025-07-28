@@ -21,9 +21,10 @@ class_name BaseBody extends CharacterBody2D
 @onready var ev_sfx: AudioStreamPlayer = $EvSFX
 @onready var ev_visual_effect: Node2D = $"BaseBodySprite/Ev Visual Effect"
 @onready var base_body_sprite: BaseBodySprite = %BaseBodySprite
+@onready var animation: AnimationPlayer = %AnimationPlayerpet
 
 var _new_game:bool = true
-
+var _clicked:bool = false
 func _ready() -> void:
 	#update_globals_from_pet(pet_resource)
 	Events.poop.connect(_on_poop_call)
@@ -97,15 +98,13 @@ func _on_growth_tick_timeout() -> void:
 		return
 	else:
 		age = age + 1 * growth_speed
-		if age == 10:
+		if age == 3:
 			_on_evolution(1)
-		if age == 30:
+		if age == 50:
 			_on_evolution(2)
-		if age == 60:
+		if age == 100:
 			_on_evolution(3)
 		Globals.pet_age = age
-
-
 
 
 func _on_evolution(stage:int)->void:
@@ -151,10 +150,7 @@ func _on_game_start():
 		Globals.set_current_hygiene(1.0)
 		Globals.set_current_hunger(1.0)
 		Globals.new_game = false
-		_can_age = true
-		_can_get_happy = true
-		_can_get_hygiene = true
-		_can_get_hungry = true
+
 
 
 func _on_mini_game_return():
@@ -171,3 +167,12 @@ func _on_mini_game_start():
 	_can_get_happy = false
 	_can_get_hygiene = false
 	_can_get_hungry = false
+
+
+func _on_click_input_event() -> void:
+	_can_age = true
+	_can_get_happy = true
+	_can_get_hygiene = true
+	_can_get_hungry = true
+	animation.play("Clicked")
+	print("click")

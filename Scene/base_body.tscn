@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://17x4vh1ltwl"]
+[gd_scene load_steps=24 format=3 uid="uid://17x4vh1ltwl"]
 
 [ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Script/Mob/base_body.gd" id="1_en3gj"]
 [ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resource/Data/pet_resource.tres" id="2_jqlm0"]
@@ -23,6 +23,67 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]
 radius = 4.0
 height = 17.3333
+
+[sub_resource type="Animation" id="Animation_3lcda"]
+resource_name = "Clicked"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 1, 1.3, 1.5, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(5.3, 5.3), Vector2(5, 5), Vector2(5.17143, 5.17143), Vector2(5, 5), Vector2(5.3, 5.3), Vector2(5, 5), Vector2(5.17143, 5.17143), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1, 1.3, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.483456, 0.279253, 0.0, -0.483456, 0.279253, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0qbfa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l5wnn"]
+_data = {
+&"Clicked": SubResource("Animation_3lcda"),
+&"RESET": SubResource("Animation_0qbfa")
+}
 
 [node name="BaseBody" type="CharacterBody2D"]
 scale = Vector2(5, 5)
@@ -88,6 +149,12 @@ offset_left = -20.0
 offset_top = -36.0
 offset_right = 20.0
 offset_bottom = -12.0
+
+[node name="AnimationPlayerpet" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_l5wnn")
+}
 
 [connection signal="finished" from="SFX" to="StateMachine/ChipringState" method="_on_sfx_finished"]
 [connection signal="chirp" from="StateMachine/ChipringState" to="." method="_on_chipring_state_chirp"]
