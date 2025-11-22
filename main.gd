@@ -1,4 +1,4 @@
-class_name Level1 extends Control
+class_name MainScene extends Control
 
 @onready var pet: PetButton = %Pet
 @onready var base_body: BaseBody = %BaseBody
@@ -12,6 +12,7 @@ func  _ready() -> void:
 
 
 func _on_game_start()->void:
+	print("On game start")
 	if !Globals.new_game:
 		Events.display_player_message("Welcome, this here is your kaiju egg!")
 		Events.display_player_message("Take Care of your kaiju and it can grow to be strong, or cute!")

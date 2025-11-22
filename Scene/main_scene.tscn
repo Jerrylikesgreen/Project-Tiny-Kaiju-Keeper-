@@ -1,7 +1,7 @@
-[gd_scene load_steps=46 format=3 uid="uid://c7sg24y01v6xn"]
+[gd_scene load_steps=43 format=3 uid="uid://c7sg24y01v6xn"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Script/World/world.gd" id="1_gfmxp"]
-[ext_resource type="Script" uid="uid://bucal3fjmyf2p" path="res://Scene/main_scene.gd" id="1_p1ykx"]
+[ext_resource type="Script" uid="uid://bucal3fjmyf2p" path="res://main.gd" id="1_p1ykx"]
 [ext_resource type="Texture2D" uid="uid://cuuqwwq6uxwib" path="res://Asset/Background/sky 128x112.png" id="2_1n88h"]
 [ext_resource type="Texture2D" uid="uid://dng17xpkjb274" path="res://Asset/Background/city 2 128x112.png" id="3_opjno"]
 [ext_resource type="Texture2D" uid="uid://dagldaom3kqcv" path="res://Asset/Background/city 1 128x112.png" id="4_meb7l"]
@@ -27,19 +27,17 @@
 [ext_resource type="AudioStream" uid="uid://bpmc66h1av61w" path="res://Asset/OGG/Roar.ogg" id="24_7tmle"]
 [ext_resource type="AudioStream" uid="uid://b751b0lwt7eo3" path="res://Asset/OGG/Baby (1).ogg" id="25_ya33n"]
 [ext_resource type="AudioStream" uid="uid://b46uqp2vd800g" path="res://Asset/OGG/Flap.ogg" id="26_3wiol"]
-[ext_resource type="Script" uid="uid://wtflmtow768h" path="res://Script/GUI/title_screen.gd" id="27_6a02w"]
 [ext_resource type="Texture2D" uid="uid://e86vjhm6y8d4" path="res://Asset/Background/Titlebackground 128x112.png" id="28_clqk1"]
-[ext_resource type="LabelSettings" uid="uid://dd4gberveswp8" path="res://new_label_settings.tres" id="29_2r077"]
 [ext_resource type="FontFile" uid="uid://cm6si4x8qv85y" path="res://Resource/Theme/PixelAE-Bold.ttf" id="29_fxe4o"]
 [ext_resource type="Texture2D" uid="uid://ifjnwpmqlmip" path="res://Asset/UI/button.png" id="30_8quq7"]
 [ext_resource type="Script" uid="uid://bihoilcsmpvcj" path="res://Script/GUI/menu_screen.gd" id="31_vhc7d"]
 [ext_resource type="Theme" uid="uid://bkshl5opa74id" path="res://Resource/Theme/sound_menu.tres" id="32_bqoel"]
 [ext_resource type="Script" uid="uid://icjildfw6ey4" path="res://Script/World/Audio/sound_menu.gd" id="33_id12a"]
-[ext_resource type="Script" uid="uid://c04fjhblcb2a1" path="res://Scene/count.gd" id="34_kghrr"]
+[ext_resource type="Script" uid="uid://c04fjhblcb2a1" path="res://Script/count.gd" id="34_kghrr"]
 [ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Script/GUI/gui_sfx.gd" id="34_rs42p"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scene/bgm.tscn" id="35_5qxgh"]
 [ext_resource type="Script" uid="uid://cy630ouleptci" path="res://Script/player_message.gd" id="36_qfgnl"]
-[ext_resource type="Script" uid="uid://bsciqt4hwqs5x" path="res://Scene/pet_button.gd" id="39_mvmce"]
+[ext_resource type="Script" uid="uid://bsciqt4hwqs5x" path="res://Script/pet_button.gd" id="39_mvmce"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
 default_font = ExtResource("7_uws2o")
@@ -58,23 +56,9 @@ shadow_color = Color(0.12549, 0.137255, 0, 0.858824)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_umu00"]
 
-[sub_resource type="Theme" id="Theme_w20qy"]
-default_font = ExtResource("29_fxe4o")
-default_font_size = 10
-Button/colors/font_color = Color(0.835294, 0.513726, 0.32549, 1)
-Button/colors/font_focus_color = Color(0.592157, 0.701961, 0.305882, 1)
-Button/colors/font_hover_color = Color(0.592157, 0.701961, 0.305882, 1)
-Button/colors/font_hover_pressed_color = Color(0.592157, 0.701961, 0.305882, 1)
-Button/colors/font_outline_color = Color(0.227451, 0.247059, 0, 1)
-Button/colors/font_pressed_color = Color(0.592157, 0.701961, 0.305882, 1)
-Button/colors/icon_focus_color = Color(0.227451, 0.247059, 0, 1)
-Button/colors/icon_pressed_color = Color(0.227451, 0.247059, 0, 1)
-Button/constants/outline_size = 8
-Button/font_sizes/font_size = 20
-
 [sub_resource type="ImageTexture" id="ImageTexture_mvmce"]
 
-[node name="Level1" type="Control"]
+[node name="MainScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +86,7 @@ mouse_filter = 2
 
 [node name="WorldManager" type="PanelContainer" parent="MainDisplayLayer/MainDisplayContainer"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
@@ -116,7 +100,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="COLOR" type="TextureRect" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/Bacground"]
-layout_mode = 2
+layout_mode = 0
 offset_right = 512.0
 offset_bottom = 448.0
 texture = ExtResource("2_1n88h")
@@ -742,76 +726,6 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="TitleScreen" type="PanelContainer" parent="GUI"]
-unique_name_in_owner = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("27_6a02w")
-
-[node name="TitleScreenBackground" type="TextureRect" parent="GUI/TitleScreen"]
-layout_mode = 2
-texture = ExtResource("28_clqk1")
-
-[node name="Title" type="Label" parent="GUI/TitleScreen"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Project :
-Tiny Kaiju Keeper"
-label_settings = ExtResource("29_2r077")
-horizontal_alignment = 1
-
-[node name="Start" type="Control" parent="GUI/TitleScreen"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Label2" type="Polygon2D" parent="GUI/TitleScreen/Start"]
-z_index = 5
-color = Color(1, 1, 1, 0)
-uv = PackedVector2Array(-265.5, -25, -21.5, -31, -22.5, 63, -203.5, 45)
-
-[node name="Button" type="Button" parent="GUI/TitleScreen/Start/Label2"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -40.0
-offset_right = 34.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.5, 1.5)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = SubResource("Theme_w20qy")
-icon = ExtResource("30_8quq7")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="Label" type="Label" parent="GUI/TitleScreen/Start/Label2/Button"]
-z_index = 5
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = -15.0
-offset_right = 38.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "START"
-label_settings = ExtResource("8_iylel")
-
 [node name="Pet" type="Button" parent="GUI"]
 unique_name_in_owner = true
 offset_left = 208.0
@@ -832,4 +746,3 @@ script = ExtResource("39_mvmce")
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/MENU" to="GUI" method="_on_menu_pressed"]
 [connection signal="pressed" from="GUI/PlayerButtons/X/Y/MENU" to="GUI/PlayerButtons/X/Y/MENU" method="_on_pressed"]
 [connection signal="pressed" from="GUI/MenuScreen/SoundMenu/BackgroundColor2/Back" to="GUI/MenuScreen/SoundMenu" method="_on_back_pressed"]
-[connection signal="pressed" from="GUI/TitleScreen/Start/Label2/Button" to="GUI/TitleScreen" method="_on_button_pressed"]

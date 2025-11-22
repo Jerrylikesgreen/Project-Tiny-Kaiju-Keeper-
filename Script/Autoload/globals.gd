@@ -1,27 +1,19 @@
 ## globals.gd ─ Autoload Singleton
-## 
-## Central game-wide state container.
-##
-## * Registered as an **AutoLoad** (“Globals”) so any script can access
-##   `Globals.current_happiness`, emit Events, or read `Globals.current_game_state`.
-## * Stores the three virtual-pet stats **happiness**, **hunger**, **hygiene** and the
-##   current **GameState**.  
-## * Changing a stat immediately broadcasts the new value on the **Events** bus so
-##   UI or AI systems can react without polling.
-## 
-
 extends Node
 
 
 
 # ────────────────────────────────[ Game-state enum ]───────────────────────────────
-enum GameState { GUI, MAIN, MINI_1, GAME_OVER } ## Game‑state enum & label lookup
+enum GameState { GUI, MAIN, MINI_1, GAME_OVER, TITLE } ## Game‑state enum & label lookup
+var _game_state: GameState = GameState.TITLE 
+
 ## High-level scenes / modes the game can be in.
 const STATE_LABEL := {
 	GameState.GUI:        "GUI",
 	GameState.MAIN:       "MAIN",
 	GameState.MINI_1:     "MINI_1",
 	GameState.GAME_OVER:  "GAME_OVER",
+	GameState.TITLE:      "TITLE",
 }
 ## Human-readable labels for each `GameState` value (handy for debug prints).
 
@@ -33,7 +25,7 @@ var _hunger:   float = 0.0
 
 var _hygiene:  float = 0.0
 
-var _game_state: GameState = GameState.GUI 
+
 
 var _cookie_count: int = 0
 ## Current active `GameState`. Do **not** set directly – use `current_game_state`.
@@ -63,8 +55,6 @@ var pet_age: int
 
 ## At ready
 func _ready() -> void:
-	### Called once when the singleton is initialised.
-	Events.game_state_change(Globals.GameState.MINI_1)
 	print("Current state:", STATE_LABEL[_game_state])
 
 ##        Stat setters / getters 
@@ -77,29 +67,19 @@ func set_current_happiness(value: float) -> void:
 		return
 		
 	_happiness = value
-	var anim := Events._anim_for_level("happiness", value)
-	Events.happiness_changed.emit(str(value), value)
-	Events.change_pet_animation.emit(anim)
+	Events.happiness_changed(value)
+	
 
 func get_current_happiness() -> float:
 	return _happiness
 
 func set_current_hunger(value: float) -> void:
 	value = clamp(value, 0.0, 1.0)
-	var old_hunger = _hunger
 	if is_equal_approx(value, _hunger):
 		return 
 	_hunger = value
-	var anim := Events._anim_for_level("hunger", value)
-	Events.hunger_changed.emit(str(value), value)
-	Events.change_pet_animation.emit(anim)
-	if old_hunger < _hunger:
-		print("Poop counters")
-		feed_count = feed_count + 1
-		if feed_count == 5 and !poop_spawned :
-			Events.emit_signal("poop", true)
-			feed_count = 0
-			poop_spawned = true
+	Events.hunger_changed(value)
+
 
 func get_current_hunger() -> float:
 	return _hunger
@@ -110,9 +90,7 @@ func set_current_hygiene(value: float) -> void:
 		return    
 
 	_hygiene = value
-	var anim := Events._anim_for_level("hygiene", value)
-	Events.hygiene_changed.emit(str(value), value)
-	Events.change_pet_animation.emit(anim)
+	Events.hygiene_changed(value)
 
 func get_current_hygiene() -> float:
 	return _hygiene
@@ -179,9 +157,9 @@ func load_game():
 			await pet.base_body_sprite.set_stage(loaded.evolution_stage)
 
 		# Emit signals
-		Events.happiness_changed.emit(str(_happiness), _happiness)
-		Events.hunger_changed.emit(str(_hunger), _hunger)
-		Events.hygiene_changed.emit(str(_hygiene), _hygiene)
+		Events.happiness_changed( _happiness)
+		Events.hunger_changed(_hunger)
+		Events.hygiene_changed(_hygiene)
 
 		print("Game loaded.")
 	else:
@@ -193,14 +171,7 @@ func set_cookie_count(value: int) -> void:
 	value = max(value, 0)
 	if is_equal_approx(value, _cookie_count):
 		return
-
 	_cookie_count = value
-
-	# Let other systems know
-	Events.trigger_can_feed(_cookie_count > 0)
-
-
-
 
 func get_cookie_count() -> int:
 	return _cookie_count
