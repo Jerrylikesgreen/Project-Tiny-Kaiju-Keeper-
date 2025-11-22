@@ -1,4 +1,4 @@
-class_name GUI extends CanvasLayer
+class_name GuiLayer extends CanvasLayer
 @onready var menu_screen: MenuScreen = $MenuScreen
 
 

@@ -2,18 +2,15 @@ extends Node
 ## ─────────────────────────────────────────────────────────────────────────
 ##  Events  (autoload singleton)
 ## ─────────────────────────────────────────────────────────────────────────
-signal happiness_changed(text: String, value: float)
-signal hunger_changed(text: String, value: float)
-signal hygiene_changed(text: String, value: float)
+signal happiness_changed_signal(text: String, value: float)
+signal hunger_changed_signal(text: String, value: float)
+signal hygiene_changed_signal(text: String, value: float)
 signal game_state(value: int)
 signal pet_event_signal(listener, event)
-signal change_pet_animation(anim: String)
 signal play_sfx_signal(track_id: int)
-signal gui_sfx(track_id: int)
-signal poop(value:bool)
-signal evolve(value:int)
-signal game_start
-signal game_stop
+signal play_gui_sfx_signal(track_id: int)
+signal game_start_signal
+signal game_stop_signal
 signal mini_game(hazard:String)
 signal mini_game_ended
 signal mini_game_started
@@ -73,7 +70,14 @@ func _anim_for_level(stat_name: String, value: float) -> String:
 	
 	return anim
 
+func play_gui_sfx(track_id: int) ->void:
+	emit_signal("play_gui_sfx_signal", track_id)
 
+func game_start()->void:
+	emit_signal("game_start_signal")
+
+func game_stop()->void:
+	emit_signal("game_stop_signal")
 
 
 func game_state_change(value:int)->void:
@@ -98,7 +102,14 @@ func mini_game_ended_signal():
 	emit_signal("mini_game_ended")
 	
 func mini_game_started_signal():
-	await emit_signal("mini_game_started")
+	emit_signal("mini_game_started")
+
+func happiness_changedl(value: float) ->void:
+	emit_signal("happiness_changed_signal", str(value), value )
+func hunger_changed(value: float) ->void:
+	emit_signal("hunger_changed_signal", str(value), value )
+func hygiene_changed(value: float) ->void:
+	emit_signal("hygiene_changed_signal", str(value), value )
 
 func trigger_can_feed(value:bool)-> void:
 	emit_signal("can_feed", value)

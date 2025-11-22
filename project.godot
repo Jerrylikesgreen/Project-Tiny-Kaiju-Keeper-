@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="Project Kaiju Keeper 2.0"
-run/main_scene="uid://c7sg24y01v6xn"
-config/features=PackedStringArray("4.4")
+config/tags=PackedStringArray("game_jam")
+run/main_scene="uid://b63fcrnpqe852"
+config/features=PackedStringArray("4.5")
 boot_splash/bg_color=Color(0.0615095, 0.171558, 0.0872641, 1)
 boot_splash/fullsize=false
 boot_splash/image="uid://cv3i2vcx1bg45"
@@ -43,8 +44,8 @@ folder_colors={
 
 [gui]
 
-theme/custom_font="uid://cm6si4x8qv85y"
 theme/default_font_antialiasing=2
+theme/custom_font="uid://cm6si4x8qv85y"
 
 [importer_defaults]
 

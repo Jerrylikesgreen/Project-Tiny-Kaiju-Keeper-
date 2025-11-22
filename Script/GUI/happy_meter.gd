@@ -6,7 +6,7 @@ extends Label
 
 
 func _ready() -> void: ## At ready, label will connect with Events Global to update happyness text displayed. 
-	Events.happiness_changed.connect(_on_happiness_changed)
+	Events.happiness_changed_signal.connect(_on_happiness_changed)
 
 
 func _on_happiness_changed(_h_tex: String, value: float) -> void: ## Triggered on happyness signal from Events. 

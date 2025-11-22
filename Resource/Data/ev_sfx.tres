@@ -7,3 +7,11 @@ sampling_rate = 44100.0
 
 [resource]
 packet_sequence = SubResource("OggPacketSequence_lrgnu")
+tags = {
+"artist": "",
+"comment": "",
+"contact": "",
+"encoder": "FL Studio",
+"genre": "",
+"title": ""
+}
