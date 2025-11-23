@@ -4,7 +4,7 @@
 
 [sub_resource type="Animation" id="Animation_kc8p7"]
 resource_name = "EvFlash"
-length = 2.5
+length = 3.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -117,10 +117,10 @@ _data = {
 &"RESET": SubResource("Animation_icrkx")
 }
 
-[node name="Ev Visual Effect" type="CanvasModulate"]
+[node name="EvVisualEffect" type="CanvasModulate"]
 script = ExtResource("1_kc8p7")
 
-[node name="Ev Visual Effect" type="AnimationPlayer" parent="."]
+[node name="EvVisualEffect" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_5h7cv")

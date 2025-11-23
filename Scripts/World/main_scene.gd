@@ -6,24 +6,25 @@ class_name MainSceneS extends Control
 var intro:bool = false
 
 func  _ready() -> void:
+	Events.intro_ended_signal.connect(on_intro_ended_signal)
 	pet_button.pressed.connect(_on_pet_pressed)
 	if !intro:
 		_on_game_start()
 	
 
+func on_intro_ended_signal()->void:
+	intro = true
 
 
 func _on_game_start()->void:
 	
 	print("On game start")
 	if Globals.new_game:
-		Events.display_player_message("Welcome, to Kiaju Keeper!")
-		Events.display_player_message("Play with your kaiju to find yummy treats!")
-		Events.display_player_message("Click on your egg to help it hatch!")
-		intro = true
-		Events.game_start()
+		Events.intro()
+
 
 func _on_pet_pressed()->void:
+	
 	if intro:
 		pet._on_click_input_event()
 		print("click")

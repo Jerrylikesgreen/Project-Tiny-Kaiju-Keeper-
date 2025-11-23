@@ -39,6 +39,7 @@ func update_globals_from_pet(pet: PetResource) -> void:
 	Globals.set_current_happiness(pet.happiness)
 	Globals.set_current_hunger(pet.hunger)
 	Globals.set_current_hygiene(pet.hygiene)
+	Globals.active_pet_frames = base_body_sprite.
 
 
 func start_hunger_tick()->void:

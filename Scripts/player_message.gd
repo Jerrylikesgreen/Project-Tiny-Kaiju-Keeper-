@@ -14,7 +14,7 @@ var _queue: Array[String] = []
 var _txt  := ""
 var _idx  := 0
 var _typing := false
-
+var _count:int
 
 # ─────────────────────────────────────────────
 # INITIAL SET‑UP
@@ -48,6 +48,9 @@ func _type() -> void:
 		await get_tree().create_timer(speed).timeout
 
 func _on_timeout() -> void:
+	_count = _count + 1
+	if _count > 2:
+		Events.intro_ended()
 	if _queue.is_empty():
 		visible = false
 	else:

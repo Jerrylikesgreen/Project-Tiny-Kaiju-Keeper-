@@ -17,6 +17,7 @@ signal mini_game_started
 signal player_message(player_message:String)
 signal can_feed(value:bool)
 signal evolve_signal(current_growth_state: PetBody.PetGrowthState)
+signal intro_ended_signal
 const THRESHOLD := 0.7
 
 ## If you still need this elsewhere, keep it
@@ -121,4 +122,14 @@ func display_player_message(new_message:String)-> void:
 	
 func on_pet_growth_state_change(current_growth_state: PetBody.PetGrowthState) ->void:
 	emit_signal("evolve_signal", current_growth_state)
+	sfx_trigger(SFX.Track.EVOLUTION)
+
+func intro_ended()->void:
+	emit_signal("intro_ended_signal")
 	pass
+
+func intro()->void:
+	display_player_message("Welcome, to Kiaju Keeper!")
+	display_player_message("Play with your kaiju to find yummy treats!")
+	display_player_message("Click on your egg to help it hatch!")
+	game_start()

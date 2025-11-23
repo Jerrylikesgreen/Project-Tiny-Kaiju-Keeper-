@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://17x4vh1ltwl"]
 
-[ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Scripts/Mob/base_body.gd" id="1_en3gj"]
+[ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Scripts/Mob/pet_body.gd" id="1_en3gj"]
 [ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resources/Data/pet_resource.tres" id="2_jqlm0"]
 [ext_resource type="Script" uid="uid://b5rykj005wecv" path="res://Scripts/World/StateMachine/state_machine.gd" id="3_jqlm0"]
 [ext_resource type="Script" uid="uid://cr0a685bltuti" path="res://Scripts/World/StateMachine/idle_state.gd" id="4_wgf83"]
@@ -88,7 +88,12 @@ _data = {
 [node name="PetBody" type="CharacterBody2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_en3gj")
+growth_speed = null
 pet_resource = ExtResource("2_jqlm0")
+_can_get_hungry = null
+_can_get_happy = null
+_can_get_hygiene = null
+_can_age = null
 
 [node name="SFX" parent="." instance=ExtResource("7_euqgv")]
 unique_name_in_owner = true
@@ -138,7 +143,7 @@ sprite_frames = ExtResource("8_itufd")
 animation = &"Happy"
 script = ExtResource("9_d0ldd")
 
-[node name="Ev Visual Effect" parent="BaseBodySprite" instance=ExtResource("19_3lcda")]
+[node name="EvVisualEffect" parent="BaseBodySprite" instance=ExtResource("19_3lcda")]
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
@@ -160,3 +165,5 @@ libraries = {
 [connection signal="timeout" from="HappyTick" to="." method="_on_happy_tick_timeout"]
 [connection signal="timeout" from="HygieneTick" to="." method="_on_hygiene_tick_timeout"]
 [connection signal="timeout" from="GrowthTick" to="." method="_on_growth_tick_timeout"]
+
+[editable path="BaseBodySprite/EvVisualEffect"]

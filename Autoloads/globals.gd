@@ -50,7 +50,7 @@ var feed_count: int = 0
 var _is_godzilla: bool 
 var new_game: bool = true
 var pet_age: int
-
+var active_pet_resource: PetResource
 
 
 ## At ready

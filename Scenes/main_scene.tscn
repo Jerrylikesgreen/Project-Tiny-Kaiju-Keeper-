@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c7sg24y01v6xn"]
+[gd_scene load_steps=48 format=3 uid="uid://c7sg24y01v6xn"]
 
 [ext_resource type="Script" uid="uid://dmuifn515spf3" path="res://Scripts/World/world.gd" id="1_gfmxp"]
 [ext_resource type="Script" uid="uid://bucal3fjmyf2p" path="res://Scripts/World/main_scene.gd" id="1_p1ykx"]
@@ -56,7 +56,22 @@ shadow_color = Color(0.12549, 0.137255, 0, 0.858824)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_umu00"]
 
-[sub_resource type="ImageTexture" id="ImageTexture_mvmce"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrumr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbbok"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m0uwk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mffef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2h5y0"]
+
+[sub_resource type="Theme" id="Theme_y0lwx"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_nrumr")
+Button/styles/focus = SubResource("StyleBoxEmpty_kbbok")
+Button/styles/hover = SubResource("StyleBoxEmpty_m0uwk")
+Button/styles/normal = SubResource("StyleBoxEmpty_mffef")
+Button/styles/pressed = SubResource("StyleBoxEmpty_2h5y0")
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -735,7 +750,7 @@ offset_left = 208.0
 offset_top = 256.0
 offset_right = 308.0
 offset_bottom = 356.0
-icon = SubResource("ImageTexture_mvmce")
+theme = SubResource("Theme_y0lwx")
 flat = true
 script = ExtResource("39_mvmce")
 

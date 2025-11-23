@@ -477,7 +477,6 @@ max_fall = 1000.0
 flap_x_boost = 40.0
 max_x_speed = 150.0
 _is_running = false
-pet_resource = null
 
 [node name="mini_sfx3" type="AudioStreamPlayer" parent="MiniGameBody"]
 unique_name_in_owner = true
