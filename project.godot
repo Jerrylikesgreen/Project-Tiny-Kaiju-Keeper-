@@ -21,10 +21,10 @@ config/icon="uid://cv3i2vcx1bg45"
 
 [autoload]
 
-Globals="*res://Script/Autoload/globals.gd"
-Events="*res://Script/Autoload/events.gd"
-Pause="*res://Script/Autoload/pause.gd"
-SceneManager="*res://Script/Autoload/SceneManager.gd"
+Globals="*res://Autoloads/globals.gd"
+Events="*res://Autoloads/events.gd"
+Pause="*res://Autoloads/pause.gd"
+SceneManager="*res://Autoloads/SceneManager.gd"
 
 [display]
 
@@ -37,10 +37,15 @@ window/handheld/orientation=1
 
 folder_colors={
 "res://Asset/": "blue",
-"res://Resource/": "yellow",
-"res://Scene/": "orange",
-"res://Script/": "green"
+"res://Autoloads/": "red",
+"res://Resources/": "yellow",
+"res://Scenes/": "orange",
+"res://Scripts/": "green"
 }
+
+[global_group]
+
+Pet="Pet"
 
 [gui]
 

@@ -1,0 +1,162 @@
+[gd_scene load_steps=24 format=3 uid="uid://17x4vh1ltwl"]
+
+[ext_resource type="Script" uid="uid://c5ymcf7afry26" path="res://Scripts/Mob/base_body.gd" id="1_en3gj"]
+[ext_resource type="Resource" uid="uid://h6blcpa1ni5b" path="res://Resources/Data/pet_resource.tres" id="2_jqlm0"]
+[ext_resource type="Script" uid="uid://b5rykj005wecv" path="res://Scripts/World/StateMachine/state_machine.gd" id="3_jqlm0"]
+[ext_resource type="Script" uid="uid://cr0a685bltuti" path="res://Scripts/World/StateMachine/idle_state.gd" id="4_wgf83"]
+[ext_resource type="Script" uid="uid://dwwil5hyspauy" path="res://Scripts/World/StateMachine/chipring_state.gd" id="5_1ywop"]
+[ext_resource type="AudioStream" uid="uid://c2hxcrk40n8mm" path="res://Asset/OGG/Upgrade.ogg" id="5_u2o8b"]
+[ext_resource type="AudioStream" uid="uid://bk8cnhuxj1a3l" path="res://Asset/OGG/Blip.ogg" id="6_t6atn"]
+[ext_resource type="PackedScene" uid="uid://ce77p7t6uoopb" path="res://Scenes/sfx.tscn" id="7_euqgv"]
+[ext_resource type="AudioStream" uid="uid://bddie7ngbeg3e" path="res://Asset/OGG/Chirp Chirp.ogg" id="7_roohl"]
+[ext_resource type="AudioStream" uid="uid://b46uqp2vd800g" path="res://Asset/OGG/Flap.ogg" id="8_3lcda"]
+[ext_resource type="Script" uid="uid://dm4u6xltbqacu" path="res://Scripts/World/Audio/sfx.gd" id="8_euqgv"]
+[ext_resource type="SpriteFrames" uid="uid://0kcstxmso4hu" path="res://Resources/Sprite/egg_2.tres" id="8_itufd"]
+[ext_resource type="AudioStream" uid="uid://dlrt8glkw04fl" path="res://Asset/OGG/Munch 1.ogg" id="9_0qbfa"]
+[ext_resource type="Script" uid="uid://dn1v737xmk5d2" path="res://Scripts/Mob/base_body_sprite.gd" id="9_d0ldd"]
+[ext_resource type="AudioStream" uid="uid://ciwiqwm2w4dx8" path="res://Asset/OGG/Munch 2.ogg" id="10_l5wnn"]
+[ext_resource type="AudioStream" uid="uid://bpmc66h1av61w" path="res://Asset/OGG/Roar.ogg" id="11_x28jh"]
+[ext_resource type="AudioStream" uid="uid://bequ0t3hvje00" path="res://Resources/Data/ev_sfx.tres" id="12_roohl"]
+[ext_resource type="Script" uid="uid://sheyvmqdvrjm" path="res://Scripts/World/Audio/ev_sfx.gd" id="12_t6atn"]
+[ext_resource type="PackedScene" uid="uid://cy7wvvkqrhp1i" path="res://Scenes/ev_visual_effect.tscn" id="19_3lcda"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjya1"]
+radius = 4.0
+height = 17.3333
+
+[sub_resource type="Animation" id="Animation_3lcda"]
+resource_name = "Clicked"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 1, 1.3, 1.5, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(5.3, 5.3), Vector2(5, 5), Vector2(5.17143, 5.17143), Vector2(5, 5), Vector2(5.3, 5.3), Vector2(5, 5), Vector2(5.17143, 5.17143), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1, 1.3, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.483456, 0.279253, 0.0, -0.483456, 0.279253, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0qbfa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l5wnn"]
+_data = {
+&"Clicked": SubResource("Animation_3lcda"),
+&"RESET": SubResource("Animation_0qbfa")
+}
+
+[node name="PetBody" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_en3gj")
+pet_resource = ExtResource("2_jqlm0")
+
+[node name="SFX" parent="." instance=ExtResource("7_euqgv")]
+unique_name_in_owner = true
+script = ExtResource("8_euqgv")
+sfx_bank = Array[AudioStream]([ExtResource("5_u2o8b"), ExtResource("6_t6atn"), ExtResource("7_roohl"), ExtResource("8_3lcda"), ExtResource("9_0qbfa"), ExtResource("10_l5wnn"), ExtResource("11_x28jh")])
+
+[node name="EvSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_roohl")
+script = ExtResource("12_t6atn")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_jqlm0")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("4_wgf83")
+
+[node name="ChipringState" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("5_1ywop")
+metadata/_custom_type_script = "uid://b5rykj005wecv"
+
+[node name="HungerTick" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="HappyTick" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="HygieneTick" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="GrowthTick" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.333333, 0.333333)
+shape = SubResource("CapsuleShape2D_hjya1")
+
+[node name="BaseBodySprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-0.333333, 0)
+sprite_frames = ExtResource("8_itufd")
+animation = &"Happy"
+script = ExtResource("9_d0ldd")
+
+[node name="Ev Visual Effect" parent="BaseBodySprite" instance=ExtResource("19_3lcda")]
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -20.0
+offset_top = -36.0
+offset_right = 20.0
+offset_bottom = -12.0
+
+[node name="AnimationPlayerpet" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_l5wnn")
+}
+
+[connection signal="finished" from="SFX" to="StateMachine/ChipringState" method="_on_sfx_finished"]
+[connection signal="chirp" from="StateMachine/ChipringState" to="." method="_on_chipring_state_chirp"]
+[connection signal="chirp_state_ended" from="StateMachine/ChipringState" to="StateMachine" method="_on_chipring_state_chirp_state_ended"]
+[connection signal="timeout" from="HungerTick" to="." method="_on_hunger_tick_timeout"]
+[connection signal="timeout" from="HappyTick" to="." method="_on_happy_tick_timeout"]
+[connection signal="timeout" from="HygieneTick" to="." method="_on_hygiene_tick_timeout"]
+[connection signal="timeout" from="GrowthTick" to="." method="_on_growth_tick_timeout"]
