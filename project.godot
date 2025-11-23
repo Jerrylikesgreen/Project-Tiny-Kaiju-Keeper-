@@ -24,7 +24,8 @@ config/icon="uid://cv3i2vcx1bg45"
 Globals="*res://Autoloads/globals.gd"
 Events="*res://Autoloads/events.gd"
 Pause="*res://Autoloads/pause.gd"
-SceneManager="*res://Autoloads/SceneManager.gd"
+SceneManager="*res://Autoloads/scene_manager.gd"
+GameStateMachine="*res://Autoloads/game_state_machine.gd"
 
 [display]
 

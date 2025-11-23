@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b2gitsjyjmbyo"]
+[gd_scene load_steps=44 format=3 uid="uid://b2gitsjyjmbyo"]
 
 [ext_resource type="Script" uid="uid://d1d0h6buo3p0a" path="res://Scenes/mini_game.gd" id="1_dqngj"]
 [ext_resource type="Script" uid="uid://ccavjb1e2mf1e" path="res://Scripts/World/parallax_background.gd" id="1_t3iq2"]
@@ -26,9 +26,6 @@
 [ext_resource type="AudioStream" uid="uid://bk8cnhuxj1a3l" path="res://Asset/OGG/Blip.ogg" id="24_i7yn5"]
 [ext_resource type="AudioStream" uid="uid://bpmc66h1av61w" path="res://Asset/OGG/Roar.ogg" id="25_1skup"]
 [ext_resource type="Script" uid="uid://d0h0ouitoau5y" path="res://Scenes/game_over_cam.gd" id="25_h721f"]
-[ext_resource type="AudioStream" uid="uid://bvcoevi05ebbf" path="res://Asset/OGG/I_See_Airplanes_Mama!.ogg" id="27_o6727"]
-[ext_resource type="LabelSettings" uid="uid://bqa25qssvogie" path="res://Resources/Theme/LableDefault.tres" id="28_qajeg"]
-[ext_resource type="Script" uid="uid://7aukfqxwme0u" path="res://Scenes/label.gd" id="29_wgn8h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f6s4d"]
 
@@ -712,25 +709,6 @@ roar = ExtResource("25_1skup")
 position = Vector2(257, 225)
 script = ExtResource("25_h721f")
 metadata/_custom_type_script = "uid://dlxtf13dpvw5m"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("27_o6727")
-autoplay = true
-
-[node name="Label" type="Label" parent="."]
-z_index = 100
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -36.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Testsdsdsd"
-label_settings = ExtResource("28_qajeg")
-horizontal_alignment = 1
-script = ExtResource("29_wgn8h")
 
 [connection signal="timeout" from="HazardSpawner/TimerSpawner" to="HazardSpawner" method="_on_timer_spawner_timeout"]
 [connection signal="animation_finished" from="PopUp/Label/PopUpAnimation" to="PopUp/Label/PopUpAnimation" method="_on_animation_finished"]

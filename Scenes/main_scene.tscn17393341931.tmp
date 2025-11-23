@@ -755,21 +755,13 @@ theme = SubResource("Theme_y0lwx")
 flat = true
 script = ExtResource("39_mvmce")
 
-[node name="Label" type="Label" parent="GUI"]
-z_index = 100
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -36.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Testsdsdsd"
-label_settings = ExtResource("8_iylel")
-horizontal_alignment = 1
-script = ExtResource("39_kbbok")
-
 [node name="BGM" parent="." instance=ExtResource("35_5qxgh")]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 24.0
+script = ExtResource("39_kbbok")
 
 [connection signal="finished" from="MainDisplayLayer/MainDisplayContainer/WorldManager/SFX" to="MainDisplayLayer/MainDisplayContainer/WorldManager" method="_on_sfx_finished"]
 [connection signal="pressed" from="GUI/PlayerButtons/HBOX/VBOX/FEED" to="MainDisplayLayer/MainDisplayContainer/WorldManager" method="_on_feed_pressed"]

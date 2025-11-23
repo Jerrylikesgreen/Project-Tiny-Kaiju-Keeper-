@@ -26,7 +26,7 @@ const STAGE_FRAMES := {
 func _ready() -> void:
 	ev_visual_effect.ev_finished_signal.connect(_on_ev_finished_signal)
 	Events.evolve_signal.connect(_evolution)
-
+	_set_frame(frame_set)
 
 func _on_ev_finished_signal() ->void:
 	print("Signal")

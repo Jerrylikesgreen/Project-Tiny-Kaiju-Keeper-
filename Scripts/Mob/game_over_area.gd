@@ -46,6 +46,7 @@ func _game_over():
 	Globals.set_current_happiness(score)
 	var new_cookie_count = Globals.get_cookie_count() + _cookie_count
 	Globals.set_cookie_count(new_cookie_count)
+	Events.mini_game_ended_signal()
 	_switch_scene()
 
 

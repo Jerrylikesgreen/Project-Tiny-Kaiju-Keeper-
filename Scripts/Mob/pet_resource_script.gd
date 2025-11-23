@@ -20,10 +20,10 @@ const JUVENILE_MOTHLYN = preload("res://Resources/Sprite/juvinial_mothlyn.tres")
 @export var hygiene_rate: int = 1 
 
 
-@export var egg_sprite: CompressedTexture2D
-@export var juvinial: CompressedTexture2D ## Variable holding sprite 
-@export var adult: CompressedTexture2D
-@export var hatchling: CompressedTexture2D
+@export var egg_sprite: SpriteFrames
+@export var juvinial: SpriteFrames ## Variable holding sprite 
+@export var adult: SpriteFrames
+@export var hatchling: SpriteFrames
 
 
 enum EvLine { GODZILA, MOTHRA }

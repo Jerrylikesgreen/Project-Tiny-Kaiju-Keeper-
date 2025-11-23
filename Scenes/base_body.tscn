@@ -88,12 +88,7 @@ _data = {
 [node name="PetBody" type="CharacterBody2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_en3gj")
-growth_speed = null
 pet_resource = ExtResource("2_jqlm0")
-_can_get_hungry = null
-_can_get_happy = null
-_can_get_hygiene = null
-_can_age = null
 
 [node name="SFX" parent="." instance=ExtResource("7_euqgv")]
 unique_name_in_owner = true
@@ -147,6 +142,7 @@ script = ExtResource("9_d0ldd")
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = -20.0
 offset_top = -36.0
 offset_right = 20.0

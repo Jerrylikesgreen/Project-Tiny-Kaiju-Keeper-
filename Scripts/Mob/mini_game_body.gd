@@ -9,8 +9,6 @@ class_name MiniGameBody extends PetBody
 @export var max_x_speed   : float = 150.0    # cap sideways speed (optional)
 @export var _is_running : bool 
 
-func _ready() -> void:
-	Events.mini_game_started.connect(_on_start)
 
 func _physics_process(delta: float) -> void:
 	
@@ -22,14 +20,19 @@ func _physics_process(delta: float) -> void:
 			mini_sfx_3.play()
 			velocity.y = flap_impulse
 			velocity.x = clamp(velocity.x - flap_x_boost, -max_x_speed, max_x_speed)
-			base_body_sprite.rotation_degrees = -20.0
+			body_sprite.rotation_degrees = -20.0
 
 	
 		var target_rot := clampf(velocity.y * 0.1, -20.0, 90.0)
-		base_body_sprite.rotation_degrees = lerpf(base_body_sprite.rotation_degrees, target_rot, 6.0 * delta)
+		body_sprite.rotation_degrees = lerpf(body_sprite.rotation_degrees, target_rot, 6.0 * delta)
 		
 		move_and_slide()    
 
+func _ready() -> void:
+	Events.mini_game_started_signal.connect(_on_start)
+#	var new_frames: SpriteFrames = Globals.active_pet.body_sprite.get_sprite_frames()
+#	body_sprite.set_sprite_frames(new_frames)
+	print("_is_running")
+
 func _on_start()->void:
 	_is_running = true
-	print(_is_running)

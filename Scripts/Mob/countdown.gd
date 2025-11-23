@@ -3,7 +3,6 @@ extends Label
 
 @onready var timer      : Timer = %Timer
 @onready var pause_mgr  : Node  = get_node("/root/Pause")
-@onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 @onready var pop_up: Control = %PopUp
 @onready var pop_up_2: Control = %PopUp2
 @onready var player_camera: MiniPlayerCamera = %PlayerCamera
@@ -30,5 +29,5 @@ func _on_timeout() -> void:
 
 	if value <= 0:
 		timer.stop()
-		Events.mini_game_started_signal()
+		Events.mini_game_started()
 		queue_free()

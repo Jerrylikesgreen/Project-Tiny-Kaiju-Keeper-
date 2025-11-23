@@ -1,6 +1,5 @@
 class_name SaveData extends Resource
 
-@export var is_godzilla: bool
 @export var happiness: float
 @export var hunger: float
 @export var hygiene: float 
@@ -11,3 +10,4 @@ class_name SaveData extends Resource
 @export var poop_spawned: bool = false
 @export var evolution_stage: int 
 @export var is_new_game: bool
+@export var active_pet_resource: PetResource

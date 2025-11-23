@@ -15,19 +15,51 @@ class_name PetBody extends CharacterBody2D
 @onready var hygiene_tick: Timer = %HygieneTick
 @onready var sfx: SFX = %SFX
 @onready var ev_sfx: AudioStreamPlayer = $EvSFX
-@onready var base_body_sprite: BaseBodySprite = %BaseBodySprite
+@onready var body_sprite: BaseBodySprite = %BaseBodySprite
 @onready var animation: AnimationPlayer = %AnimationPlayerpet
+@onready var label: Label = %Label
 
 enum PetGrowthState { EGG, HATCHLING, JUVINIAL, ADULT }
 var pet_growth_state: PetGrowthState = PetGrowthState.EGG
 
+const LABLESTATES = {
+	PetGrowthState.EGG : "Egg",
+	PetGrowthState.HATCHLING : "Hatchling",
+	PetGrowthState.JUVINIAL: "Juvinile", 
+	PetGrowthState.ADULT: "Adult"
+}
+
+
+func _process(delta: float) -> void:
+	
+	label.set_text(LABLESTATES[pet_growth_state])
+
 func _ready() -> void:
 	Events.game_start_signal.connect(_on_game_start)
-	Events.mini_game_ended.connect(_on_mini_game_return)
-	Events.mini_game_started.connect(_on_mini_game_start)
+	Events.mini_game_started_signal.connect(_on_mini_game_start)
 	Events.evolve_signal.connect(_evolution)
-	update_globals_from_pet(pet_resource)
+	Events.intro_ended_signal.connect(_on_intro_ended_signal)
+	pet_growth_state = Globals.get_pet_growth_state()
+	Events.game_state.connect(_on_game_state_changed)
+	match GameStateMachine.current_game_state:
+		GameStateMachine.GameState.MAIN:
+			if GameStateMachine.get_prior_game_state() == GameStateMachine.GameState.MINI:
+				_toogle_ticks(true)
 
+func _on_game_state_changed(state: GameStateMachine.GameState)->void:
+	print("state change signal received. ")
+
+func _toogle_ticks(v: bool)->void:
+	print("toogle tick")
+	_can_get_hygiene = v
+	_can_get_happy  = v
+	_can_get_hungry = v
+	_can_age        = v
+	
+
+
+func _on_intro_ended_signal()->void:
+	body_sprite.set_sprite_frames(pet_resource.egg_sprite)
 
 
 func _set_growth_state(new_growth_state: PetGrowthState):
@@ -36,10 +68,11 @@ func _set_growth_state(new_growth_state: PetGrowthState):
 
 
 func update_globals_from_pet(pet: PetResource) -> void:
+	Globals.active_pet_resource = pet
 	Globals.set_current_happiness(pet.happiness)
 	Globals.set_current_hunger(pet.hunger)
 	Globals.set_current_hygiene(pet.hygiene)
-	Globals.active_pet_frames = base_body_sprite.
+	Globals.set_pet_growth_state(pet_growth_state)
 
 
 func start_hunger_tick()->void:
@@ -51,6 +84,7 @@ func start_happy_tick()->void:
 		happy_tick.start(1.0)
 
 func start_hygiene_tick()->void:
+	print("Strat hygine")
 	if _can_get_hygiene == true :
 		hygiene_tick.start(1.0)
 
@@ -101,13 +135,16 @@ func _evolution(state:PetGrowthState)->void:
 	match state:
 		PetGrowthState.HATCHLING:
 			pet_growth_state = state
+			update_globals_from_pet(pet_resource)
 			
 		PetGrowthState.JUVINIAL:
 			_check_ev_line()
 			pet_growth_state = state
+			update_globals_from_pet(pet_resource)
 			
 		PetGrowthState.ADULT:
 			pet_growth_state = state
+			update_globals_from_pet(pet_resource)
 	
 
 func _check_ev_line():
@@ -122,35 +159,21 @@ func _on_poop_call(v:bool):
 		pet_resource.hygiene_rate = 2
 	else:
 		pet_resource.hygiene_rate = 1
-	pass
 
 func _on_game_start():
 	if Globals.new_game:
+		Globals.active_pet_resource = pet_resource
 		Globals.set_current_happiness(1.0)
 		Globals.set_current_hygiene(1.0)
 		Globals.set_current_hunger(1.0)
 
 
-
-func _on_mini_game_return():
-	base_body_sprite.set_stage(Globals.current_pet_stage)
-	pet_resource.age = Globals.pet_age
-	_can_age = true
-	_can_get_happy = true
-	_can_get_hygiene = true
-	_can_get_hungry = true
 	
 func _on_mini_game_start():
-	_can_age = false
-	_can_get_happy = false
-	_can_get_hygiene = false
-	_can_get_hungry = false
-
+	_toogle_ticks(false)
+	print("_on_mini_game_start")
 
 func _on_click_input_event() -> void:
-	_can_age = true
-	_can_get_happy = true
-	_can_get_hygiene = true
-	_can_get_hungry = true
+	_toogle_ticks(true)
 	animation.play("Clicked")
 	print("click")

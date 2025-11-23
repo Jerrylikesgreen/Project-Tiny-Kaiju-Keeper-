@@ -28,6 +28,7 @@ func _on_pet_pressed()->void:
 	if intro:
 		pet._on_click_input_event()
 		print("click")
+		Globals.active_pet = pet
 		pet_button.queue_free()
 		Events.on_pet_growth_state_change(PetBody.PetGrowthState.HATCHLING)
 	else:

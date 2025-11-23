@@ -21,10 +21,8 @@ var _pools := {
 }
 
 func _ready() -> void:
-	Events.mini_game_started.connect(_on_start)
+	Events.mini_game_started_signal.connect(_on_start)
 
-	# Make sure the timer actually calls us
-	timer_spawner.timeout.connect(_on_timer_spawner_timeout)
 
 	randomize()
 	_spawn_nodes = {
