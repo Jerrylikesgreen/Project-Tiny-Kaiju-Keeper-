@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PetResource" load_steps=6 format=3 uid="uid://c7u3fxx7hgtmw"]
+
+[ext_resource type="Texture2D" uid="uid://bdllej8kh42d4" path="res://Asset/Mothlyn/adult mothlyn sprite sheet 24x25.png" id="1_egvoi"]
+[ext_resource type="Texture2D" uid="uid://d2me6wv718yur" path="res://Asset/Egg/egg sprites 16x16.png" id="2_wh8bq"]
+[ext_resource type="Texture2D" uid="uid://dedvyxnhfcsdt" path="res://Asset/Hatchling/hatchling temp 16x16.png" id="3_wwgrd"]
+[ext_resource type="Texture2D" uid="uid://b4seg7v88hx2x" path="res://Asset/Mothlyn/juvinial mothlyn sprite sheet 16x16.png" id="4_rendy"]
+[ext_resource type="Script" uid="uid://dasllghvayy78" path="res://Scripts/Mob/pet_resource_script.gd" id="5_6m5hu"]
+
+[resource]
+script = ExtResource("5_6m5hu")
+happiness = 1.0
+hunger = 1.0
+hygiene = 1.0
+egg_sprite = ExtResource("2_wh8bq")
+juvinial = ExtResource("4_rendy")
+adult = ExtResource("1_egvoi")
+hatchling = ExtResource("3_wwgrd")
+metadata/_custom_type_script = "uid://dasllghvayy78"
