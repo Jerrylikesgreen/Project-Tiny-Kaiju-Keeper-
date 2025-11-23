@@ -1,0 +1,2 @@
+
+enum Status { UNKNOWN, POOR, MID, GOOD, EXCELLENT }

@@ -49,7 +49,7 @@ func _type() -> void:
 
 func _on_timeout() -> void:
 	_count = _count + 1
-	if _count > 2:
+	if _count == 3:
 		Events.intro_ended()
 	if _queue.is_empty():
 		visible = false

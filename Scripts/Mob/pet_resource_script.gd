@@ -24,7 +24,7 @@ const JUVENILE_MOTHLYN = preload("res://Resources/Sprite/juvinial_mothlyn.tres")
 @export var juvinial: SpriteFrames ## Variable holding sprite 
 @export var adult: SpriteFrames
 @export var hatchling: SpriteFrames
-
-
+@export var growth_state: PetBody.PetGrowthState
+@export var sprite: SpriteFrames
 enum EvLine { GODZILA, MOTHRA }
 @export var ev_line: EvLine 

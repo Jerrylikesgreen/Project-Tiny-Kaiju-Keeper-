@@ -3,6 +3,7 @@ class_name FeedButton extends Button
 @export var feed_rate: int = 30
 
 var _can_eat:bool = false
+var _count: int
 
 func _ready()-> void:
 	Events.can_feed.connect(_on_can_feed)
@@ -25,8 +26,11 @@ func _on_pressed() -> void:
 
 	Events.sfx_trigger(SFX.Track.BLIP)
 	print("eat, cookies now:", Globals.get_cookie_count())
-
-		
+	_count = _count + 1
+	if _count > 2:
+		_count = 0
+		Events.poop
+	
 
 func _on_can_feed(value:bool)->void:
 	print("on can feed triggerd")

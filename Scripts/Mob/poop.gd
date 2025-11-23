@@ -7,7 +7,7 @@ var _velocity : Vector2 = Vector2.RIGHT        # always move right
 var mini_game:bool = false
 
 func _ready() -> void:
-	Events.poop.connect(_on_poop)
+	Events.poop_signal.connect(_on_poop)
 	
 
 func _on_poop(v:bool):
