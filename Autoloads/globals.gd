@@ -110,7 +110,6 @@ func create_save_folder() -> void:
 
 
 func save_game() -> void:
-	# Ensure folder exists
 	create_save_folder()
 
 	# Prepare SaveData (must be a Resource)
@@ -128,6 +127,7 @@ func save_game() -> void:
 		# Prefer saving resource path or an identifier instead of raw object
 		# e.g. data.active_pet_resource_path = active_pet.pet_resource.resource_path
 		data.active_pet_resource = active_pet.pet_resource
+		data.active_pet_resource.growth_state = active_pet.pet_growth_state
 
 	# Save as a Resource (.tres)
 	var save_result := ResourceSaver.save(data, SAVE_FILE)

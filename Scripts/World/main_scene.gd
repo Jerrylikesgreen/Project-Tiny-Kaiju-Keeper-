@@ -6,6 +6,7 @@ class_name MainSceneS extends Control
 var intro:bool = false
 
 func  _ready() -> void:
+	Globals.load_game()
 	Events.intro_ended_signal.connect(on_intro_ended_signal)
 	pet_button.pressed.connect(_on_pet_pressed)
 	if !intro:
@@ -29,6 +30,7 @@ func _on_pet_pressed()->void:
 		pet._on_click_input_event()
 		print("click")
 		Globals.active_pet = pet
+		Globals.save_game()
 		pet_button.queue_free()
 		Events.on_pet_growth_state_change(PetBody.PetGrowthState.HATCHLING)
 	else:

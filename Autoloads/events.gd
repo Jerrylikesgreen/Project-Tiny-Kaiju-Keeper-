@@ -19,6 +19,7 @@ signal can_feed(value:bool)
 signal evolve_signal(current_growth_state: PetBody.PetGrowthState)
 signal intro_ended_signal
 signal mini_game_startup
+signal poop_signal(v:bool)
 const THRESHOLD := 0.7
 
 ## If you still need this elsewhere, keep it
@@ -139,3 +140,6 @@ func intro()->void:
 	display_player_message("Play with your kaiju to find yummy treats!")
 	display_player_message("Click on your egg to help it hatch!")
 	game_start()
+
+func poop(v:bool)->void:
+	emit_signal("poop_signal", v)

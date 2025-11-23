@@ -26,7 +26,12 @@ const STAGE_FRAMES := {
 func _ready() -> void:
 	ev_visual_effect.ev_finished_signal.connect(_on_ev_finished_signal)
 	Events.evolve_signal.connect(_evolution)
-	_set_frame(frame_set)
+	Globals.active_pet_resource = PetResource.new()
+	if Globals.active_pet_resource.sprite:
+		var frames = Globals.active_pet_resource.sprite
+		set_sprite_frames(frames)
+	else:
+		Globals.active_pet_resource.sprite = EGG_2
 
 func _on_ev_finished_signal() ->void:
 	print("Signal")
@@ -34,6 +39,7 @@ func _on_ev_finished_signal() ->void:
 
 
 func _evolution(state:PetBody.PetGrowthState)->void:
+	print("evelution call")
 	match state:
 		
 		PetBody.PetGrowthState.HATCHLING:
@@ -59,10 +65,8 @@ func _evolution(state:PetBody.PetGrowthState)->void:
 
 
 func _set_frame(new_frame: FrameSet) -> void:
-
+	print(new_frame)
 	var new_frames: SpriteFrames = STAGE_FRAMES[new_frame]
 	var current_anim: String = animation
-	print(new_frames)
-
 	sprite_frames = new_frames
 	play(current_anim)

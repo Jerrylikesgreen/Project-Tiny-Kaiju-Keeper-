@@ -4,12 +4,11 @@ class_name PetBody extends CharacterBody2D
 
 @export var growth_speed: int = 1 ## Variable determining the rate in which pet grows. 
 @export var pet_resource: PetResource      ## happiness[1.0]:float, hunger[1.0]:float, hygiene[1.0]:float, sprite
-
 @export var _can_get_hungry:bool = false
 @export var _can_get_happy:bool = false
 @export var _can_get_hygiene:bool = false
 @export var _can_age:bool = false
-
+@onready var pet_interaction: Button = %PetInteraction
 @onready var hunger_tick: Timer = %HungerTick
 @onready var happy_tick: Timer = %HappyTick
 @onready var hygiene_tick: Timer = %HygieneTick
@@ -18,9 +17,13 @@ class_name PetBody extends CharacterBody2D
 @onready var body_sprite: BaseBodySprite = %BaseBodySprite
 @onready var animation: AnimationPlayer = %AnimationPlayerpet
 @onready var label: Label = %Label
+@onready var mood_display: MoodDisplay = %MoodDisplay
 
 enum PetGrowthState { EGG, HATCHLING, JUVINIAL, ADULT }
 var pet_growth_state: PetGrowthState = PetGrowthState.EGG
+
+const StatusEnum = preload("uid://bsknb2ab5somj")
+
 
 const LABLESTATES = {
 	PetGrowthState.EGG : "Egg",
@@ -31,10 +34,10 @@ const LABLESTATES = {
 
 
 func _process(delta: float) -> void:
-	
 	label.set_text(LABLESTATES[pet_growth_state])
 
 func _ready() -> void:
+	pet_interaction.pressed.connect(_check_mood)
 	Events.game_start_signal.connect(_on_game_start)
 	Events.mini_game_started_signal.connect(_on_mini_game_start)
 	Events.evolve_signal.connect(_evolution)
@@ -46,6 +49,56 @@ func _ready() -> void:
 			if GameStateMachine.get_prior_game_state() == GameStateMachine.GameState.MINI:
 				_toogle_ticks(true)
 
+
+
+func _check_mood()->void:
+	var happy = Globals.get_current_happiness()
+	var hunger = Globals.get_current_hunger()
+	var hygine = Globals.get_current_hygiene()
+	var status := get_overall_status_enum(happy, hunger, hygine)
+	
+	match status:
+		StatusEnum.Status.POOR:
+			print("Poor")
+			mood_display.mood(StatusEnum.Status.POOR)
+		StatusEnum.Status.MID:
+			print("Mid")
+			mood_display.mood(StatusEnum.Status.MID)
+		StatusEnum.Status.GOOD:
+			print("Good")
+			mood_display.mood(StatusEnum.Status.GOOD)
+		StatusEnum.Status.EXCELLENT:
+			print("Excellentdd")
+			mood_display.mood(StatusEnum.Status.EXCELLENT)
+		_:
+			print("Unknown")
+			mood_display.mood(StatusEnum.Status.UNKNOWN)
+
+
+
+
+
+func get_overall_status_enum(happy: float, hunger: float, hygiene: float) -> StatusEnum.Status:
+	var total := happy + hunger + hygiene
+	var count := 3.0  # number of stats used
+
+	if total <= 0.0:
+		return StatusEnum.Status.UNKNOWN
+
+	var result := total / count  # average value between 0 and 1
+
+	if result < 0.25:
+		return StatusEnum.Status.POOR
+	elif result < 0.5:
+		return StatusEnum.Status.MID
+	elif result < 0.75:
+		return StatusEnum.Status.GOOD
+	else:
+		return StatusEnum.Status.EXCELLENT
+
+
+
+
 func _on_game_state_changed(state: GameStateMachine.GameState)->void:
 	print("state change signal received. ")
 
@@ -55,11 +108,14 @@ func _toogle_ticks(v: bool)->void:
 	_can_get_happy  = v
 	_can_get_hungry = v
 	_can_age        = v
-	
 
-
+var _intro:bool = true
 func _on_intro_ended_signal()->void:
-	body_sprite.set_sprite_frames(pet_resource.egg_sprite)
+	if _intro:
+		body_sprite.set_sprite_frames(pet_resource.egg_sprite)
+		_intro = false
+	else:
+		return
 
 
 func _set_growth_state(new_growth_state: PetGrowthState):
@@ -153,12 +209,6 @@ func _check_ev_line():
 	else:
 		pet_resource.ev_line = pet_resource.EvLine.MOTHRA
 
-
-func _on_poop_call(v:bool):
-	if v == true:
-		pet_resource.hygiene_rate = 2
-	else:
-		pet_resource.hygiene_rate = 1
 
 func _on_game_start():
 	if Globals.new_game:

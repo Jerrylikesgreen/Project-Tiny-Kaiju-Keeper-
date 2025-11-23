@@ -37,7 +37,7 @@
 [ext_resource type="Script" uid="uid://bubnhlufbh85r" path="res://Scripts/GUI/gui_sfx.gd" id="34_rs42p"]
 [ext_resource type="PackedScene" uid="uid://cn5g4gwpxhc7b" path="res://Scenes/bgm.tscn" id="35_5qxgh"]
 [ext_resource type="Script" uid="uid://cy630ouleptci" path="res://Scripts/player_message.gd" id="36_qfgnl"]
-[ext_resource type="Script" uid="uid://7aukfqxwme0u" path="res://Scenes/label.gd" id="39_kbbok"]
+[ext_resource type="Script" uid="uid://7aukfqxwme0u" path="res://Scripts/label.gd" id="39_kbbok"]
 [ext_resource type="Script" uid="uid://bsciqt4hwqs5x" path="res://Scripts/pet_button.gd" id="39_mvmce"]
 
 [sub_resource type="Theme" id="Theme_cl5ej"]
@@ -149,9 +149,16 @@ position = Vector2(256, 304)
 unique_name_in_owner = true
 position = Vector2(360, 304)
 
-[node name="PoopContainer" type="Node2D" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/PetLayer"]
+[node name="PoopContainer" type="ItemList" parent="MainDisplayLayer/MainDisplayContainer/WorldManager/PetLayer"]
 unique_name_in_owner = true
-position = Vector2(152, 320)
+anchors_preset = -1
+anchor_top = 0.58500004
+anchor_right = 0.39600003
+anchor_bottom = 0.81700003
+offset_left = 6.0
+offset_top = -0.08001709
+offset_right = 0.24798584
+offset_bottom = -0.016021729
 
 [node name="InfoDisplay" type="Control" parent="MainDisplayLayer/MainDisplayContainer/WorldManager"]
 layout_mode = 2

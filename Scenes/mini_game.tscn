@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=3 uid="uid://b2gitsjyjmbyo"]
 
-[ext_resource type="Script" uid="uid://d1d0h6buo3p0a" path="res://Scenes/mini_game.gd" id="1_dqngj"]
+[ext_resource type="Script" uid="uid://d1d0h6buo3p0a" path="res://Scripts/mini_game.gd" id="1_dqngj"]
 [ext_resource type="Script" uid="uid://ccavjb1e2mf1e" path="res://Scripts/World/parallax_background.gd" id="1_t3iq2"]
 [ext_resource type="Texture2D" uid="uid://bgkwc5lxcr5fo" path="res://Asset/Background/sky parallax.png" id="1_x4rm2"]
 [ext_resource type="Theme" uid="uid://bauj4gssrpq0r" path="res://Resources/mini.tres" id="1_xsp06"]
@@ -25,10 +25,10 @@
 [ext_resource type="AudioStream" uid="uid://dlrt8glkw04fl" path="res://Asset/OGG/Munch 1.ogg" id="23_qj2pu"]
 [ext_resource type="AudioStream" uid="uid://bk8cnhuxj1a3l" path="res://Asset/OGG/Blip.ogg" id="24_i7yn5"]
 [ext_resource type="AudioStream" uid="uid://bpmc66h1av61w" path="res://Asset/OGG/Roar.ogg" id="25_1skup"]
-[ext_resource type="Script" uid="uid://d0h0ouitoau5y" path="res://Scenes/game_over_cam.gd" id="25_h721f"]
+[ext_resource type="Script" uid="uid://d0h0ouitoau5y" path="res://Scripts/game_over_cam.gd" id="25_h721f"]
 [ext_resource type="AudioStream" uid="uid://bvcoevi05ebbf" path="res://Asset/OGG/I_See_Airplanes_Mama!.ogg" id="27_o6727"]
 [ext_resource type="LabelSettings" uid="uid://bqa25qssvogie" path="res://Resources/Theme/LableDefault.tres" id="28_qajeg"]
-[ext_resource type="Script" uid="uid://7aukfqxwme0u" path="res://Scenes/label.gd" id="29_wgn8h"]
+[ext_resource type="Script" uid="uid://7aukfqxwme0u" path="res://Scripts/label.gd" id="29_wgn8h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f6s4d"]
 
