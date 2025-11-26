@@ -1,4 +1,4 @@
-class_name Cookie extends AnimatedSprite2D
+class_name CookieAnimation extends AnimatedSprite2D
 
 @onready var sfx: AudioStreamPlayer = $SFX
 

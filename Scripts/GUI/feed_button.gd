@@ -23,13 +23,13 @@ func _on_pressed() -> void:
 	Globals.set_current_hunger(new_value)
 
 	Globals.set_cookie_count(cookies - 1)
-
+	Events.feed()
 	Events.sfx_trigger(SFX.Track.BLIP)
 	print("eat, cookies now:", Globals.get_cookie_count())
 	_count = _count + 1
 	if _count > 2:
 		_count = 0
-		Events.poop
+		Events.poop(true)
 	
 
 func _on_can_feed(value:bool)->void:

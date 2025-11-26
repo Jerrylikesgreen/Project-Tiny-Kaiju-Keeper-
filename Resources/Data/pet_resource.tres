@@ -1,8 +1,6 @@
-[gd_resource type="Resource" script_class="PetResource" load_steps=3 format=3 uid="uid://h6blcpa1ni5b"]
+[gd_resource type="Resource" script_class="PetResource" load_steps=2 format=3 uid="uid://h6blcpa1ni5b"]
 
 [ext_resource type="Script" uid="uid://dasllghvayy78" path="res://Scripts/Mob/pet_resource_script.gd" id="1_i0yms"]
-[ext_resource type="SpriteFrames" uid="uid://bujaflshysawk" path="res://Resources/Sprite/egg.tres" id="1_l381k"]
 
 [resource]
 script = ExtResource("1_i0yms")
-egg_sprite = ExtResource("1_l381k")

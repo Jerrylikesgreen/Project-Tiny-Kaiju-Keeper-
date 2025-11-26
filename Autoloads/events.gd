@@ -19,7 +19,10 @@ signal evolve_signal(current_growth_state: PetResource.PetGrowthState)
 signal intro_ended_signal
 signal mini_game_startup
 signal poop_signal(v:bool)
+signal feed_signal
+
 const THRESHOLD := 0.7
+
 
 ## If you still need this elsewhere, keep it
 var event_list: Dictionary[String, float] = {}
@@ -89,6 +92,8 @@ func game_state_change(value: GameStateMachine.GameState)->void:
 	GameStateMachine.set_game_state(value)
 	print(value)
 
+func feed()->void:
+	emit_signal("feed_signal")
 
 func sfx_trigger(sfx: SFX.Track ):
 	emit_signal("play_sfx_signal", sfx)

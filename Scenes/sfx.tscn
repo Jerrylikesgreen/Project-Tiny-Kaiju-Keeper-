@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://ce77p7t6uoopb"]
+[gd_scene load_steps=2 format=3 uid="uid://ce77p7t6uoopb"]
+
+[ext_resource type="AudioStream" uid="uid://dlrt8glkw04fl" path="res://Asset/OGG/Munch 1.ogg" id="1_tcyhk"]
 
 [node name="SFX" type="AudioStreamPlayer"]
+stream = ExtResource("1_tcyhk")

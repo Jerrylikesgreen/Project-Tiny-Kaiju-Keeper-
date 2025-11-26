@@ -1,29 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cayarfcoxnvaw"]
+[gd_scene load_steps=4 format=3 uid="uid://cayarfcoxnvaw"]
 
 [ext_resource type="Script" uid="uid://bfbsfthgo65bn" path="res://Scripts/Mob/poop_hazard.gd" id="1_1dcrv"]
-[ext_resource type="Texture2D" uid="uid://cysv5ka8qqn8l" path="res://Asset/Poo/poo sprite sheet.png" id="2_1tp5c"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tr4lx"]
-atlas = ExtResource("2_1tp5c")
-region = Rect2(0, 0, 8, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bqto4"]
-atlas = ExtResource("2_1tp5c")
-region = Rect2(0, 11, 8, 11)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sy25p"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tr4lx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bqto4")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://yti5xkc0usbj" path="res://Asset/Poo/poop2.tres" id="2_1dcrv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tr4lx"]
 
@@ -33,7 +11,7 @@ script = ExtResource("1_1dcrv")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-sprite_frames = SubResource("SpriteFrames_sy25p")
+sprite_frames = ExtResource("2_1dcrv")
 frame_progress = 0.232756
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

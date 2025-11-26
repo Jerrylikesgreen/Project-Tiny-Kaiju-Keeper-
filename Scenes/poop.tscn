@@ -1,42 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://sjiy0fxc8ojc"]
+[gd_scene load_steps=4 format=3 uid="uid://sjiy0fxc8ojc"]
 
-[ext_resource type="Texture2D" uid="uid://cysv5ka8qqn8l" path="res://Asset/Poo/poo sprite sheet.png" id="1_his16"]
-[ext_resource type="Script" uid="uid://bmvleipmsulst" path="res://Scripts/Mob/poop.gd" id="2_j11jb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j11jb"]
-atlas = ExtResource("1_his16")
-region = Rect2(0, 0, 8, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lfd81"]
-atlas = ExtResource("1_his16")
-region = Rect2(0, 11, 8, 11)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_oeqen"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j11jb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lfd81")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://caslpctcbdxg7" path="res://Scripts/poop_display.gd" id="1_r4po0"]
+[ext_resource type="SpriteFrames" uid="uid://brjn24t18c413" path="res://Asset/Poo/poop.tres" id="2_r4po0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j11jb"]
 radius = 3.66667
 height = 13.3333
 
-[node name="poop_sprite" type="AnimatedSprite2D"]
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_oeqen")
-autoplay = "default"
-script = ExtResource("2_j11jb")
+[node name="poop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_r4po0")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, 8)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_r4po0")
+autoplay = "default"
+frame_progress = 0.017130421
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
 shape = SubResource("CapsuleShape2D_j11jb")

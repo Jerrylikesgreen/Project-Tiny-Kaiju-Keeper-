@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://yti5xkc0usbj"]
+
+[ext_resource type="Texture2D" uid="uid://cysv5ka8qqn8l" path="res://Asset/Poo/poo sprite sheet.png" id="1_fyrun"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr4lx"]
+atlas = ExtResource("1_fyrun")
+region = Rect2(0, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqto4"]
+atlas = ExtResource("1_fyrun")
+region = Rect2(0, 11, 8, 11)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr4lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqto4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]

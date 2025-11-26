@@ -7,7 +7,7 @@ const POOP = preload("uid://sjiy0fxc8ojc")
 
 ## Observer node for the World. Anything that is displayed inside the World will send signals here.
 @onready var cookie_container: Node2D = %CookieContainer
-@onready var poop_container: ItemList = %PoopContainer
+@onready var poop_container: PoopContainer = %PoopContainer
 
 
 var can_spawn_cookie: bool = false
@@ -18,7 +18,7 @@ func _ready() -> void:
 func _on_poop(v:bool)->void:
 	if v == false:
 		return
-	var poop: Poop = POOP.instantiate()
+	var poop: PoopDisplay = POOP.instantiate()
 	poop_container.add_child(poop)
 
 
