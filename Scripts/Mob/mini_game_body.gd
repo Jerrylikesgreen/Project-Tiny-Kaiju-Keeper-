@@ -30,9 +30,8 @@ func _physics_process(delta: float) -> void:
 
 func _ready() -> void:
 	Events.mini_game_started_signal.connect(_on_start)
-#	var new_frames: SpriteFrames = Globals.active_pet.body_sprite.get_sprite_frames()
-#	body_sprite.set_sprite_frames(new_frames)
-	print("_is_running")
+	var new_frames: SpriteFrames = Globals.get_active_sprite()
+	body_sprite.set_sprite_frames(new_frames)
 
 func _on_start()->void:
 	_is_running = true

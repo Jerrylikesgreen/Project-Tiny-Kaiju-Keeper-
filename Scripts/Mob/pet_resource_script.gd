@@ -20,11 +20,43 @@ const JUVENILE_MOTHLYN = preload("res://Resources/Sprite/juvinial_mothlyn.tres")
 @export var hygiene_rate: int = 1 
 
 
-@export var egg_sprite: SpriteFrames
-@export var juvinial: SpriteFrames ## Variable holding sprite 
-@export var adult: SpriteFrames
-@export var hatchling: SpriteFrames
-@export var growth_state: PetBody.PetGrowthState
 @export var sprite: SpriteFrames
 enum EvLine { GODZILA, MOTHRA }
 @export var ev_line: EvLine 
+
+enum PetGrowthState { EGG, HATCHLING, JUVINIAL, ADULT }
+@export var pet_growth_state: PetGrowthState = PetGrowthState.EGG
+
+const PETGROWTHSTATE = {
+	PetGrowthState.EGG: "Egg",
+	PetGrowthState.HATCHLING: "Hatchling",
+	PetGrowthState.JUVINIAL: "Juvinile",
+	PetGrowthState.ADULT: "Adult"
+}
+
+func get_pet_growth_state_as_string()->String:
+	return PETGROWTHSTATE[pet_growth_state]
+
+func get_sprite() ->SpriteFrames:
+	var _sprite: SpriteFrames
+	
+	match pet_growth_state:
+		PetGrowthState.EGG:
+			_sprite = EGG_2
+		PetGrowthState.HATCHLING:
+			_sprite = HATCHLING
+		PetGrowthState.JUVINIAL:
+			match ev_line:
+				EvLine.GODZILA:
+					_sprite = JUVENILE_GIGAZILLA
+				EvLine.MOTHRA:
+					_sprite = JUVENILE_MOTHLYN
+		PetGrowthState.ADULT:
+			match ev_line:
+				EvLine.GODZILA:
+					_sprite = ADULT_GIGAZILLA
+				EvLine.MOTHRA:
+					_sprite = ADULT_MOTHLYN
+	if !_sprite:
+		_sprite = EGG_1
+	return _sprite

@@ -2,6 +2,7 @@
 extends Node
 
 
+const EGG = preload("uid://bujaflshysawk")
 
 
 # ────────────────────────────────[ Backing fields ]───────────────────────────────
@@ -11,7 +12,7 @@ var _hunger:   float = 0.0
 
 var _hygiene:  float = 0.0
 
-
+var _active_pet_resource: PetResource
 
 var _cookie_count: int = 0
 ## Current active `GameState`. Do **not** set directly – use `current_game_state`.
@@ -24,14 +25,14 @@ var current_hygiene   : float     : set = set_current_hygiene,   get = get_curre
 var current_cookie_count: int     : set = set_cookie_count,      get = get_cookie_count
 
 var active_pet: PetBody
-var current_pet_growth_state: PetBody.PetGrowthState
+var current_pet_growth_state: PetResource.PetGrowthState
 var gigazilla_points: float
 var mothlyn_points: int
 var poop_spawned:bool = false
 var feed_count: int = 0
 var new_game: bool = true
 var pet_age: int
-var active_pet_resource: PetResource
+
 var current_sprite_frames: SpriteFrames
 
 
@@ -49,9 +50,20 @@ func set_current_happiness(value: float) -> void:
 		return
 		
 	_happiness = value
-	active_pet_resource.happiness = value
+	_active_pet_resource.happiness = value
 	Events.happiness_changed(value)
 	
+
+func set_active_pet_resource(resource:PetResource)->void:
+	_active_pet_resource = resource
+
+func get_active_pet_resource()->PetResource:
+	return _active_pet_resource
+
+func get_active_sprite() -> SpriteFrames:
+	if !_active_pet_resource:
+		return EGG
+	return _active_pet_resource.get_sprite()
 
 func get_current_happiness() -> float:
 	return _happiness
@@ -61,7 +73,7 @@ func set_current_hunger(value: float) -> void:
 	if is_equal_approx(value, _hunger):
 		return 
 	_hunger = value
-	active_pet_resource.hunger = value
+	_active_pet_resource.hunger = value
 	Events.hunger_changed(value)
 
 
@@ -74,16 +86,16 @@ func set_current_hygiene(value: float) -> void:
 		return    
 
 	_hygiene = value
-	active_pet_resource.hygiene = value
+	_active_pet_resource.hygiene = value
 	Events.hygiene_changed(value)
 
 func get_current_hygiene() -> float:
 	return _hygiene
 	
-func set_pet_growth_state(new_state: PetBody.PetGrowthState)->void:
+func set_pet_growth_state(new_state: PetResource.PetGrowthState)->void:
 	current_pet_growth_state = new_state
 
-func get_pet_growth_state()-> PetBody.PetGrowthState:
+func get_pet_growth_state()-> PetResource.PetGrowthState:
 	return current_pet_growth_state
 	
 # ──────────────────────────────────────────────────────┘
@@ -124,10 +136,7 @@ func save_game() -> void:
 
 	if active_pet:
 		data.age = active_pet.pet_resource.age if active_pet.pet_resource else 0
-		# Prefer saving resource path or an identifier instead of raw object
-		# e.g. data.active_pet_resource_path = active_pet.pet_resource.resource_path
 		data.active_pet_resource = active_pet.pet_resource
-		data.active_pet_resource.growth_state = active_pet.pet_growth_state
 
 	# Save as a Resource (.tres)
 	var save_result := ResourceSaver.save(data, SAVE_FILE)

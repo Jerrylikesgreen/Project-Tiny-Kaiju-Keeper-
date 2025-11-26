@@ -32,6 +32,6 @@ func _on_pet_pressed()->void:
 		Globals.active_pet = pet
 		Globals.save_game()
 		pet_button.queue_free()
-		Events.on_pet_growth_state_change(PetBody.PetGrowthState.HATCHLING)
+		Events.on_pet_growth_state_change(PetResource.PetGrowthState.HATCHLING)
 	else:
 		return

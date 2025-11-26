@@ -19,35 +19,31 @@ class_name PetBody extends CharacterBody2D
 @onready var label: Label = %Label
 @onready var mood_display: MoodDisplay = %MoodDisplay
 
-enum PetGrowthState { EGG, HATCHLING, JUVINIAL, ADULT }
-var pet_growth_state: PetGrowthState = PetGrowthState.EGG
+
 
 const StatusEnum = preload("uid://bsknb2ab5somj")
 
 
 const LABLESTATES = {
-	PetGrowthState.EGG : "Egg",
-	PetGrowthState.HATCHLING : "Hatchling",
-	PetGrowthState.JUVINIAL: "Juvinile", 
-	PetGrowthState.ADULT: "Adult"
+	PetResource.PetGrowthState.EGG : "Egg",
+	PetResource.PetGrowthState.HATCHLING : "Hatchling",
+	PetResource.PetGrowthState.JUVINIAL: "Juvinile", 
+	PetResource.PetGrowthState.ADULT: "Adult"
 }
 
 
 func _process(delta: float) -> void:
-	label.set_text(LABLESTATES[pet_growth_state])
+	label.set_text(LABLESTATES[pet_resource.pet_growth_state])
 
 func _ready() -> void:
 	pet_interaction.pressed.connect(_check_mood)
 	Events.game_start_signal.connect(_on_game_start)
 	Events.mini_game_started_signal.connect(_on_mini_game_start)
 	Events.evolve_signal.connect(_evolution)
-	Events.intro_ended_signal.connect(_on_intro_ended_signal)
-	pet_growth_state = Globals.get_pet_growth_state()
+	pet_resource.pet_growth_state = Globals.get_pet_growth_state()
 	Events.game_state.connect(_on_game_state_changed)
-	match GameStateMachine.current_game_state:
-		GameStateMachine.GameState.MAIN:
-			if GameStateMachine.get_prior_game_state() == GameStateMachine.GameState.MINI:
-				_toogle_ticks(true)
+	if GameStateMachine.get_prior_game_state() == GameStateMachine.GameState.MINI:
+		_toogle_ticks(true)
 
 
 
@@ -109,26 +105,18 @@ func _toogle_ticks(v: bool)->void:
 	_can_get_hungry = v
 	_can_age        = v
 
-var _intro:bool = true
-func _on_intro_ended_signal()->void:
-	if _intro:
-		body_sprite.set_sprite_frames(pet_resource.egg_sprite)
-		_intro = false
-	else:
-		return
 
-
-func _set_growth_state(new_growth_state: PetGrowthState):
-	pet_growth_state = new_growth_state
+func _set_growth_state(new_growth_state: PetResource.PetGrowthState):
+	pet_resource.pet_growth_state = new_growth_state
 	Events.on_pet_growth_state_change(new_growth_state)
 
 
 func update_globals_from_pet(pet: PetResource) -> void:
-	Globals.active_pet_resource = pet
+	Globals.set_active_pet_resource( pet )
 	Globals.set_current_happiness(pet.happiness)
 	Globals.set_current_hunger(pet.hunger)
 	Globals.set_current_hygiene(pet.hygiene)
-	Globals.set_pet_growth_state(pet_growth_state)
+	Globals.set_pet_growth_state(pet.pet_growth_state)
 
 
 func start_hunger_tick()->void:
@@ -181,25 +169,25 @@ func _on_growth_tick_timeout() -> void:
 	else:
 		pet_resource.age = pet_resource.age + 1 * growth_speed
 		if pet_resource.age == 50:
-			_evolution(PetGrowthState.JUVINIAL)
+			_evolution(pet_resource.PetGrowthState.JUVINIAL)
 		if pet_resource.age == 100:
-			_evolution(PetGrowthState.ADULT)
+			_evolution(pet_resource.PetGrowthState.ADULT)
 		Globals.pet_age = pet_resource.age
 
 
-func _evolution(state:PetGrowthState)->void:
+func _evolution(state)->void:
 	match state:
-		PetGrowthState.HATCHLING:
-			pet_growth_state = state
+		pet_resource.PetGrowthState.HATCHLING:
+			pet_resource.pet_growth_state = state
 			update_globals_from_pet(pet_resource)
 			
-		PetGrowthState.JUVINIAL:
+		pet_resource.PetGrowthState.JUVINIAL:
 			_check_ev_line()
-			pet_growth_state = state
+			pet_resource.pet_growth_state = state
 			update_globals_from_pet(pet_resource)
 			
-		PetGrowthState.ADULT:
-			pet_growth_state = state
+		pet_resource.PetGrowthState.ADULT:
+			pet_resource.pet_growth_state = state
 			update_globals_from_pet(pet_resource)
 	
 
@@ -212,7 +200,7 @@ func _check_ev_line():
 
 func _on_game_start():
 	if Globals.new_game:
-		Globals.active_pet_resource = pet_resource
+		Globals._active_pet_resource = pet_resource
 		Globals.set_current_happiness(1.0)
 		Globals.set_current_hygiene(1.0)
 		Globals.set_current_hunger(1.0)

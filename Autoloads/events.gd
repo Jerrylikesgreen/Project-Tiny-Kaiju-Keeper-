@@ -6,7 +6,6 @@ signal happiness_changed_signal( value: float)
 signal hunger_changed_signal(value: float)
 signal hygiene_changed_signal( value: float)
 signal game_state(value: GameStateMachine.GameState)
-signal pet_event_signal(listener, event)
 signal play_sfx_signal(track_id: int)
 signal play_gui_sfx_signal(track_id: int)
 signal game_start_signal
@@ -16,7 +15,7 @@ signal mini_game_ended
 signal mini_game_started_signal
 signal player_message(player_message:String)
 signal can_feed(value:bool)
-signal evolve_signal(current_growth_state: PetBody.PetGrowthState)
+signal evolve_signal(current_growth_state: PetResource.PetGrowthState)
 signal intro_ended_signal
 signal mini_game_startup
 signal poop_signal(v:bool)
@@ -90,11 +89,6 @@ func game_state_change(value: GameStateMachine.GameState)->void:
 	GameStateMachine.set_game_state(value)
 	print(value)
 
-func pet_event(event: String, value: float)-> void:
-	print("Event")
-	event_list[event]=value
-	emit_signal("pet_event_signal", event, value)
-	pass 
 
 func sfx_trigger(sfx: SFX.Track ):
 	emit_signal("play_sfx_signal", sfx)
@@ -123,7 +117,7 @@ func trigger_can_feed(value:bool)-> void:
 func display_player_message(new_message:String)-> void:
 	emit_signal("player_message", new_message)
 	
-func on_pet_growth_state_change(current_growth_state: PetBody.PetGrowthState) ->void:
+func on_pet_growth_state_change(current_growth_state: PetResource.PetGrowthState) ->void:
 	emit_signal("evolve_signal", current_growth_state)
 	sfx_trigger(SFX.Track.EVOLUTION)
 

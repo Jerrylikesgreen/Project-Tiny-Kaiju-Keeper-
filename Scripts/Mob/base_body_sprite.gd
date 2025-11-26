@@ -26,28 +26,26 @@ const STAGE_FRAMES := {
 func _ready() -> void:
 	ev_visual_effect.ev_finished_signal.connect(_on_ev_finished_signal)
 	Events.evolve_signal.connect(_evolution)
-	Globals.active_pet_resource = PetResource.new()
-	if Globals.active_pet_resource.sprite:
-		var frames = Globals.active_pet_resource.sprite
-		set_sprite_frames(frames)
-	else:
-		Globals.active_pet_resource.sprite = EGG_2
+	sprite_frames = Globals.get_active_sprite()
 
 func _on_ev_finished_signal() ->void:
 	print("Signal")
 	_set_frame(frame_set)
 
 
-func _evolution(state:PetBody.PetGrowthState)->void:
+func _evolution(state:PetResource.PetGrowthState)->void:
 	print("evelution call")
 	match state:
 		
-		PetBody.PetGrowthState.HATCHLING:
+		PetResource.PetGrowthState.HATCHLING:
 			ev_visual_effect.play()
 			frame_set = FrameSet.HATCHLING
 			
 			
-		PetBody.PetGrowthState.JUVINIAL:
+			
+			
+			
+		PetResource.PetGrowthState.JUVINIAL:
 			var body: PetBody = get_parent()
 			if body.pet_resource.ev_line == body.pet_resource.EvLine.GODZILA:
 				ev_visual_effect.play()
@@ -56,7 +54,7 @@ func _evolution(state:PetBody.PetGrowthState)->void:
 			else:
 				frame_set = FrameSet.JUV_MOTH
 				
-		PetBody.PetGrowthState.ADULT:
+		PetResource.PetGrowthState.ADULT:
 			var body: PetBody = get_parent()
 			if body.pet_resource.ev_line == body.pet_resource.EvLine.GODZILA:
 				frame_set = FrameSet.ADULT_GIGA
